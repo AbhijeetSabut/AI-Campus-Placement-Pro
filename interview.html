@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Interview Assistant</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+🤖 AI Campus Placement Pro
+</div>
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/predictor">Predictor</a></li>
+<li><a href="/interview">Interview</a></li>
+<li><a href="/about">About</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<div class="glass">
+
+<h1>🎤 AI Interview Assistant</h1>
+
+<h2>Question</h2>
+
+<p><b>Tell me about yourself.</b></p>
+
+<form action="/feedback" method="POST">
+
+<textarea
+name="answer"
+rows="8"
+placeholder="Type your answer here..."
+required></textarea>
+
+<br><br>
+
+<button type="submit">
+
+🚀 Get AI Feedback
+
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<footer>
+
+Developed by <b>SECRET CIRCLE 🔴</b>
+
+</footer>
+
+</body>
+
+</html>

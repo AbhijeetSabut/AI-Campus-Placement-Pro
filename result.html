@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Placement Dashboard</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+🤖 AI Campus Placement Pro
+</div>
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/predictor">Predictor</a></li>
+<li><a href="/interview">Interview</a></li>
+<li><a href="/about">About</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<div class="glass">
+
+<h1>🎓 AI Placement Dashboard</h1>
+
+<h2>{{ prediction }}</h2>
+
+<div class="score-card">
+
+<h3>Placement Probability</h3>
+
+<div class="score">
+
+{{ probability }}%
+
+</div>
+
+</div>
+
+<hr>
+
+<h2>📄 Student Details</h2>
+
+<div class="card">
+
+<p><b>CGPA :</b> {{ cgpa }}</p>
+
+<p><b>Projects :</b> {{ projects }}</p>
+
+<p><b>Internships :</b> {{ internships }}</p>
+
+</div>
+
+<hr>
+
+<h2>⭐ Skill Ratings</h2>
+
+<div class="card">
+
+<p><b>CGPA</b></p>
+
+<div class="progress">
+<div class="progress-fill" style="width:90%;"></div>
+</div>
+
+<p>{{ cgpa_rating }}</p>
+
+<br>
+
+<p><b>Projects</b></p>
+
+<div class="progress">
+<div class="progress-fill" style="width:75%;"></div>
+</div>
+
+<p>{{ project_rating }}</p>
+
+<br>
+
+<p><b>Internships</b></p>
+
+<div class="progress">
+<div class="progress-fill" style="width:70%;"></div>
+</div>
+
+<p>{{ internship_rating }}</p>
+
+</div>
+
+<hr>
+
+<h2>💡 AI Recommendations</h2>
+
+<div class="card">
+
+<ul>
+
+{% for item in recommendations %}
+
+<li>{{ item }}</li>
+
+{% endfor %}
+
+</ul>
+
+</div>
+
+<br>
+
+<div class="button-group">
+
+<a href="/predictor" class="btn">
+
+🔄 Predict Again
+
+</a>
+
+<a href="/download" class="btn">
+
+📥 Download PDF
+
+</a>
+
+<a href="/interview" class="btn">
+
+🎤 Interview Assistant
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+Developed by <b>SECRET CIRCLE 🔴</b>
+
+</footer>
+
+</body>
+
+</html>

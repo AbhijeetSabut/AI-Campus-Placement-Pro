@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Placement Predictor</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+🤖 AI Campus Placement Pro
+</div>
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/predictor">Predictor</a></li>
+<li><a href="/about">About</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<div class="glass">
+
+<h1>🎓 AI Placement Predictor</h1>
+
+<form action="/predict" method="POST">
+
+<label>CGPA</label>
+<input type="number" step="0.01" name="CGPA" required>
+
+<label>Internships</label>
+<input type="number" name="Internships" required>
+
+<label>Projects</label>
+<input type="number" name="Projects" required>
+
+<label>Workshops / Certifications</label>
+<input type="number" name="Workshops" required>
+
+<label>Aptitude Test Score</label>
+<input type="number" name="AptitudeTestScore" required>
+
+<label>Soft Skills Rating</label>
+<input type="number" name="SoftSkillsRating" required>
+
+<label>Extracurricular Activities (0 or 1)</label>
+<input type="number" min="0" max="1" name="ExtracurricularActivities" required>
+
+<label>Placement Training (0 or 1)</label>
+<input type="number" min="0" max="1" name="PlacementTraining" required>
+
+<label>SSC Marks</label>
+<input type="number" step="0.01" name="SSC_Marks" required>
+
+<label>HSC Marks</label>
+<input type="number" step="0.01" name="HSC_Marks" required>
+
+<br>
+
+<button type="submit">
+🚀 Predict Placement
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<footer>
+
+Developed by <b>SECRET CIRCLE 🔴</b>
+
+</footer>
+
+</body>
+</html>
