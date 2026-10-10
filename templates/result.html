@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Placement Result | AI Campus Placement Pro</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(124,60,255,.20),transparent 30%),
+        radial-gradient(circle at 80% 80%,rgba(0,200,255,.12),transparent 30%),
+        #050817;
+    color:white;
+    padding:30px;
+}
+
+.container{
+    width:100%;
+    max-width:950px;
+    margin:auto;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.logo{
+    font-size:18px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#8b5cf6;
+}
+
+.nav{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.nav a{
+    text-decoration:none;
+    color:white;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.1);
+    padding:10px 15px;
+    border-radius:10px;
+    font-size:13px;
+}
+
+.nav a:hover{
+    background:#713cff;
+}
+
+.card{
+    background:rgba(13,18,40,.94);
+    border:1px solid rgba(139,92,246,.25);
+    border-radius:25px;
+    padding:40px;
+    box-shadow:0 25px 70px rgba(0,0,0,.45);
+}
+
+.header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.robot{
+    font-size:50px;
+    margin-bottom:10px;
+}
+
+.header h1{
+    font-size:32px;
+}
+
+.header p{
+    color:#8b97b0;
+    margin-top:8px;
+}
+
+.result-box{
+    text-align:center;
+    padding:35px;
+    border-radius:20px;
+    background:linear-gradient(
+        135deg,
+        rgba(124,60,255,.20),
+        rgba(19,207,255,.08)
+    );
+    border:1px solid rgba(124,60,255,.25);
+}
+
+.result-box h2{
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+.probability{
+    font-size:55px;
+    font-weight:bold;
+    background:linear-gradient(
+        90deg,
+        #9b7cff,
+        #18d5ff
+    );
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.probability-label{
+    color:#8994ad;
+    margin-top:5px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:22px;
+}
+
+.item{
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.07);
+    padding:20px;
+    border-radius:15px;
+}
+
+.item small{
+    display:block;
+    color:#7f8ba5;
+    margin-bottom:8px;
+}
+
+.item strong{
+    font-size:20px;
+}
+
+.section{
+    margin-top:22px;
+    padding:22px;
+    border-radius:16px;
+    background:rgba(255,255,255,.035);
+}
+
+.section h3{
+    color:#a98bff;
+    margin-bottom:10px;
+}
+
+.section p{
+    color:#b8c1d3;
+    line-height:1.7;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:28px;
+}
+
+.btn{
+    text-decoration:none;
+    color:white;
+    padding:13px 20px;
+    border-radius:11px;
+    font-weight:bold;
+    font-size:13px;
+    background:linear-gradient(
+        90deg,
+        #713cff,
+        #16c5f4
+    );
+}
+
+.btn.secondary{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.error{
+    background:rgba(255,60,60,.10);
+    border:1px solid rgba(255,80,80,.3);
+    padding:25px;
+    border-radius:15px;
+    color:#ffaaaa;
+    text-align:center;
+}
+
+.footer{
+    text-align:center;
+    color:#727d96;
+    margin-top:30px;
+    font-size:12px;
+}
+
+@media(max-width:700px){
+
+    body{
+        padding:15px;
+    }
+
+    .card{
+        padding:22px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .topbar{
+        flex-direction:column;
+        gap:15px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="topbar">
+
+        <div class="logo">
+            🤖 AI CAMPUS <span>PLACEMENT PRO</span>
+        </div>
+
+        <div class="nav">
+
+            <a href="/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/predictor">
+                Predictor
+            </a>
+
+            <a href="/interview">
+                AI Interview
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="header">
+
+            <div class="robot">
+                🤖
+            </div>
+
+            <h1>
+                Your Placement Result
+            </h1>
+
+            <p>
+                AI-powered analysis of your placement readiness
+            </p>
+
+        </div>
+
+
+        {% if error %}
+
+        <div class="error">
+
+            <h2>
+                Prediction Error
+            </h2>
+
+            <br>
+
+            <p>
+                {{ error }}
+            </p>
+
+        </div>
+
+        {% else %}
+
+
+        <div class="result-box">
+
+            <h2>
+                {{ prediction }}
+            </h2>
+
+            <div class="probability">
+                {{ probability }}%
+            </div>
+
+            <div class="probability-label">
+                Placement Probability
+            </div>
+
+        </div>
+
+
+        <div class="grid">
+
+            <div class="item">
+                <small>CGPA</small>
+                <strong>{{ cgpa }}</strong>
+            </div>
+
+            <div class="item">
+                <small>Internships</small>
+                <strong>{{ internships }}</strong>
+            </div>
+
+            <div class="item">
+                <small>Projects</small>
+                <strong>{{ projects }}</strong>
+            </div>
+
+            <div class="item">
+                <small>Workshops</small>
+                <strong>{{ workshops }}</strong>
+            </div>
+
+            <div class="item">
+                <small>Aptitude Score</small>
+                <strong>{{ aptitude }}</strong>
+            </div>
+
+            <div class="item">
+                <small>Soft Skills</small>
+                <strong>{{ soft_skills }}</strong>
+            </div>
+
+        </div>
+
+
+        <div class="section">
+
+            <h3>
+                🎯 Personalized Recommendation
+            </h3>
+
+            <p>
+                {{ recommendation }}
+            </p>
+
+        </div>
+
+
+        <div class="section">
+
+            <h3>
+                🚀 Motivation
+            </h3>
+
+            <p>
+                {{ motivation }}
+            </p>
+
+        </div>
+
+
+        <div class="buttons">
+
+            <a
+                href="/dashboard"
+                class="btn">
+
+                🏠 Dashboard
+
+            </a>
+
+            <a
+                href="/predictor"
+                class="btn secondary">
+
+                🔄 Predict Again
+
+            </a>
+
+            <a
+                href="/download_report"
+                class="btn secondary">
+
+                📄 Download PDF
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+
+        <div class="footer">
+
+            Best Wishes from
+            <strong>
+                SECRET CIRCLE
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

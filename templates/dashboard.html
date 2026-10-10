@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - AI Campus Placement Pro</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(91, 61, 255, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 70%,
+                    rgba(0, 153, 255, 0.12),
+                    transparent 30%
+                ),
+                #050918;
+
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* =====================================================
+           MAIN LAYOUT
+        ===================================================== */
+
+        .app-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+            width: 280px;
+            min-width: 280px;
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #080d20 0%,
+                    #060a18 100%
+                );
+
+            border-right: 1px solid rgba(255,255,255,0.08);
+
+            padding: 30px 20px;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            overflow-y: auto;
+
+            z-index: 100;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(130,100,255,0.5);
+            border-radius: 20px;
+        }
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 42px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #643cff,
+                    #1597ff
+                );
+
+            box-shadow:
+                0 0 35px rgba(87,75,255,0.35);
+        }
+
+        .logo-title {
+            font-size: 23px;
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #d6b7ff,
+                    #8cc9ff
+                );
+
+            /* Standard property for compatibility */
+            background-clip: text;
+
+            /* WebKit compatibility */
+            -webkit-background-clip: text;
+
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+
+            line-height: 1.2;
+        }
+
+        .logo-subtitle {
+            margin-top: 8px;
+
+            font-size: 12px;
+            letter-spacing: 5px;
+            font-weight: 700;
+
+            color: #00cfff;
+        }
+
+        /* =====================================================
+           SIDEBAR PROFILE
+        ===================================================== */
+
+        .sidebar-profile {
+            text-align: center;
+
+            padding: 20px 10px 25px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.08);
+
+            margin-bottom: 25px;
+        }
+
+        .sidebar-photo {
+            width: 92px;
+            height: 92px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 50%;
+
+            border: 4px solid transparent;
+
+            background:
+                linear-gradient(#071022, #071022) padding-box,
+                linear-gradient(
+                    135deg,
+                    #6d3cff,
+                    #00bfff
+                ) border-box;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 0 25px rgba(83,70,255,0.35);
+        }
+
+        .sidebar-photo img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .sidebar-photo-placeholder {
+            font-size: 38px;
+        }
+
+        .sidebar-name {
+            font-size: 17px;
+            font-weight: 800;
+
+            color: #ffffff;
+
+            margin-top: 5px;
+
+            word-break: break-word;
+        }
+
+        .sidebar-course {
+            color: #9ba8c7;
+
+            font-size: 13px;
+
+            margin-top: 7px;
+        }
+
+        /* =====================================================
+           MENU
+        ===================================================== */
+
+        .menu-title {
+            color: #68789e;
+
+            font-size: 13px;
+
+            letter-spacing: 2px;
+
+            margin: 20px 15px 12px;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .menu a {
+            text-decoration: none;
+
+            color: #aebbd8;
+
+            padding: 15px 18px;
+
+            border-radius: 17px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 15px;
+
+            font-size: 15px;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease,
+                color 0.25s ease;
+        }
+
+        .menu a:hover {
+            color: white;
+
+            background:
+                rgba(91,73,255,0.14);
+
+            transform: translateX(4px);
+        }
+
+        .menu a.active {
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7040ff,
+                    #387dff
+                );
+
+            box-shadow:
+                0 10px 30px rgba(82,67,255,0.25);
+        }
+
+        .menu-icon {
+            width: 25px;
+            min-width: 25px;
+
+            text-align: center;
+
+            font-size: 19px;
+        }
+
+        /* =====================================================
+           MAIN CONTENT
+        ===================================================== */
+
+        .main-content {
+            margin-left: 280px;
+
+            width: calc(100% - 280px);
+
+            min-height: 100vh;
+
+            padding: 38px 48px 70px;
+        }
+
+        /* =====================================================
+           TOP WELCOME CARD
+        ===================================================== */
+
+        .welcome-card {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+
+            gap: 30px;
+
+            padding: 35px 42px;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(13,21,46,0.96),
+                    rgba(8,14,32,0.92)
+                );
+
+            border:
+                1px solid rgba(123,107,255,0.22);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.25);
+
+            overflow: hidden;
+
+            margin-bottom: 35px;
+        }
+
+        .welcome-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+            height: 320px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(100,64,255,0.12);
+
+            filter: blur(60px);
+
+            left: -100px;
+            top: -120px;
+        }
+
+        .welcome-photo {
+            width: 125px;
+            height: 125px;
+
+            min-width: 125px;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+
+            border: 5px solid transparent;
+
+            background:
+                linear-gradient(#071022,#071022) padding-box,
+                linear-gradient(
+                    135deg,
+                    #7141ff,
+                    #00c8ff
+                ) border-box;
+
+            box-shadow:
+                0 0 35px rgba(86,70,255,0.45);
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+        .welcome-photo img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .welcome-photo-placeholder {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 55px;
+        }
+
+        .welcome-info {
+            position: relative;
+            z-index: 2;
+
+            flex: 1;
+        }
+
+        .welcome-small {
+            font-size: 14px;
+
+            letter-spacing: 4px;
+
+            font-weight: 700;
+
+            color: #9fa7c9;
+
+            margin-bottom: 10px;
+        }
+
+        .welcome-name {
+            font-size: clamp(32px, 4vw, 48px);
+
+            line-height: 1.1;
+
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #c8a9ff,
+                    #85bfff
+                );
+
+            /* Standard property */
+            background-clip: text;
+
+            /* WebKit compatibility */
+            -webkit-background-clip: text;
+
+            color: transparent;
+
+            /* WebKit compatibility */
+            -webkit-text-fill-color: transparent;
+
+            word-break: break-word;
+        }
+
+        .welcome-course {
+            margin-top: 12px;
+
+            font-size: 17px;
+
+            color: #9eb0d5;
+        }
+
+        .welcome-team {
+            position: relative;
+            z-index: 2;
+
+            color: #ff6677;
+
+            font-size: 17px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+        .team-dot {
+            display: inline-block;
+
+            width: 19px;
+            height: 19px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff435e,
+                    #ff6b7b
+                );
+
+            vertical-align: middle;
+
+            margin-right: 8px;
+
+            box-shadow:
+                0 0 15px rgba(255,65,95,0.5);
+        }
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            position: relative;
+
+            min-height: 350px;
+
+            padding: 48px;
+
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    110deg,
+                    rgba(53,29,126,0.96),
+                    rgba(14,40,84,0.96)
+                );
+
+            border:
+                1px solid rgba(112,86,255,0.45);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.25);
+
+            margin-bottom: 35px;
+        }
+
+        .hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            right: -100px;
+            top: -100px;
+
+            background:
+                rgba(0,187,255,0.12);
+
+            filter: blur(30px);
+        }
+
+        .hero-content {
+            position: relative;
+
+            z-index: 3;
+
+            max-width: 850px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 12px 20px;
+
+            border-radius: 30px;
+
+            border:
+                1px solid rgba(152,118,255,0.55);
+
+            background:
+                rgba(101,72,255,0.12);
+
+            color: #c9b1ff;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 5vw, 60px);
+
+            line-height: 1.05;
+
+            margin-bottom: 25px;
+
+            color: white;
+        }
+
+        .hero p {
+            color: #aab9df;
+
+            font-size: 18px;
+
+            line-height: 1.8;
+
+            max-width: 850px;
+
+            margin-bottom: 30px;
+        }
+
+        .predict-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            text-decoration: none;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+            padding: 17px 28px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7040ff,
+                    #2e83ff
+                );
+
+            box-shadow:
+                0 15px 35px rgba(71,71,255,0.3);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .predict-button:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 20px 45px rgba(71,71,255,0.45);
+        }
+
+        .robot {
+            position: absolute;
+
+            right: 65px;
+            bottom: 60px;
+
+            font-size: 100px;
+
+            z-index: 3;
+
+            filter:
+                drop-shadow(
+                    0 0 20px
+                    rgba(0,200,255,0.25)
+                );
+        }
+
+        /* =====================================================
+           QUICK CARDS
+        ===================================================== */
+
+        .section-title {
+            font-size: 24px;
+
+            font-weight: 800;
+
+            margin-bottom: 20px;
+
+            color: white;
+        }
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 35px;
+        }
+
+        .card {
+            padding: 27px;
+
+            border-radius: 24px;
+
+            background:
+                rgba(11,18,39,0.92);
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(115,94,255,0.45);
+        }
+
+        .card-icon {
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 17px;
+
+            background:
+                rgba(91,71,255,0.16);
+
+            font-size: 26px;
+
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            font-size: 18px;
+
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #8f9dbe;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+        /* =====================================================
+           PROFILE SUMMARY
+        ===================================================== */
+
+        .profile-summary {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-top: 25px;
+        }
+
+        .summary-item {
+            padding: 24px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(10,17,38,0.9);
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+        }
+
+        .summary-label {
+            font-size: 13px;
+
+            color: #7483a7;
+
+            margin-bottom: 8px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+        .summary-value {
+            font-size: 20px;
+
+            font-weight: 800;
+
+            color: #ffffff;
+
+            word-break: break-word;
+        }
+
+        .edit-profile {
+            margin-top: 25px;
+        }
+
+        .edit-profile a {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 13px 22px;
+
+            border-radius: 13px;
+
+            text-decoration: none;
+
+            color: white;
+
+            background:
+                rgba(104,72,255,0.18);
+
+            border:
+                1px solid rgba(113,88,255,0.45);
+
+            font-weight: 700;
+
+            transition: 0.25s ease;
+        }
+
+        .edit-profile a:hover {
+            background:
+                rgba(104,72,255,0.32);
+
+            transform: translateY(-2px);
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+            margin-top: 45px;
+
+            padding: 25px;
+
+            text-align: center;
+
+            color: #657394;
+
+            font-size: 13px;
+        }
+
+        .footer strong {
+            color: #ff5d72;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1200px) {
+
+            .cards {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .robot {
+                right: 35px;
+                font-size: 80px;
+            }
+
+            .welcome-team {
+                display: none;
+            }
+        }
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                width: 230px;
+                min-width: 230px;
+            }
+
+            .main-content {
+                margin-left: 230px;
+
+                width:
+                    calc(100% - 230px);
+
+                padding:
+                    25px;
+            }
+
+            .welcome-card {
+                padding: 25px;
+            }
+
+            .welcome-photo {
+                width: 100px;
+                height: 100px;
+                min-width: 100px;
+            }
+
+            .profile-summary {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+            .robot {
+                display: none;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+                position: relative;
+
+                width: 100%;
+                min-width: 100%;
+
+                min-height: auto;
+            }
+
+            .app-layout {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 0;
+
+                width: 100%;
+
+                padding: 20px;
+            }
+
+            .welcome-card {
+                flex-direction: column;
+
+                text-align: center;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome-name {
+                font-size: 32px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <!-- LOGO -->
+        <div class="logo-section">
+
+            <div class="logo-icon">
+                🤖
+            </div>
+
+            <div class="logo-title">
+                AI CAMPUS<br>
+                PLACEMENT PRO
+            </div>
+
+            <div class="logo-subtitle">
+                SMART PLACEMENT<br>
+                PREPARATION
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             DYNAMIC PROFILE
+        ================================================== -->
+
+        <div class="sidebar-profile">
+
+            <div class="sidebar-photo">
+
+                {% if user.get('profile_photo') %}
+
+                    <img
+                        src="{{ url_for('static', filename='uploads/' + user.get('profile_photo')) }}"
+                        alt="{{ user.get('name', username) }}"
+                    >
+
+                {% else %}
+
+                    <div class="sidebar-photo-placeholder">
+                        👤
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="sidebar-name">
+
+                {{ user.get('name', username or 'Student') }}
+
+            </div>
+
+
+            <div class="sidebar-course">
+
+                {{ user.get('branch', user.get('course', 'CSE')) }}
+                •
+                {{ user.get('semester', '5th Sem') }}
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             MENU
+        ================================================== -->
+
+        <div class="menu-title">
+            MAIN MENU
+        </div>
+
+
+        <nav class="menu">
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="active"
+            >
+
+                <span class="menu-icon">⌂</span>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('student_profile') }}"
+            >
+
+                <span class="menu-icon">♟</span>
+
+                <span>Student Profile</span>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('academic_details') }}"
+            >
+
+                <span class="menu-icon">🎓</span>
+
+                <span>Academic Details</span>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('skills_activities') }}"
+            >
+
+                <span class="menu-icon">⚡</span>
+
+                <span>Skills & Activities</span>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('predictor') }}"
+            >
+
+                <span class="menu-icon">🤖</span>
+
+                <span>Placement Predictor</span>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('history') }}"
+            >
+
+                <span class="menu-icon">📊</span>
+
+                <span>Results & Insights</span>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('interview') }}"
+            >
+
+                <span class="menu-icon">🎤</span>
+
+                <span>AI Interview</span>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('placement_tips') }}"
+            >
+
+                <span class="menu-icon">💡</span>
+
+                <span>Placement Tips</span>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('about') }}"
+            >
+
+                <span class="menu-icon">ℹ️</span>
+
+                <span>About Project</span>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('contact') }}"
+            >
+
+                <span class="menu-icon">📞</span>
+
+                <span>Contact</span>
+
+            </a>
+
+
+            <a
+                href="{{ url_for('logout') }}"
+            >
+
+                <span class="menu-icon">🚪</span>
+
+                <span>Logout</span>
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             WELCOME HEADER
+        ================================================== -->
+
+        <section class="welcome-card">
+
+
+            <!-- DYNAMIC CENTER PHOTO -->
+
+            <div class="welcome-photo">
+
+                {% if user.get('profile_photo') %}
+
+                    <img
+                        src="{{ url_for('static', filename='uploads/' + user.get('profile_photo')) }}"
+                        alt="{{ user.get('name', username) }}"
+                    >
+
+                {% else %}
+
+                    <div class="welcome-photo-placeholder">
+                        👤
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- DYNAMIC NAME -->
+
+            <div class="welcome-info">
+
+                <div class="welcome-small">
+                    WELCOME BACK
+                </div>
+
+
+                <div class="welcome-name">
+
+                    {{ user.get('name', username or 'Student') }}
+
+                </div>
+
+
+                <div class="welcome-course">
+
+                    {{ user.get('branch', user.get('course', 'CSE')) }}
+
+                    •
+
+                    {{ user.get('semester', '5th Sem') }}
+
+                </div>
+
+            </div>
+
+
+            <!-- TEAM -->
+
+            <div class="welcome-team">
+
+                <span class="team-dot"></span>
+
+                SECRET CIRCLE
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+
+                <div class="hero-badge">
+
+                    🚀 AI CAMPUS PLACEMENT PRO
+
+                </div>
+
+
+                <h1>
+
+                    Your Placement Journey
+                    Starts Here
+
+                </h1>
+
+
+                <p>
+
+                    Track your academic performance,
+                    improve your skills, predict your
+                    placement chances and prepare for
+                    interviews.
+
+                </p>
+
+
+                <a
+                    href="{{ url_for('predictor') }}"
+                    class="predict-button"
+                >
+
+                    🤖 Predict My Placement
+
+                </a>
+
+            </div>
+
+
+            <div class="robot">
+
+                🤖
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             QUICK ACCESS
+        ================================================== -->
+
+        <h2 class="section-title">
+            Quick Access
+        </h2>
+
+
+        <section class="cards">
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    🎓
+                </div>
+
+                <h3>
+                    Academic Details
+                </h3>
+
+                <p>
+                    Update CGPA, marks,
+                    projects and internships.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    💻
+                </div>
+
+                <h3>
+                    Skills
+                </h3>
+
+                <p>
+                    Track aptitude, coding,
+                    communication and soft skills.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    💼
+                </div>
+
+                <h3>
+                    Placement
+                </h3>
+
+                <p>
+                    Check your AI-powered
+                    placement prediction.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">
+                    📄
+                </div>
+
+                <h3>
+                    Results
+                </h3>
+
+                <p>
+                    View previous placement
+                    predictions and insights.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             PROFILE SUMMARY
+        ================================================== -->
+
+        <h2 class="section-title">
+            Your Profile
+        </h2>
+
+
+        <section class="profile-summary">
+
+
+            <div class="summary-item">
+
+                <div class="summary-label">
+                    Full Name
+                </div>
+
+                <div class="summary-value">
+
+                    {{ user.get('name', username or 'Student') }}
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <div class="summary-label">
+                    Candidate ID
+                </div>
+
+                <div class="summary-value">
+
+                    {{ user.get('candidate_id', username or 'Not Set') }}
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <div class="summary-label">
+                    College
+                </div>
+
+                <div class="summary-value">
+
+                    {{ user.get('college', 'AIET') }}
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <div class="summary-label">
+                    Branch
+                </div>
+
+                <div class="summary-value">
+
+                    {{ user.get('branch', user.get('course', 'CSE')) }}
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <div class="summary-label">
+                    Semester
+                </div>
+
+                <div class="summary-value">
+
+                    {{ user.get('semester', '5th Sem') }}
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <div class="summary-label">
+                    Graduation Year
+                </div>
+
+                <div class="summary-value">
+
+                    {{ user.get('graduation_year', '2028') }}
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             EDIT PROFILE
+        ================================================== -->
+
+        <div class="edit-profile">
+
+            <a
+                href="{{ url_for('student_profile') }}"
+            >
+
+                ✏️ Edit Student Profile
+
+            </a>
+
+        </div>
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer class="footer">
+
+            <div>
+
+                {{ project_name }}
+
+                •
+
+                Developed by
+
+                <strong>
+                    SECRET CIRCLE 🔴
+                </strong>
+
+            </div>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+</body>
+</html>

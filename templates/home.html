@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | AI Campus Placement Pro</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #050816;
+            color: #ffffff;
+            min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =====================================================
+           LAYOUT
+        ===================================================== */
+
+        .dashboard-wrapper {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+            width: 245px;
+            min-width: 245px;
+            min-height: 100vh;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #081020 0%,
+                    #080b1c 55%,
+                    #050713 100%
+                );
+
+            border-right: 1px solid rgba(120, 90, 255, 0.20);
+
+            display: flex;
+            flex-direction: column;
+
+            padding: 25px 18px;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            z-index: 100;
+        }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .logo-area {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            width: 58px;
+            height: 58px;
+
+            margin: 0 auto 10px;
+
+            border-radius: 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 29px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6138ff,
+                    #14cfff
+                );
+
+            box-shadow:
+                0 10px 35px rgba(79, 61, 255, 0.35);
+        }
+
+        .logo-title {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-subtitle {
+            display: block;
+
+            margin-top: 4px;
+
+            font-size: 8px;
+            letter-spacing: 3px;
+
+            color: #19cfff;
+        }
+
+
+        /* =====================================================
+           USER
+        ===================================================== */
+
+        .user-box {
+            text-align: center;
+            padding: 10px 5px 20px;
+        }
+
+        .user-avatar {
+            width: 58px;
+            height: 58px;
+
+            margin: 0 auto 10px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #743cff,
+                    #14cfff
+                );
+
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .user-name {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .user-course {
+            margin-top: 4px;
+
+            color: #8290b4;
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+
+            flex: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 12px 13px;
+
+            border-radius: 11px;
+
+            color: #9ca8c8;
+
+            font-size: 12px;
+            font-weight: 500;
+
+            transition:
+                background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .nav-item:hover {
+            background: rgba(111, 67, 255, 0.14);
+            color: #ffffff;
+            transform: translateX(3px);
+        }
+
+        .nav-item.active {
+            background:
+                linear-gradient(
+                    135deg,
+                    #6738ff,
+                    #743cff
+                );
+
+            color: #ffffff;
+
+            box-shadow:
+                0 8px 25px rgba(103, 56, 255, 0.28);
+        }
+
+        .nav-icon {
+            width: 20px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+
+        /* =====================================================
+           LOGOUT
+        ===================================================== */
+
+        .logout-section {
+            margin-top: auto;
+            padding-top: 15px;
+
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .logout-btn {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 12px 13px;
+
+            border-radius: 11px;
+
+            color: #ff8299;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            transition: 0.25s ease;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 70, 100, 0.12);
+            color: #ff5575;
+        }
+
+
+        /* =====================================================
+           MAIN CONTENT
+        ===================================================== */
+
+        .main-content {
+            margin-left: 245px;
+
+            width: calc(100% - 245px);
+
+            min-height: 100vh;
+
+            padding: 35px 38px 50px;
+
+            background:
+                radial-gradient(
+                    circle at 75% 15%,
+                    rgba(57, 34, 140, 0.18),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 35% 70%,
+                    rgba(0, 180, 255, 0.08),
+                    transparent 25%
+                ),
+
+                #050816;
+        }
+
+
+        /* =====================================================
+           TOP HEADER
+        ===================================================== */
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            margin-bottom: 30px;
+        }
+
+        .brand-heading {
+            font-size: 44px;
+            line-height: 1;
+
+            font-weight: 800;
+
+            letter-spacing: -2px;
+        }
+
+        .brand-heading .purple {
+            color: #713cff;
+        }
+
+        .brand-heading .white {
+            color: #ffffff;
+        }
+
+        .brand-subtitle {
+            margin-top: 10px;
+
+            font-size: 17px;
+
+            letter-spacing: 7px;
+
+            color: #ffffff;
+        }
+
+        .tagline {
+            margin-top: 10px;
+
+            font-size: 17px;
+
+            color: #18cfff;
+        }
+
+        .tagline span {
+            color: #7541ff;
+        }
+
+
+        /* =====================================================
+           HEADER ACTIONS
+        ===================================================== */
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon-button {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            background: rgba(16, 24, 48, 0.8);
+
+            color: #ffffff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+
+            transition: 0.25s ease;
+        }
+
+        .icon-button:hover {
+            border-color: #7643ff;
+            transform: translateY(-2px);
+        }
+
+
+        /* =====================================================
+           THEME TOGGLE
+        ===================================================== */
+
+        .theme-toggle {
+            width: 64px;
+            height: 34px;
+
+            padding: 4px;
+
+            border-radius: 20px;
+
+            background: #131b32;
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            cursor: pointer;
+        }
+
+        .toggle-circle {
+            width: 25px;
+            height: 25px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #713cff,
+                    #19cfff
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            transition: transform 0.3s ease;
+
+            font-size: 12px;
+        }
+
+        body.light-mode .toggle-circle {
+            transform: translateX(30px);
+        }
+
+
+        /* =====================================================
+           WELCOME CARD
+        ===================================================== */
+
+        .welcome-card {
+            padding: 28px 30px;
+
+            border-radius: 20px;
+
+            border: 1px solid rgba(115, 63, 255, 0.4);
+
+            background:
+                linear-gradient(
+                    110deg,
+                    rgba(50, 22, 110, 0.45),
+                    rgba(8, 35, 60, 0.65)
+                );
+
+            margin-bottom: 25px;
+        }
+
+        .welcome-label {
+            color: #a48aff;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 3px;
+        }
+
+        .welcome-card h1 {
+            margin-top: 8px;
+
+            font-size: 31px;
+
+            font-weight: 800;
+        }
+
+        .welcome-card p {
+            margin-top: 9px;
+
+            color: #9da9c7;
+
+            font-size: 14px;
+
+            max-width: 760px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           SECTION
+        ===================================================== */
+
+        .section-label {
+            color: #a783ff;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 27px;
+
+            font-weight: 800;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =====================================================
+           JOURNEY GRID
+        ===================================================== */
+
+        .journey-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 16px;
+
+            margin-bottom: 35px;
+        }
+
+        .journey-card {
+            min-height: 190px;
+
+            padding: 22px;
+
+            border-radius: 17px;
+
+            border: 1px solid rgba(91, 111, 180, 0.25);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(16, 25, 49, 0.95),
+                    rgba(8, 14, 30, 0.95)
+                );
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .journey-card:hover {
+            transform: translateY(-5px);
+
+            border-color: #7441ff;
+
+            box-shadow:
+                0 15px 40px rgba(65, 42, 170, 0.22);
+        }
+
+        .card-icon {
+            font-size: 25px;
+
+            margin-bottom: 18px;
+        }
+
+        .journey-card h3 {
+            font-size: 15px;
+
+            margin-bottom: 9px;
+        }
+
+        .journey-card p {
+            color: #8d9ab9;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+
+            min-height: 38px;
+        }
+
+        .card-link {
+            display: inline-block;
+
+            margin-top: 15px;
+
+            color: #19cfff;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           AI TOOLS
+        ===================================================== */
+
+        .tools-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 35px;
+        }
+
+        .tool-card {
+            padding: 24px;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(15, 24, 49, 0.96),
+                    rgba(7, 12, 28, 0.96)
+                );
+
+            border: 1px solid rgba(95, 109, 176, 0.23);
+        }
+
+        .tool-card h3 {
+            margin-top: 10px;
+
+            font-size: 16px;
+        }
+
+        .tool-card p {
+            margin-top: 8px;
+
+            color: #8d9ab9;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+        }
+
+        .tool-button {
+            display: inline-block;
+
+            margin-top: 17px;
+
+            padding: 9px 16px;
+
+            border-radius: 8px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #713cff,
+                    #14cfff
+                );
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           QUICK STATS
+        ===================================================== */
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 16px;
+        }
+
+        .stat-card {
+            padding: 20px;
+
+            border-radius: 15px;
+
+            background: rgba(13, 21, 43, 0.92);
+
+            border: 1px solid rgba(94, 109, 177, 0.23);
+        }
+
+        .stat-title {
+            color: #8795b6;
+
+            font-size: 11px;
+        }
+
+        .stat-value {
+            margin-top: 8px;
+
+            font-size: 25px;
+
+            font-weight: 800;
+        }
+
+        .stat-note {
+            margin-top: 5px;
+
+            font-size: 10px;
+
+            color: #19cfff;
+        }
+
+
+        /* =====================================================
+           LIGHT MODE
+        ===================================================== */
+
+        body.light-mode {
+            background: #f4f7ff;
+            color: #11182b;
+        }
+
+        body.light-mode .main-content {
+            background:
+                radial-gradient(
+                    circle at 70% 10%,
+                    rgba(115, 70, 255, 0.10),
+                    transparent 30%
+                ),
+                #f4f7ff;
+        }
+
+        body.light-mode .sidebar {
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff,
+                    #eef2ff
+                );
+
+            border-right-color: #dfe3f2;
+        }
+
+        body.light-mode .logo-title,
+        body.light-mode .brand-heading .white,
+        body.light-mode .welcome-card h1,
+        body.light-mode .section-title,
+        body.light-mode .journey-card h3,
+        body.light-mode .tool-card h3,
+        body.light-mode .stat-value {
+            color: #11182b;
+        }
+
+        body.light-mode .nav-item {
+            color: #68728e;
+        }
+
+        body.light-mode .journey-card,
+        body.light-mode .tool-card,
+        body.light-mode .stat-card {
+            background: #ffffff;
+
+            border-color: #e1e5f2;
+        }
+
+        body.light-mode .welcome-card {
+            background:
+                linear-gradient(
+                    110deg,
+                    #eee9ff,
+                    #e8f8ff
+                );
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1200px) {
+
+            .journey-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                width: 210px;
+                min-width: 210px;
+            }
+
+            .main-content {
+                margin-left: 210px;
+                width: calc(100% - 210px);
+
+                padding: 25px;
+            }
+
+            .tools-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+                position: relative;
+
+                width: 100%;
+                min-width: 100%;
+
+                min-height: auto;
+            }
+
+            .dashboard-wrapper {
+                flex-direction: column;
+            }
+
+            .main-content {
+                margin-left: 0;
+
+                width: 100%;
+            }
+
+            .sidebar-nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .logout-section {
+                margin-top: 15px;
+            }
+
+            .journey-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .top-header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .brand-heading {
+                font-size: 34px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="dashboard-wrapper">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- LOGO -->
+
+        <div class="logo-area">
+
+            <div class="logo-icon">
+                🤖
+            </div>
+
+            <div class="logo-title">
+                AI CAMPUS
+            </div>
+
+            <span class="logo-subtitle">
+                PLACEMENT PREDICTOR
+            </span>
+
+        </div>
+
+
+        <!-- USER -->
+
+        <div class="user-box">
+
+            <div class="user-avatar">
+                👨‍🎓
+            </div>
+
+            <div class="user-name">
+                {{ username }}
+            </div>
+
+            <div class="user-course">
+                CSE • 5th Sem
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="sidebar-nav">
+
+
+            <a href="{{ url_for('dashboard') }}"
+               class="nav-item active">
+
+                <span class="nav-icon">⌂</span>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a href="{{ url_for('profile') }}"
+               class="nav-item">
+
+                <span class="nav-icon">♙</span>
+
+                <span>Student Profile</span>
+
+            </a>
+
+
+            <a href="{{ url_for('academic') }}"
+               class="nav-item">
+
+                <span class="nav-icon">▣</span>
+
+                <span>Academic Details</span>
+
+            </a>
+
+
+            <a href="{{ url_for('skills') }}"
+               class="nav-item">
+
+                <span class="nav-icon">♧</span>
+
+                <span>Skills & Activities</span>
+
+            </a>
+
+
+            <a href="{{ url_for('predictor') }}"
+               class="nav-item">
+
+                <span class="nav-icon">⌁</span>
+
+                <span>Predict Placement</span>
+
+            </a>
+
+
+            <a href="{{ url_for('predictor') }}"
+               class="nav-item">
+
+                <span class="nav-icon">▤</span>
+
+                <span>Results & Insights</span>
+
+            </a>
+
+
+            <a href="{{ url_for('about') }}"
+               class="nav-item">
+
+                <span class="nav-icon">♢</span>
+
+                <span>Placement Tips</span>
+
+            </a>
+
+
+            <a href="{{ url_for('history') }}"
+               class="nav-item">
+
+                <span class="nav-icon">◷</span>
+
+                <span>History</span>
+
+            </a>
+
+
+            <a href="{{ url_for('interview') }}"
+               class="nav-item">
+
+                <span class="nav-icon">♙</span>
+
+                <span>AI Assistant</span>
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- LOGOUT -->
+
+        <div class="logout-section">
+
+            <a href="{{ url_for('logout') }}"
+               class="logout-btn">
+
+                <span class="nav-icon">⇥</span>
+
+                <span>Logout</span>
+
+            </a>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="top-header">
+
+
+            <div>
+
+                <h1 class="brand-heading">
+
+                    <span class="purple">AI</span>
+
+                    <span class="white">
+                        CAMPUS
+                    </span>
+
+                </h1>
+
+
+                <div class="brand-subtitle">
+                    PLACEMENT PREDICTOR
+                </div>
+
+
+                <div class="tagline">
+
+                    Predict
+                    <span>•</span>
+                    Prepare
+                    <span>•</span>
+                    Get Placed
+
+                </div>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button class="icon-button">
+                    🔍
+                </button>
+
+                <button class="icon-button">
+                    🔔
+                </button>
+
+                <button class="theme-toggle"
+                        onclick="toggleTheme()">
+
+                    <div class="toggle-circle"
+                         id="toggleCircle">
+
+                        ☀
+
+                    </div>
+
+                </button>
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome-card">
+
+            <div class="welcome-label">
+                STUDENT DASHBOARD
+            </div>
+
+            <h1>
+                Welcome back, {{ username }} 👋
+            </h1>
+
+            <p>
+                Track your placement readiness, improve your
+                skills and prepare confidently for campus
+                recruitment.
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             QUICK ACTIONS
+        ================================================== -->
+
+        <div class="section-label">
+            QUICK ACTIONS
+        </div>
+
+        <h2 class="section-title">
+            Your Placement Journey
+        </h2>
+
+
+        <section class="journey-grid">
+
+
+            <!-- PROFILE -->
+
+            <a href="{{ url_for('profile') }}"
+               class="journey-card">
+
+                <div class="card-icon">
+                    👤
+                </div>
+
+                <h3>
+                    Student Profile
+                </h3>
+
+                <p>
+                    Manage your personal information,
+                    college and contact details.
+                </p>
+
+                <span class="card-link">
+                    Open Profile →
+                </span>
+
+            </a>
+
+
+            <!-- ACADEMIC -->
+
+            <a href="{{ url_for('academic') }}"
+               class="journey-card">
+
+                <div class="card-icon">
+                    🎓
+                </div>
+
+                <h3>
+                    Academic Details
+                </h3>
+
+                <p>
+                    Add your CGPA, marks, projects,
+                    internships and certifications.
+                </p>
+
+                <span class="card-link">
+                    Manage Academics →
+                </span>
+
+            </a>
+
+
+            <!-- SKILLS -->
+
+            <a href="{{ url_for('skills') }}"
+               class="journey-card">
+
+                <div class="card-icon">
+                    💡
+                </div>
+
+                <h3>
+                    Skills & Activities
+                </h3>
+
+                <p>
+                    Manage coding, communication,
+                    technical skills and activities.
+                </p>
+
+                <span class="card-link">
+                    Manage Skills →
+                </span>
+
+            </a>
+
+
+            <!-- HISTORY -->
+
+            <a href="{{ url_for('history') }}"
+               class="journey-card">
+
+                <div class="card-icon">
+                    📜
+                </div>
+
+                <h3>
+                    Prediction History
+                </h3>
+
+                <p>
+                    View your previous placement
+                    predictions and results.
+                </p>
+
+                <span class="card-link">
+                    View History →
+                </span>
+
+            </a>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             AI TOOLS
+        ================================================== -->
+
+        <div class="section-label">
+            AI TOOLS
+        </div>
+
+        <h2 class="section-title">
+            Prepare for Your Placement
+        </h2>
+
+
+        <section class="tools-grid">
+
+
+            <!-- PREDICTOR -->
+
+            <div class="tool-card">
+
+                <div class="card-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    Placement Predictor
+                </h3>
+
+                <p>
+                    Use your academic and professional
+                    information to estimate your
+                    placement probability.
+                </p>
+
+                <a href="{{ url_for('predictor') }}"
+                   class="tool-button">
+
+                    Start Prediction →
+
+                </a>
+
+            </div>
+
+
+            <!-- INTERVIEW -->
+
+            <div class="tool-card">
+
+                <div class="card-icon">
+                    🤖
+                </div>
+
+                <h3>
+                    AI Interview Assistant
+                </h3>
+
+                <p>
+                    Practice HR and technical questions
+                    and receive feedback on your answers.
+                </p>
+
+                <a href="{{ url_for('interview') }}"
+                   class="tool-button">
+
+                    Start Interview →
+
+                </a>
+
+            </div>
+
+
+            <!-- TIPS -->
+
+            <div class="tool-card">
+
+                <div class="card-icon">
+                    🚀
+                </div>
+
+                <h3>
+                    Placement Tips
+                </h3>
+
+                <p>
+                    Learn useful strategies for aptitude,
+                    technical and HR interview preparation.
+                </p>
+
+                <a href="{{ url_for('about') }}"
+                   class="tool-button">
+
+                    Learn More →
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             QUICK STATS
+        ================================================== -->
+
+        <div class="section-label">
+            YOUR PROGRESS
+        </div>
+
+        <h2 class="section-title">
+            Placement Readiness
+        </h2>
+
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    Profile
+                </div>
+
+                <div class="stat-value">
+                    ✓
+                </div>
+
+                <div class="stat-note">
+                    Ready to update
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    Academic
+                </div>
+
+                <div class="stat-value">
+                    📊
+                </div>
+
+                <div class="stat-note">
+                    Track your performance
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    Skills
+                </div>
+
+                <div class="stat-value">
+                    ⭐
+                </div>
+
+                <div class="stat-note">
+                    Improve continuously
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-title">
+                    Interview
+                </div>
+
+                <div class="stat-value">
+                    🤖
+                </div>
+
+                <div class="stat-note">
+                    Practice with AI
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script>
+
+    /* =====================================================
+       THEME
+    ===================================================== */
+
+    function toggleTheme() {
+
+        document.body.classList.toggle("light-mode");
+
+        if (
+            document.body.classList.contains("light-mode")
+        ) {
+
+            localStorage.setItem(
+                "theme",
+                "light"
+            );
+
+        } else {
+
+            localStorage.setItem(
+                "theme",
+                "dark"
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       LOAD SAVED THEME
+    ===================================================== */
+
+    window.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            const savedTheme =
+                localStorage.getItem("theme");
+
+            if (
+                savedTheme === "light"
+            ) {
+
+                document.body.classList.add(
+                    "light-mode"
+                );
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+</html>

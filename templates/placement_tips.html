@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Placement Tips | AI Campus</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        /* ================================
+           RESET
+        ================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #ffffff;
+
+            background:
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(108, 74, 255, 0.20),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(0, 212, 255, 0.14),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #040713 0%,
+                    #080b20 48%,
+                    #031522 100%
+                );
+
+            overflow-x: hidden;
+        }
+
+
+        /* ================================
+           ANIMATED BACKGROUND
+        ================================= */
+
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(90px);
+            z-index: 0;
+        }
+
+        .orb-one {
+            width: 350px;
+            height: 350px;
+            background: rgba(110, 70, 255, 0.12);
+            top: 80px;
+            left: -150px;
+            animation: orbMoveOne 10s infinite alternate ease-in-out;
+        }
+
+        .orb-two {
+            width: 320px;
+            height: 320px;
+            background: rgba(0, 210, 255, 0.10);
+            right: -130px;
+            top: 420px;
+            animation: orbMoveTwo 12s infinite alternate ease-in-out;
+        }
+
+        @keyframes orbMoveOne {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(130px, 100px);
+            }
+        }
+
+        @keyframes orbMoveTwo {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(-100px, -80px);
+            }
+        }
+
+
+        /* ================================
+           NAVBAR
+        ================================= */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            width: 100%;
+            height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 5%;
+
+            background: rgba(4, 7, 19, 0.82);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #00d9ff,
+                    #6647ff
+                );
+
+            box-shadow:
+                0 0 25px rgba(0, 217, 255, 0.25);
+
+            font-size: 20px;
+        }
+
+
+        .brand-name {
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+
+        .brand-subtitle {
+            color: #9b89ff;
+            font-size: 9px;
+            letter-spacing: 3px;
+            margin-top: 2px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+
+        .nav-links a {
+            color: #dce1f7;
+            text-decoration: none;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            padding: 11px 14px;
+
+            border-radius: 11px;
+
+            transition: all 0.3s ease;
+        }
+
+
+        .nav-links a:hover {
+            color: white;
+
+            background:
+                rgba(105, 77, 255, 0.16);
+
+            transform: translateY(-1px);
+        }
+
+
+        .nav-links .active {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(110, 79, 255, 0.35),
+                    rgba(0, 210, 255, 0.14)
+                );
+
+            border: 1px solid rgba(137, 119, 255, 0.30);
+        }
+
+
+        .logout {
+            color: #ff9cb5 !important;
+
+            border: 1px solid rgba(255, 100, 130, 0.22);
+        }
+
+
+        /* ================================
+           MAIN CONTAINER
+        ================================= */
+
+        .container {
+            position: relative;
+            z-index: 2;
+
+            width: min(1200px, 92%);
+
+            margin: auto;
+
+            padding: 55px 0 90px;
+        }
+
+
+        /* ================================
+           HERO
+        ================================= */
+
+        .hero {
+            text-align: center;
+
+            max-width: 850px;
+
+            margin: 0 auto 55px;
+
+            animation: fadeDown 0.8s ease;
+        }
+
+
+        @keyframes fadeDown {
+
+            from {
+                opacity: 0;
+                transform: translateY(-25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .eyebrow {
+            display: inline-block;
+
+            padding: 8px 14px;
+
+            border-radius: 30px;
+
+            color: #a695ff;
+
+            background:
+                rgba(111, 77, 255, 0.10);
+
+            border:
+                1px solid rgba(131, 111, 255, 0.20);
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .hero h1 {
+            font-size: clamp(38px, 5vw, 62px);
+
+            line-height: 1.05;
+
+            margin-bottom: 18px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #bcaeff,
+                    #65eaff
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .hero p {
+            color: #9da8c8;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+        }
+
+
+        /* ================================
+           QUICK STATS
+        ================================= */
+
+        .quick-stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 55px;
+        }
+
+
+        .quick-card {
+            padding: 22px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.075),
+                    rgba(255,255,255,0.025)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.25);
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+
+        .quick-card:hover {
+            transform: translateY(-6px);
+
+            border-color:
+                rgba(94, 215, 255, 0.30);
+        }
+
+
+        .quick-icon {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background:
+                rgba(100, 75, 255, 0.15);
+
+            font-size: 21px;
+
+            margin-bottom: 13px;
+        }
+
+
+        .quick-card h3 {
+            font-size: 17px;
+            margin-bottom: 6px;
+        }
+
+
+        .quick-card p {
+            color: #8994b5;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+
+        /* ================================
+           SECTION
+        ================================= */
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .section-title .line {
+            width: 4px;
+            height: 30px;
+
+            border-radius: 5px;
+
+            background:
+                linear-gradient(
+                    #754cff,
+                    #00d9ff
+                );
+        }
+
+
+        .section-title h2 {
+            font-size: 27px;
+        }
+
+
+        /* ================================
+           TIPS GRID
+        ================================= */
+
+        .tips-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 55px;
+        }
+
+
+        .tip-card {
+            position: relative;
+
+            padding: 28px;
+
+            min-height: 260px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.075),
+                    rgba(255,255,255,0.025)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+
+            animation: cardAppear 0.8s ease both;
+        }
+
+
+        .tip-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .tip-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .tip-card:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .tip-card:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        .tip-card:nth-child(6) {
+            animation-delay: 0.5s;
+        }
+
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .tip-card:hover {
+            transform: translateY(-8px);
+
+            border-color:
+                rgba(110, 210, 255, 0.28);
+
+            box-shadow:
+                0 25px 60px rgba(0,0,0,0.35);
+        }
+
+
+        .tip-number {
+            position: absolute;
+
+            right: 20px;
+            top: 12px;
+
+            font-size: 65px;
+
+            font-weight: 900;
+
+            color:
+                rgba(255,255,255,0.025);
+        }
+
+
+        .tip-icon {
+            width: 54px;
+            height: 54px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(104,73,255,0.25),
+                    rgba(0,212,255,0.10)
+                );
+
+            border:
+                1px solid rgba(124,105,255,0.18);
+
+            font-size: 25px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .tip-card h3 {
+            font-size: 19px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .tip-card p {
+            color: #929cbb;
+
+            line-height: 1.7;
+
+            font-size: 14px;
+        }
+
+
+        /* ================================
+           CHECKLIST
+        ================================= */
+
+        .checklist {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 14px;
+
+            margin-bottom: 55px;
+        }
+
+
+        .check-item {
+            display: flex;
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 17px 20px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(255,255,255,0.045);
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            color: #dfe4f7;
+
+            transition: 0.3s;
+        }
+
+
+        .check-item:hover {
+            background:
+                rgba(105,78,255,0.10);
+
+            transform: translateX(5px);
+        }
+
+
+        .check {
+            width: 30px;
+            height: 30px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                rgba(61,214,145,0.13);
+
+            color: #5ff0b0;
+
+            border:
+                1px solid rgba(70,220,150,0.20);
+        }
+
+
+        /* ================================
+           CTA
+        ================================= */
+
+        .cta {
+            text-align: center;
+
+            padding: 50px 30px;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(99,70,255,0.17),
+                    rgba(0,210,255,0.08)
+                );
+
+            border:
+                1px solid rgba(120,105,255,0.20);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.30);
+        }
+
+
+        .cta h2 {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+
+        .cta p {
+            color: #969fbd;
+            margin-bottom: 25px;
+        }
+
+
+        .btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 14px 25px;
+
+            border-radius: 13px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6848ff,
+                    #00bfe8
+                );
+
+            box-shadow:
+                0 12px 35px rgba(74,80,255,0.30);
+
+            transition: 0.3s;
+        }
+
+
+        .btn:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 18px 45px rgba(74,80,255,0.42);
+        }
+
+
+        /* ================================
+           FOOTER
+        ================================= */
+
+        footer {
+            text-align: center;
+
+            padding: 30px;
+
+            color: #6e7897;
+
+            font-size: 12px;
+        }
+
+
+        /* ================================
+           RESPONSIVE
+        ================================= */
+
+        @media(max-width: 950px) {
+
+            .tips-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .quick-stats {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .nav-links a:nth-child(4),
+            .nav-links a:nth-child(5) {
+                display: none;
+            }
+
+        }
+
+
+        @media(max-width: 700px) {
+
+            .navbar {
+                padding: 0 4%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                width: 92%;
+                padding-top: 40px;
+            }
+
+            .quick-stats,
+            .tips-grid,
+            .checklist {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- BACKGROUND -->
+    <div class="bg-orb orb-one"></div>
+    <div class="bg-orb orb-two"></div>
+
+
+    <!-- ================================
+         NAVIGATION
+    ================================= -->
+
+    <nav class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🤖
+            </div>
+
+            <div>
+                <div class="brand-name">
+                    AI CAMPUS
+                </div>
+
+                <div class="brand-subtitle">
+                    PLACEMENT PRO
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('predictor') }}">
+                Placement Predictor
+            </a>
+
+            <a href="{{ url_for('interview') }}">
+                AI Interview
+            </a>
+
+            <a href="{{ url_for('about') }}">
+                About
+            </a>
+
+            <a href="{{ url_for('contact') }}">
+                Contact
+            </a>
+
+            <a href="{{ url_for('logout') }}"
+               class="logout">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================================
+         MAIN
+    ================================= -->
+
+    <main class="container">
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="eyebrow">
+                🚀 PLACEMENT PREPARATION
+            </div>
+
+            <h1>
+                Smart Tips for<br>
+                Your Placement Journey
+            </h1>
+
+            <p>
+                Build confidence, improve your technical skills,
+                prepare for interviews and become placement-ready
+                with practical strategies.
+            </p>
+
+        </section>
+
+
+        <!-- QUICK STATS -->
+
+        <section class="quick-stats">
+
+            <div class="quick-card">
+
+                <div class="quick-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    Set Clear Goals
+                </h3>
+
+                <p>
+                    Know your target role, companies and
+                    required skills.
+                </p>
+
+            </div>
+
+
+            <div class="quick-card">
+
+                <div class="quick-icon">
+                    💻
+                </div>
+
+                <h3>
+                    Practice Daily
+                </h3>
+
+                <p>
+                    Consistent coding and aptitude practice
+                    improves your performance.
+                </p>
+
+            </div>
+
+
+            <div class="quick-card">
+
+                <div class="quick-icon">
+                    🧠
+                </div>
+
+                <h3>
+                    Build Confidence
+                </h3>
+
+                <p>
+                    Improve communication and interview
+                    confidence through practice.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- MAIN TIPS -->
+
+        <div class="section-title">
+
+            <div class="line"></div>
+
+            <h2>
+                Essential Placement Tips
+            </h2>
+
+        </div>
+
+
+        <section class="tips-grid">
+
+
+            <!-- TIP 1 -->
+
+            <article class="tip-card">
+
+                <div class="tip-number">
+                    01
+                </div>
+
+                <div class="tip-icon">
+                    📚
+                </div>
+
+                <h3>
+                    Strengthen Academics
+                </h3>
+
+                <p>
+                    Maintain a good CGPA and understand
+                    your core subjects. Strong fundamentals
+                    help during technical interviews.
+                </p>
+
+            </article>
+
+
+            <!-- TIP 2 -->
+
+            <article class="tip-card">
+
+                <div class="tip-number">
+                    02
+                </div>
+
+                <div class="tip-icon">
+                    💻
+                </div>
+
+                <h3>
+                    Improve Coding Skills
+                </h3>
+
+                <p>
+                    Practice data structures, algorithms,
+                    problem solving and coding challenges
+                    regularly.
+                </p>
+
+            </article>
+
+
+            <!-- TIP 3 -->
+
+            <article class="tip-card">
+
+                <div class="tip-number">
+                    03
+                </div>
+
+                <div class="tip-icon">
+                    🗣️
+                </div>
+
+                <h3>
+                    Improve Communication
+                </h3>
+
+                <p>
+                    Practice explaining your ideas clearly.
+                    Good communication can make a major
+                    difference during interviews.
+                </p>
+
+            </article>
+
+
+            <!-- TIP 4 -->
+
+            <article class="tip-card">
+
+                <div class="tip-number">
+                    04
+                </div>
+
+                <div class="tip-icon">
+                    🏆
+                </div>
+
+                <h3>
+                    Build Projects
+                </h3>
+
+                <p>
+                    Create meaningful projects that
+                    demonstrate your practical knowledge
+                    and technical abilities.
+                </p>
+
+            </article>
+
+
+            <!-- TIP 5 -->
+
+            <article class="tip-card">
+
+                <div class="tip-number">
+                    05
+                </div>
+
+                <div class="tip-icon">
+                    💼
+                </div>
+
+                <h3>
+                    Get Internship Experience
+                </h3>
+
+                <p>
+                    Internships help you understand
+                    real-world development and strengthen
+                    your resume.
+                </p>
+
+            </article>
+
+
+            <!-- TIP 6 -->
+
+            <article class="tip-card">
+
+                <div class="tip-number">
+                    06
+                </div>
+
+                <div class="tip-icon">
+                    🎤
+                </div>
+
+                <h3>
+                    Prepare for Interviews
+                </h3>
+
+                <p>
+                    Practice HR questions, technical
+                    questions and mock interviews before
+                    attending placement drives.
+                </p>
+
+            </article>
+
+
+        </section>
+
+
+        <!-- CHECKLIST -->
+
+        <div class="section-title">
+
+            <div class="line"></div>
+
+            <h2>
+                Placement Readiness Checklist
+            </h2>
+
+        </div>
+
+
+        <section class="checklist">
+
+            <div class="check-item">
+                <span class="check">✓</span>
+                <span>Updated professional resume</span>
+            </div>
+
+            <div class="check-item">
+                <span class="check">✓</span>
+                <span>Strong LinkedIn profile</span>
+            </div>
+
+            <div class="check-item">
+                <span class="check">✓</span>
+                <span>At least 2–3 good projects</span>
+            </div>
+
+            <div class="check-item">
+                <span class="check">✓</span>
+                <span>Regular coding practice</span>
+            </div>
+
+            <div class="check-item">
+                <span class="check">✓</span>
+                <span>Aptitude preparation</span>
+            </div>
+
+            <div class="check-item">
+                <span class="check">✓</span>
+                <span>Mock interview practice</span>
+            </div>
+
+            <div class="check-item">
+                <span class="check">✓</span>
+                <span>Good communication skills</span>
+            </div>
+
+            <div class="check-item">
+                <span class="check">✓</span>
+                <span>Knowledge of core subjects</span>
+            </div>
+
+        </section>
+
+
+        <!-- CTA -->
+
+        <section class="cta">
+
+            <h2>
+                Ready to Check Your Placement Chances? 🚀
+            </h2>
+
+            <p>
+                Use our AI-powered placement predictor
+                to understand your current readiness.
+            </p>
+
+            <a href="{{ url_for('predictor') }}"
+               class="btn">
+
+                Start Placement Prediction
+                →
+                
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+        © 2026 AI Campus Placement Pro · Built for smarter placement preparation
+    </footer>
+
+
+</body>
+</html>

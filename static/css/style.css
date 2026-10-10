@@ -1,0 +1,1446 @@
+/* =========================================================
+   AI CAMPUS PLACEMENT PRO
+   SECRET CIRCLE 🔴
+   GLOBAL WEBSITE STYLE
+   ========================================================= */
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(99, 45, 255, 0.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(0, 180, 255, 0.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #070b1b 0%,
+            #0b1025 45%,
+            #071b2b 100%
+        );
+
+    color: #f5f7ff;
+    min-height: 100vh;
+    line-height: 1.6;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   GRADIENT TEXT
+   ========================================================= */
+
+.gradient-text {
+    background: linear-gradient(
+        90deg,
+        #7c3cff,
+        #00c6ff
+    );
+
+    /* Standard property */
+    background-clip: text;
+
+    /* WebKit compatibility */
+    -webkit-background-clip: text;
+
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 290px;
+    height: 100vh;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(8, 12, 31, 0.99),
+            rgba(7, 10, 27, 0.99)
+        );
+
+    border-right: 1px solid rgba(123, 92, 255, 0.25);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 28px 18px 18px;
+
+    z-index: 1000;
+
+    overflow: hidden;
+
+    box-shadow:
+        12px 0 40px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   SIDEBAR SCROLL AREA
+   ========================================================= */
+
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(124, 60, 255, 0.55);
+    border-radius: 20px;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.sidebar-brand {
+    width: 100%;
+    text-align: center;
+
+    flex-shrink: 0;
+
+    margin-bottom: 20px;
+}
+
+.logo-icon {
+    width: 64px;
+    height: 64px;
+
+    margin: 0 auto 12px;
+
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 32px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #633cff,
+            #00c6ff
+        );
+
+    box-shadow:
+        0 10px 30px rgba(99, 60, 255, 0.35);
+}
+
+.logo-title {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+
+    line-height: 1.05;
+}
+
+.logo-subtitle {
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    color: #9ba5c7;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   TEAM NAME
+   ========================================================= */
+
+.team-name {
+    margin-top: 8px;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    color: #ff416c;
+
+    text-align: center;
+}
+
+.team-dot {
+    display: inline-block;
+
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: #ff365c;
+
+    margin-right: 5px;
+
+    box-shadow:
+        0 0 12px rgba(255, 54, 92, 0.6);
+}
+
+
+/* =========================================================
+   SIDEBAR USER
+   IMPORTANT:
+   THIS KEEPS PHOTO + NAME + COURSE IN THE CENTER
+   ========================================================= */
+
+.sidebar-user {
+    width: 100%;
+
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center !important;
+    justify-content: center;
+
+    text-align: center !important;
+
+    padding: 8px 0 20px;
+
+    margin: 0 auto 14px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.07);
+}
+
+
+/* =========================================================
+   USER PHOTO
+   ========================================================= */
+
+.sidebar-user .user-photo {
+    width: 100px;
+    height: 100px;
+
+    min-width: 100px;
+    min-height: 100px;
+
+    display: block;
+
+    margin: 0 auto 12px !important;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+    object-position: center center;
+
+    border: 4px solid #633cff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6d3cff,
+            #00c6ff
+        );
+
+    box-shadow:
+        0 0 0 3px rgba(0, 198, 255, 0.65),
+        0 0 30px rgba(91, 66, 255, 0.38);
+
+    overflow: hidden;
+}
+
+
+/* If image is inside user-photo */
+
+.sidebar-user .user-photo img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center center;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   USER PLACEHOLDER
+   ========================================================= */
+
+.sidebar-user .user-placeholder {
+    width: 100px;
+    height: 100px;
+
+    min-width: 100px;
+    min-height: 100px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 12px !important;
+
+    border-radius: 50%;
+
+    font-size: 40px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6d3cff,
+            #00c6ff
+        );
+
+    border: 4px solid #7754ff;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 198, 255, 0.65),
+        0 0 30px rgba(91, 66, 255, 0.38);
+}
+
+
+/* =========================================================
+   USER NAME
+   ========================================================= */
+
+.sidebar-user .user-name {
+    width: 100%;
+
+    display: block;
+
+    margin: 0 auto 3px !important;
+
+    padding: 0;
+
+    text-align: center !important;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    color: #ffffff;
+
+    line-height: 1.3;
+}
+
+
+/* =========================================================
+   USER COURSE
+   ========================================================= */
+
+.sidebar-user .user-course {
+    width: 100%;
+
+    display: block;
+
+    margin: 0 auto !important;
+
+    padding: 0;
+
+    text-align: center !important;
+
+    font-size: 14px;
+
+    color: #9ba7c6;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   EXTRA SAFETY:
+   IF YOUR HTML USES .profile-photo
+   ========================================================= */
+
+.sidebar .profile-photo {
+    display: block;
+
+    width: 100px;
+    height: 100px;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    object-fit: cover;
+    object-position: center center;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.sidebar-nav {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+
+    flex: 1 1 auto;
+
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding-right: 2px;
+}
+
+
+/* Navigation scrollbar */
+
+.sidebar-nav::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+    background: rgba(124, 60, 255, 0.45);
+    border-radius: 20px;
+}
+
+
+/* =========================================================
+   NAV LINKS
+   ========================================================= */
+
+.sidebar-nav a {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    min-height: 52px;
+
+    flex-shrink: 0;
+
+    padding: 0 16px;
+
+    border-radius: 14px;
+
+    color: #9ba7c6;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    position: relative;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.sidebar-nav a:hover {
+    color: #ffffff;
+
+    background:
+        rgba(105, 67, 255, 0.13);
+
+    transform: translateX(3px);
+}
+
+.sidebar-nav a.active {
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #743cff,
+            #425ce8
+        );
+
+    box-shadow:
+        0 10px 25px rgba(93, 60, 255, 0.25);
+}
+
+
+/* =========================================================
+   NAV ICON
+   ========================================================= */
+
+.nav-icon {
+    width: 34px;
+
+    min-width: 34px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+
+    margin-right: 7px;
+}
+
+
+/* =========================================================
+   LOGOUT AREA
+   IMPORTANT:
+   FIXES LOGOUT / ABOUT OVERLAP
+   ========================================================= */
+
+.sidebar-logout {
+    width: 100%;
+
+    flex-shrink: 0;
+
+    margin-top: 12px;
+
+    padding-top: 12px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    background:
+        rgba(8, 12, 31, 0.99);
+}
+
+
+/* Logout link */
+
+.sidebar-logout a {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+
+    min-height: 50px;
+
+    flex-shrink: 0;
+
+    padding: 0 16px;
+
+    border-radius: 14px;
+
+    color: #ff8099;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.sidebar-logout a:hover {
+    background:
+        rgba(255, 65, 108, 0.12);
+
+    color: #ff416c;
+
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.main-wrapper {
+    margin-left: 290px;
+
+    min-height: 100vh;
+
+    width: calc(100% - 290px);
+
+    position: relative;
+}
+
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.topbar {
+    position: sticky;
+
+    top: 0;
+
+    height: 76px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 35px;
+
+    background:
+        rgba(8, 12, 31, 0.85);
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.06);
+
+    backdrop-filter: blur(18px);
+
+    -webkit-backdrop-filter: blur(18px);
+
+    z-index: 900;
+}
+
+.topbar-title {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.system-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #aab4d0;
+
+    font-size: 13px;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #38e27f;
+
+    box-shadow:
+        0 0 10px #38e27f;
+}
+
+
+/* =========================================================
+   PAGE CONTENT
+   ========================================================= */
+
+.page-content {
+    padding: 42px 45px 60px;
+
+    max-width: 1500px;
+
+    margin: 0 auto;
+}
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-label {
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 3px;
+
+    color: #8d6cff;
+
+    font-weight: 800;
+
+    margin-bottom: 8px;
+}
+
+.page-header h1 {
+    font-size: clamp(32px, 4vw, 52px);
+
+    line-height: 1.1;
+
+    font-weight: 800;
+
+    margin-bottom: 12px;
+}
+
+.page-header p {
+    color: #aeb8d4;
+
+    max-width: 850px;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(24, 31, 67, 0.88),
+            rgba(12, 18, 42, 0.88)
+        );
+
+    border:
+        1px solid rgba(125, 112, 255, 0.16);
+
+    border-radius: 22px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.18);
+
+    backdrop-filter: blur(14px);
+
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.card h2,
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #aeb8d4;
+}
+
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 20px;
+
+    margin-bottom: 28px;
+}
+
+.stat-card {
+    min-height: 155px;
+
+    padding: 24px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(28, 35, 75, 0.9),
+            rgba(12, 18, 42, 0.9)
+        );
+
+    border:
+        1px solid rgba(127, 106, 255, 0.15);
+}
+
+.stat-icon {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(112, 77, 255, 0.15);
+
+    font-size: 22px;
+
+    margin-bottom: 16px;
+}
+
+.stat-number {
+    font-size: 30px;
+
+    font-weight: 800;
+}
+
+.stat-label {
+    color: #919cba;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   TWO COLUMN CONTENT
+   ========================================================= */
+
+.content-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(320px, 1fr);
+
+    gap: 24px;
+
+    align-items: start;
+}
+
+.content-grid > * {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    color: #dbe1f5;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 12px 14px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid rgba(137, 126, 255, 0.2);
+
+    background:
+        rgba(6, 10, 28, 0.75);
+
+    color: #ffffff;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.form-group textarea {
+    min-height: 110px;
+
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #7552ff;
+
+    box-shadow:
+        0 0 0 3px rgba(117, 82, 255, 0.12);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #66718f;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    min-height: 48px;
+
+    padding: 0 22px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #763cff,
+            #3f62e8
+        );
+
+    box-shadow:
+        0 10px 25px rgba(103, 60, 255, 0.25);
+}
+
+.btn-secondary {
+    color: #ffffff;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+/* =========================================================
+   PROFILE PHOTO PAGE
+   ========================================================= */
+
+.profile-photo-box {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(6, 10, 28, 0.5);
+
+    border:
+        1px dashed rgba(128, 107, 255, 0.35);
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+    object-position: center center;
+
+    border: 4px solid #7754ff;
+
+    box-shadow:
+        0 0 35px rgba(103, 70, 255, 0.3);
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 14px 16px;
+
+    text-align: left;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.06);
+}
+
+th {
+    color: #a98cff;
+
+    font-size: 13px;
+}
+
+td {
+    color: #cbd3e9;
+}
+
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+.badge-success {
+    color: #4dff9b;
+
+    background:
+        rgba(53, 226, 126, 0.1);
+}
+
+.badge-danger {
+    color: #ff6f8c;
+
+    background:
+        rgba(255, 65, 108, 0.1);
+}
+
+.badge-info {
+    color: #67d7ff;
+
+    background:
+        rgba(0, 198, 255, 0.1);
+}
+
+
+/* =========================================================
+   ALERTS
+   ========================================================= */
+
+.alert {
+    padding: 15px 18px;
+
+    border-radius: 12px;
+
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background:
+        rgba(52, 211, 126, 0.1);
+
+    border:
+        1px solid rgba(52, 211, 126, 0.2);
+
+    color: #72ffae;
+}
+
+.alert-danger {
+    background:
+        rgba(255, 65, 108, 0.1);
+
+    border:
+        1px solid rgba(255, 65, 108, 0.2);
+
+    color: #ff8199;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+    text-align: center;
+
+    padding: 35px;
+
+    color: #69748f;
+
+    font-size: 13px;
+}
+
+.site-footer strong {
+    color: #ff416c;
+}
+
+
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+
+.menu-button {
+    display: none;
+
+    position: fixed;
+
+    top: 15px;
+    left: 15px;
+
+    width: 45px;
+    height: 45px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #703cff;
+
+    color: white;
+
+    font-size: 20px;
+
+    z-index: 1200;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   RESPONSIVE - 1200px
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .sidebar {
+        width: 260px;
+    }
+
+    .main-wrapper {
+        margin-left: 260px;
+
+        width: calc(100% - 260px);
+    }
+
+    .dashboard-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - 900px
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+
+        transition:
+            transform 0.3s ease;
+
+        width: 280px;
+    }
+
+    .sidebar.mobile-open {
+        transform: translateX(0);
+    }
+
+    .main-wrapper {
+        margin-left: 0;
+
+        width: 100%;
+    }
+
+    .menu-button {
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+    .topbar {
+        padding-left: 75px;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - 650px
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .sidebar {
+        width: 285px;
+
+        padding:
+            24px 15px 15px;
+    }
+
+    .sidebar-brand {
+        margin-bottom: 18px;
+    }
+
+    .sidebar-user {
+        padding-bottom: 18px;
+        margin-bottom: 12px;
+    }
+
+    .sidebar-user .user-photo,
+    .sidebar-user .user-placeholder {
+        width: 92px;
+        height: 92px;
+
+        min-width: 92px;
+        min-height: 92px;
+    }
+
+    .sidebar-user .user-name {
+        font-size: 17px;
+    }
+
+    .sidebar-user .user-course {
+        font-size: 13px;
+    }
+
+    .page-content {
+        padding:
+            30px 18px 45px;
+    }
+
+    .topbar {
+        height: 65px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+    .page-header h1 {
+        font-size: 32px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+}
+
+
+/* =========================================================
+   ANIMATION
+   ========================================================= */
+
+.fade-in {
+    animation:
+        fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   FINAL PROFILE CENTERING OVERRIDE
+   This intentionally comes at the END so other CSS cannot
+   move the profile to the left.
+   ========================================================= */
+
+.sidebar .sidebar-user {
+    width: 100% !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    text-align: center !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.sidebar .sidebar-user .user-photo,
+.sidebar .sidebar-user .user-placeholder {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.sidebar .sidebar-user .user-name,
+.sidebar .sidebar-user .user-course {
+    width: 100% !important;
+
+    text-align: center !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+
+/* =========================================================
+   FINAL LOGOUT FIX
+   ========================================================= */
+
+.sidebar > .sidebar-logout {
+    flex: 0 0 auto !important;
+
+    position: relative !important;
+
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+
+    width: 100% !important;
+
+    margin-top: 10px !important;
+
+    z-index: 20 !important;
+}
+
+.sidebar > .sidebar-logout a {
+    position: relative !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+}
+
+
+/* =========================================================
+   PREVENT SIDEBAR CHILDREN FROM OVERLAPPING
+   ========================================================= */
+
+.sidebar > * {
+    flex-shrink: 0;
+}
+
+.sidebar > .sidebar-nav {
+    flex: 1 1 auto;
+
+    min-height: 0;
+
+    overflow-y: auto;
+}
+
+
+/* =========================================================
+   HIGH QUALITY IMAGE RENDERING
+   ========================================================= */
+
+.user-photo,
+.user-photo img,
+.profile-photo,
+.profile-photo img {
+    image-rendering: auto;
+
+    image-orientation: from-image;
+}
+
+
+/* =========================================================
+   END
+   ========================================================= */

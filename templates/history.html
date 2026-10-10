@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Placement History | AI Campus</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+            color: #ffffff;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(113, 65, 255, 0.20), transparent 30%),
+                radial-gradient(circle at 90% 20%, rgba(0, 212, 255, 0.15), transparent 30%),
+                linear-gradient(135deg, #050816, #080b20 50%, #031522);
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(101, 53, 255, 0.12);
+            filter: blur(100px);
+            top: -150px;
+            left: -150px;
+            animation: floatGlow 8s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            background: rgba(0, 212, 255, 0.10);
+            filter: blur(100px);
+            bottom: -150px;
+            right: -100px;
+            animation: floatGlow2 10s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes floatGlow {
+            from {
+                transform: translate(0, 0);
+            }
+            to {
+                transform: translate(100px, 80px);
+            }
+        }
+
+        @keyframes floatGlow2 {
+            from {
+                transform: translate(0, 0);
+            }
+            to {
+                transform: translate(-80px, -70px);
+            }
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 5%;
+
+            background: rgba(5, 8, 22, 0.82);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: linear-gradient(135deg, #00d9ff, #6d4aff);
+
+            box-shadow:
+                0 0 25px rgba(0,217,255,0.35);
+
+            font-size: 21px;
+        }
+
+        .brand-text h2 {
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        .brand-text span {
+            display: block;
+            margin-top: 2px;
+
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: #9d8cff;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            color: #d9defa;
+            text-decoration: none;
+
+            padding: 11px 15px;
+            border-radius: 12px;
+
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(117, 83, 255, 0.18);
+            color: #ffffff;
+        }
+
+        .logout {
+            border: 1px solid rgba(255,80,120,0.3);
+            color: #ff9db6 !important;
+        }
+
+        .logout:hover {
+            background: rgba(255,70,110,0.15) !important;
+        }
+
+        /* PAGE */
+        .page {
+            position: relative;
+            z-index: 2;
+
+            width: min(1250px, 92%);
+            margin: 0 auto;
+
+            padding: 55px 0 80px;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            margin-bottom: 35px;
+        }
+
+        .eyebrow {
+            color: #9b86ff;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 5vw, 58px);
+            line-height: 1.05;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #bbaeff,
+                #65e8ff
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            margin-top: 14px;
+            max-width: 700px;
+            color: #9ca8c9;
+            line-height: 1.7;
+        }
+
+        /* STATS */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            position: relative;
+            padding: 24px;
+
+            min-height: 145px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.075),
+                    rgba(255,255,255,0.025)
+                );
+
+            border: 1px solid rgba(255,255,255,0.09);
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.25);
+
+            overflow: hidden;
+
+            transition: 0.35s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-7px);
+
+            border-color: rgba(104, 207, 255, 0.35);
+
+            box-shadow:
+                0 25px 60px rgba(0,0,0,0.4),
+                0 0 30px rgba(81, 111, 255, 0.10);
+        }
+
+        .stat-icon {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: rgba(91,75,255,0.16);
+
+            font-size: 20px;
+
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-size: 29px;
+            font-weight: 800;
+        }
+
+        .stat-label {
+            margin-top: 5px;
+            color: #8d98ba;
+            font-size: 13px;
+        }
+
+        /* MAIN CARD */
+        .history-card {
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.07),
+                    rgba(255,255,255,0.025)
+                );
+
+            border: 1px solid rgba(255,255,255,0.09);
+
+            padding: 30px;
+
+            box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+
+            animation: slideUp 0.7s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+        .section-header h2 {
+            font-size: 25px;
+        }
+
+        .section-header span {
+            color: #8994b5;
+            font-size: 13px;
+        }
+
+        /* EMPTY */
+        .empty {
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .empty-icon {
+            width: 80px;
+            height: 80px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 22px;
+
+            border-radius: 25px;
+
+            font-size: 34px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(101,70,255,0.25),
+                    rgba(0,210,255,0.12)
+                );
+
+            border: 1px solid rgba(137,120,255,0.25);
+
+            animation: pulse 2.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%,100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 rgba(100,80,255,0);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 30px rgba(100,80,255,0.18);
+            }
+        }
+
+        .empty h3 {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .empty p {
+            color: #8f9abb;
+            max-width: 550px;
+            margin: auto;
+            line-height: 1.7;
+        }
+
+        .primary-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-top: 25px;
+
+            padding: 14px 23px;
+
+            border-radius: 13px;
+
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+
+            background: linear-gradient(
+                135deg,
+                #6647ff,
+                #00bde8
+            );
+
+            box-shadow:
+                0 10px 30px rgba(75,70,255,0.25);
+
+            transition: 0.3s;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 40px rgba(75,70,255,0.38);
+        }
+
+        /* TABLE */
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .history-table th {
+            text-align: left;
+            padding: 15px;
+
+            color: #858fb1;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .history-table td {
+            padding: 18px 15px;
+
+            color: #e6e9fa;
+
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .history-table tr {
+            transition: 0.25s;
+        }
+
+        .history-table tbody tr:hover {
+            background: rgba(100,80,255,0.07);
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 7px 12px;
+
+            border-radius: 30px;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .badge-success {
+            color: #70f4bd;
+            background: rgba(53,211,142,0.12);
+        }
+
+        .badge-danger {
+            color: #ff8ca5;
+            background: rgba(255,70,100,0.12);
+        }
+
+        /* MOBILE */
+        @media(max-width: 900px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media(max-width: 600px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .page {
+                width: 94%;
+                padding-top: 35px;
+            }
+
+            .history-card {
+                padding: 20px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            🤖
+        </div>
+
+        <div class="brand-text">
+            <h2>AI CAMPUS</h2>
+            <span>PLACEMENT PRO</span>
+        </div>
+
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('predictor') }}">
+            Placement Predictor
+        </a>
+
+        <a href="{{ url_for('interview') }}">
+            AI Interview
+        </a>
+
+        <a href="{{ url_for('about') }}">
+            About
+        </a>
+
+        <a href="{{ url_for('contact') }}">
+            Contact
+        </a>
+
+        <a href="{{ url_for('logout') }}" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- PAGE -->
+<main class="page">
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div>
+
+            <div class="eyebrow">
+                PREDICTION HISTORY
+            </div>
+
+            <h1>
+                Your Placement<br>
+                History
+            </h1>
+
+            <p>
+                View your previous placement predictions and track
+                how your preparation changes over time.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- STATISTICS -->
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📊
+            </div>
+
+            <div class="stat-number">
+                {{ history|length if history else 0 }}
+            </div>
+
+            <div class="stat-label">
+                Total Predictions
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ✅
+            </div>
+
+            <div class="stat-number">
+
+                {% if history %}
+                    {{ history|selectattr('prediction', 'equalto', 1)|list|length }}
+                {% else %}
+                    0
+                {% endif %}
+
+            </div>
+
+            <div class="stat-label">
+                Positive Results
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎯
+            </div>
+
+            <div class="stat-number">
+
+                {% if history %}
+                    {{ history[0].probability }}%
+                {% else %}
+                    --
+                {% endif %}
+
+            </div>
+
+            <div class="stat-label">
+                Latest Probability
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🚀
+            </div>
+
+            <div class="stat-number">
+
+                {% if history %}
+                    {{ history[0].cgpa }}
+                {% else %}
+                    --
+                {% endif %}
+
+            </div>
+
+            <div class="stat-label">
+                Latest CGPA
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HISTORY -->
+    <section class="history-card">
+
+        <div class="section-header">
+
+            <div>
+                <h2>Previous Predictions</h2>
+                <span>Your placement analysis timeline</span>
+            </div>
+
+        </div>
+
+
+        {% if history %}
+
+        <div class="table-wrapper">
+
+            <table class="history-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Date</th>
+                        <th>CGPA</th>
+                        <th>Probability</th>
+                        <th>Result</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for item in history %}
+
+                    <tr>
+
+                        <td>
+                            {{ item.date if item.date else 'Recent' }}
+                        </td>
+
+                        <td>
+                            {{ item.cgpa }}
+                        </td>
+
+                        <td>
+                            {{ item.probability }}%
+                        </td>
+
+                        <td>
+
+                            {% if item.prediction == 1 %}
+
+                                <span class="badge badge-success">
+                                    ✓ Likely Placed
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge badge-danger">
+                                    ✕ Needs Improvement
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <!-- EMPTY STATE -->
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                📈
+            </div>
+
+            <h3>
+                No Prediction History Yet
+            </h3>
+
+            <p>
+                You haven't completed a placement prediction yet.
+                Complete your first prediction to see your results,
+                probability and progress here.
+            </p>
+
+            <a href="{{ url_for('predictor') }}" class="primary-btn">
+                Start Your First Prediction
+                →
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+</main>
+
+</body>
+</html>

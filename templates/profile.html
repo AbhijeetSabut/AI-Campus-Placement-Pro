@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Profile | AI Campus Placement Pro</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        /* =====================================================
+           PROFILE PAGE
+           ===================================================== */
+
+        .profile-page {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .profile-header .small-title {
+            color: #8d6cff;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .profile-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .profile-header p {
+            color: #aeb8d4;
+            font-size: 15px;
+        }
+
+        /* =====================================================
+           FLASH MESSAGE
+           ===================================================== */
+
+        .profile-message {
+            max-width: 900px;
+            margin: 0 auto 25px;
+        }
+
+        .profile-message .alert {
+            text-align: center;
+        }
+
+        /* =====================================================
+           MAIN PROFILE CARD
+           ===================================================== */
+
+        .profile-card {
+            width: 100%;
+            max-width: 1050px;
+            margin: 0 auto;
+
+            padding: 35px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(25, 32, 70, 0.95),
+                    rgba(10, 16, 38, 0.95)
+                );
+
+            border: 1px solid rgba(125, 112, 255, 0.22);
+
+            border-radius: 26px;
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.25);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        /* =====================================================
+           PHOTO SECTION
+           ===================================================== */
+
+        .profile-photo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 10px 10px 30px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.08);
+
+            margin-bottom: 30px;
+        }
+
+        .profile-photo-wrapper {
+            position: relative;
+
+            width: 170px;
+            height: 170px;
+
+            margin-bottom: 18px;
+        }
+
+        .profile-photo-main {
+            width: 170px;
+            height: 170px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            display: block;
+
+            border: 5px solid #7654ff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #713cff,
+                    #00c6ff
+                );
+
+            box-shadow:
+                0 0 45px rgba(103,70,255,0.45);
+
+            object-position: center;
+        }
+
+        .profile-photo-placeholder {
+            width: 170px;
+            height: 170px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 65px;
+
+            border: 5px solid #7654ff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #713cff,
+                    #00c6ff
+                );
+
+            box-shadow:
+                0 0 45px rgba(103,70,255,0.45);
+        }
+
+        .profile-photo-title {
+            font-size: 19px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .profile-photo-subtitle {
+            color: #8995b6;
+            font-size: 13px;
+        }
+
+        /* =====================================================
+           PHOTO UPLOAD
+           ===================================================== */
+
+        .photo-upload-form {
+            margin-top: 18px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .photo-file {
+            width: 100%;
+            max-width: 320px;
+
+            padding: 10px;
+
+            border-radius: 12px;
+
+            border: 1px solid rgba(125,112,255,0.25);
+
+            background: rgba(5,9,25,0.75);
+
+            color: #cbd3e9;
+        }
+
+        .photo-file::file-selector-button {
+            margin-right: 10px;
+
+            padding: 9px 14px;
+
+            border: none;
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #713cff,
+                    #3f62e8
+                );
+
+            color: white;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        /* =====================================================
+           SECTION TITLE
+           ===================================================== */
+
+        .profile-section-title {
+            margin: 35px 0 20px;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .profile-section-icon {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                rgba(112,77,255,0.15);
+
+            font-size: 20px;
+        }
+
+        .profile-section-title h2 {
+            font-size: 21px;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        /* =====================================================
+           FORM
+           ===================================================== */
+
+        .profile-form {
+            width: 100%;
+        }
+
+        .profile-form-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 20px;
+        }
+
+        .profile-field {
+            display: flex;
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+        .profile-field.full {
+            grid-column: 1 / -1;
+        }
+
+        .profile-field label {
+            color: #dbe1f5;
+
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+        .profile-field input,
+        .profile-field select {
+            width: 100%;
+
+            min-height: 50px;
+
+            padding: 12px 15px;
+
+            border-radius: 12px;
+
+            border:
+                1px solid rgba(137,126,255,0.22);
+
+            background:
+                rgba(5,9,25,0.78);
+
+            color: white;
+
+            outline: none;
+
+            font-size: 14px;
+
+            transition: 0.2s ease;
+        }
+
+        .profile-field input:focus,
+        .profile-field select:focus {
+            border-color: #7654ff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(117,82,255,0.12);
+        }
+
+        .profile-field input::placeholder {
+            color: #66718f;
+        }
+
+        .profile-field select option {
+            background: #10162f;
+            color: white;
+        }
+
+        /* =====================================================
+           USERNAME / ID BOX
+           ===================================================== */
+
+        .account-id-box {
+            padding: 18px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(112,77,255,0.08);
+
+            border:
+                1px solid rgba(112,77,255,0.18);
+
+            color: #b8c1dc;
+
+            margin-bottom: 20px;
+        }
+
+        .account-id-box strong {
+            color: #ffffff;
+        }
+
+        /* =====================================================
+           SAVE BUTTON
+           ===================================================== */
+
+        .profile-actions {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            margin-top: 35px;
+
+            padding-top: 28px;
+
+            border-top:
+                1px solid rgba(255,255,255,0.07);
+        }
+
+        .save-profile-btn {
+            min-width: 230px;
+
+            min-height: 52px;
+
+            padding: 0 28px;
+
+            border: none;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #763cff,
+                    #3f62e8
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 12px 30px
+                rgba(103,60,255,0.28);
+
+            transition: 0.2s ease;
+        }
+
+        .save-profile-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 16px 35px
+                rgba(103,60,255,0.38);
+        }
+
+        .save-profile-btn:active {
+            transform: translateY(0);
+        }
+
+        /* =====================================================
+           MOBILE
+           ===================================================== */
+
+        @media (max-width: 800px) {
+
+            .profile-card {
+                padding: 22px;
+            }
+
+            .profile-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-field.full {
+                grid-column: auto;
+            }
+
+            .profile-header h1 {
+                font-size: 34px;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .profile-card {
+                padding: 17px;
+            }
+
+            .profile-photo-main,
+            .profile-photo-placeholder,
+            .profile-photo-wrapper {
+                width: 145px;
+                height: 145px;
+            }
+
+            .profile-actions {
+                flex-direction: column;
+            }
+
+            .save-profile-btn {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     SIDEBAR
+     ========================================================= -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-brand">
+
+        <div class="logo-icon">
+            🎓
+        </div>
+
+        <div class="logo-title">
+            AI CAMPUS
+        </div>
+
+        <div class="logo-subtitle">
+            PLACEMENT PRO
+        </div>
+
+        <div class="team-name">
+            <span class="team-dot"></span>
+            SECRET CIRCLE
+        </div>
+
+    </div>
+
+
+    <!-- USER -->
+
+    <div class="sidebar-user">
+
+        {% if user.get('profile_photo') %}
+
+            <img
+                src="{{ url_for('uploaded_file', filename=user.get('profile_photo')) }}"
+                class="user-photo"
+                alt="Profile Photo"
+            >
+
+        {% else %}
+
+            <div class="user-placeholder">
+                👤
+            </div>
+
+        {% endif %}
+
+        <div class="user-name">
+            {{ user.get('name', username) }}
+        </div>
+
+        <div class="user-course">
+            {{ user.get('course', 'CSE') }}
+        </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="sidebar-nav">
+
+        <a href="{{ url_for('dashboard') }}">
+            <span class="nav-icon">🏠</span>
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('student_profile') }}" class="active">
+            <span class="nav-icon">👤</span>
+            Profile
+        </a>
+
+        <a href="{{ url_for('academic_details') }}">
+            <span class="nav-icon">🎓</span>
+            Academic Details
+        </a>
+
+        <a href="{{ url_for('skills_activities') }}">
+            <span class="nav-icon">⚡</span>
+            Skills & Activities
+        </a>
+
+        <a href="{{ url_for('predictor') }}">
+            <span class="nav-icon">🤖</span>
+            Placement Predictor
+        </a>
+
+        <a href="{{ url_for('results') }}">
+            <span class="nav-icon">📊</span>
+            Results & Insights
+        </a>
+
+        <a href="{{ url_for('history') }}">
+            <span class="nav-icon">📜</span>
+            History
+        </a>
+
+        <a href="{{ url_for('interview') }}">
+            <span class="nav-icon">🎤</span>
+            AI Interview
+        </a>
+
+        <a href="{{ url_for('placement_tips') }}">
+            <span class="nav-icon">💡</span>
+            Placement Tips
+        </a>
+
+        <a href="{{ url_for('about') }}">
+            <span class="nav-icon">ℹ️</span>
+            About
+        </a>
+
+        <a href="{{ url_for('contact') }}">
+            <span class="nav-icon">📞</span>
+            Contact
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-logout">
+
+        <a href="{{ url_for('logout') }}">
+            <span class="nav-icon">🚪</span>
+            Logout
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+<div class="main-wrapper">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div class="topbar-title">
+            Student Profile
+        </div>
+
+        <div class="system-status">
+
+            <span class="status-dot"></span>
+
+            System Online
+
+        </div>
+
+    </header>
+
+
+    <!-- PAGE -->
+
+    <main class="page-content">
+
+        <div class="profile-page">
+
+
+            <!-- =================================================
+                 HEADER
+                 ================================================= -->
+
+            <div class="profile-header">
+
+                <div class="small-title">
+                    AI CAMPUS PLACEMENT PRO
+                </div>
+
+                <h1>
+                    Student Profile
+                </h1>
+
+                <p>
+                    Manage your personal and academic profile information.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 FLASH MESSAGES
+                 ================================================= -->
+
+            <div class="profile-message">
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+
+                    {% if messages %}
+
+                        {% for category, message in messages %}
+
+                            <div class="alert
+                                {% if category == 'success' %}
+                                    alert-success
+                                {% else %}
+                                    alert-danger
+                                {% endif %}
+                            ">
+
+                                {{ message }}
+
+                            </div>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                {% endwith %}
+
+            </div>
+
+
+            <!-- =================================================
+                 PROFILE CARD
+                 ================================================= -->
+
+            <section class="profile-card">
+
+
+                <!-- =================================================
+                     PHOTO
+                     ================================================= -->
+
+                <div class="profile-photo-section">
+
+                    <div class="profile-photo-wrapper">
+
+                        {% if user.get('profile_photo') %}
+
+                            <img
+                                src="{{ url_for('uploaded_file', filename=user.get('profile_photo')) }}?v={{ user.get('profile_photo') }}"
+                                class="profile-photo-main"
+                                alt="Student Profile Photo"
+                            >
+
+                        {% else %}
+
+                            <div class="profile-photo-placeholder">
+                                👤
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="profile-photo-title">
+                        {{ user.get('name', username) }}
+                    </div>
+
+                    <div class="profile-photo-subtitle">
+                        {{ user.get('course', 'CSE') }}
+                    </div>
+
+
+                    <!-- PHOTO UPLOAD -->
+
+                    <form
+                        class="photo-upload-form"
+                        action="{{ url_for('upload_photo') }}"
+                        method="POST"
+                        enctype="multipart/form-data"
+                    >
+
+                        <input
+                            type="file"
+                            name="photo"
+                            class="photo-file"
+                            accept=".jpg,.jpeg,.png,.webp,.gif,image/*"
+                            required
+                        >
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            📷 Update Profile Photo
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <!-- =================================================
+                     ACCOUNT INFORMATION
+                     ================================================= -->
+
+                <div class="profile-section-title">
+
+                    <div class="profile-section-icon">
+                        🔐
+                    </div>
+
+                    <h2>
+                        Account Information
+                    </h2>
+
+                </div>
+
+
+                <div class="account-id-box">
+
+                    <strong>Login ID:</strong>
+
+                    {{ username }}
+
+                    <br>
+
+                    <small>
+                        Your Login ID is used to sign in to your account.
+                    </small>
+
+                </div>
+
+
+                <!-- =================================================
+                     PROFILE FORM
+                     IMPORTANT:
+                     METHOD = POST
+                     ACTION = student_profile
+                     ================================================= -->
+
+                <form
+                    class="profile-form"
+                    action="{{ url_for('student_profile') }}"
+                    method="POST"
+                    autocomplete="off"
+                >
+
+
+                    <!-- =================================================
+                         PERSONAL INFORMATION
+                         ================================================= -->
+
+                    <div class="profile-section-title">
+
+                        <div class="profile-section-icon">
+                            👤
+                        </div>
+
+                        <h2>
+                            Personal Information
+                        </h2>
+
+                    </div>
+
+
+                    <div class="profile-form-grid">
+
+
+                        <!-- NAME -->
+
+                        <div class="profile-field">
+
+                            <label for="name">
+                                Full Name *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                value="{{ user.get('name', '') }}"
+                                placeholder="Enter your full name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="profile-field">
+
+                            <label for="email">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value="{{ user.get('email', '') }}"
+                                placeholder="Enter your email"
+                            >
+
+                        </div>
+
+
+                        <!-- PHONE -->
+
+                        <div class="profile-field">
+
+                            <label for="phone">
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                value="{{ user.get('phone', '') }}"
+                                placeholder="Enter your phone number"
+                            >
+
+                        </div>
+
+
+                        <!-- CANDIDATE ID -->
+
+                        <div class="profile-field">
+
+                            <label for="candidate_id">
+                                Candidate ID
+                            </label>
+
+                            <input
+                                type="text"
+                                id="candidate_id"
+                                name="candidate_id"
+                                value="{{ user.get('candidate_id', username) }}"
+                                placeholder="Candidate ID"
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- =================================================
+                         ACADEMIC / COLLEGE INFORMATION
+                         ================================================= -->
+
+                    <div class="profile-section-title">
+
+                        <div class="profile-section-icon">
+                            🎓
+                        </div>
+
+                        <h2>
+                            Academic Information
+                        </h2>
+
+                    </div>
+
+
+                    <div class="profile-form-grid">
+
+
+                        <!-- COURSE -->
+
+                        <div class="profile-field">
+
+                            <label for="course">
+                                Course
+                            </label>
+
+                            <input
+                                type="text"
+                                id="course"
+                                name="course"
+                                value="{{ user.get('course', '') }}"
+                                placeholder="Example: B.Tech"
+                            >
+
+                        </div>
+
+
+                        <!-- BRANCH -->
+
+                        <div class="profile-field">
+
+                            <label for="branch">
+                                Branch
+                            </label>
+
+                            <input
+                                type="text"
+                                id="branch"
+                                name="branch"
+                                value="{{ user.get('branch', '') }}"
+                                placeholder="Example: CSE"
+                            >
+
+                        </div>
+
+
+                        <!-- DEPARTMENT -->
+
+                        <div class="profile-field">
+
+                            <label for="department">
+                                Department
+                            </label>
+
+                            <input
+                                type="text"
+                                id="department"
+                                name="department"
+                                value="{{ user.get('department', '') }}"
+                                placeholder="Example: Computer Science"
+                            >
+
+                        </div>
+
+
+                        <!-- SEMESTER -->
+
+                        <div class="profile-field">
+
+                            <label for="semester">
+                                Semester
+                            </label>
+
+                            <input
+                                type="text"
+                                id="semester"
+                                name="semester"
+                                value="{{ user.get('semester', '') }}"
+                                placeholder="Example: 5th Sem"
+                            >
+
+                        </div>
+
+
+                        <!-- COLLEGE -->
+
+                        <div class="profile-field full">
+
+                            <label for="college">
+                                College / Institution
+                            </label>
+
+                            <input
+                                type="text"
+                                id="college"
+                                name="college"
+                                value="{{ user.get('college', '') }}"
+                                placeholder="Enter your college name"
+                            >
+
+                        </div>
+
+
+                        <!-- ROLL NUMBER -->
+
+                        <div class="profile-field">
+
+                            <label for="roll_no">
+                                Roll Number
+                            </label>
+
+                            <input
+                                type="text"
+                                id="roll_no"
+                                name="roll_no"
+                                value="{{ user.get('roll_no', '') }}"
+                                placeholder="Enter roll number"
+                            >
+
+                        </div>
+
+
+                        <!-- GRADUATION YEAR -->
+
+                        <div class="profile-field">
+
+                            <label for="graduation_year">
+                                Graduation Year
+                            </label>
+
+                            <input
+                                type="text"
+                                id="graduation_year"
+                                name="graduation_year"
+                                value="{{ user.get('graduation_year', '') }}"
+                                placeholder="Example: 2028"
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- =================================================
+                         SAVE
+                         ================================================= -->
+
+                    <div class="profile-actions">
+
+                        <button
+                            type="submit"
+                            class="save-profile-btn"
+                        >
+                            💾 Save Profile
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="site-footer">
+
+        © 2026
+        <strong>SECRET CIRCLE 🔴</strong>
+        — AI Campus Placement Pro
+
+    </footer>
+
+</div>
+
+
+<!-- =========================================================
+     MOBILE MENU
+     ========================================================= -->
+
+<button
+    class="menu-button"
+    onclick="toggleSidebar()"
+    aria-label="Open Menu"
+>
+    ☰
+</button>
+
+
+<script>
+
+function toggleSidebar() {
+
+    const sidebar =
+        document.querySelector(".sidebar");
+
+    if (sidebar) {
+
+        sidebar.classList.toggle(
+            "mobile-open"
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

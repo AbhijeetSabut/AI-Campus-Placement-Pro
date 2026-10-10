@@ -1,0 +1,3412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Interview Assistant | AI Campus Placement Pro</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+
+<body>
+
+<div class="interview-page">
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <nav class="interview-nav">
+
+        <a href="{{ url_for('dashboard') }}"
+           class="interview-logo">
+
+            <span class="interview-logo-icon">
+                🤖
+            </span>
+
+            <span>
+                <strong>AI CAMPUS</strong>
+                <small>PLACEMENT PRO</small>
+            </span>
+
+        </a>
+
+
+        <div class="interview-nav-links">
+
+            <a href="{{ url_for('dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('predictor') }}">
+                Predictor
+            </a>
+
+            <a href="{{ url_for('interview') }}"
+               class="active">
+                AI Interview
+            </a>
+
+            <a href="{{ url_for('about') }}">
+                About
+            </a>
+
+            <a href="{{ url_for('contact') }}">
+                Contact
+            </a>
+
+            <button id="themeToggle"
+                    class="interview-theme">
+                ☀️
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="interview-hero">
+
+        <span class="interview-tag">
+            AI POWERED INTERVIEW PREPARATION
+        </span>
+
+        <h1>
+            AI Interview
+            <span>Assistant</span>
+        </h1>
+
+        <p>
+            Practice technical and HR interview questions,
+            improve your knowledge and prepare yourself
+            for campus placement interviews.
+        </p>
+
+        <div class="student-info">
+
+            <div class="student-avatar">
+                👤
+            </div>
+
+            <div>
+                <small>LOGGED IN STUDENT</small>
+
+                <strong>
+                    {{ user.get('name', username) }}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         BASIC CODING QUESTIONS
+    ====================================================== -->
+
+    <section class="interview-section">
+
+        <div class="section-heading">
+
+            <div class="section-icon purple">
+                💻
+            </div>
+
+            <div>
+
+                <span>
+                    BASIC PROGRAMMING
+                </span>
+
+                <h2>
+                    Basic Coding Questions
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="question-grid">
+
+
+            <!-- C -->
+
+            <div class="question-card">
+
+                <div class="question-number">
+                    01
+                </div>
+
+                <span class="language-badge c-badge">
+                    C PROGRAMMING
+                </span>
+
+                <h3>
+                    Print Hello World
+                </h3>
+
+                <p>
+                    Write a C program to print
+                    <strong>Hello World</strong>.
+                </p>
+
+                <button class="show-answer"
+                        onclick="toggleAnswer('answer1', this)">
+                    Show Answer
+                </button>
+
+                <div id="answer1"
+                     class="code-answer">
+
+<pre>
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    printf("Hello World");
+
+    return 0;
+}
+</pre>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PYTHON -->
+
+            <div class="question-card">
+
+                <div class="question-number">
+                    02
+                </div>
+
+                <span class="language-badge python-badge">
+                    PYTHON
+                </span>
+
+                <h3>
+                    Check Even or Odd
+                </h3>
+
+                <p>
+                    Write a Python program to check
+                    whether a number is even or odd.
+                </p>
+
+                <button class="show-answer"
+                        onclick="toggleAnswer('answer2', this)">
+                    Show Answer
+                </button>
+
+                <div id="answer2"
+                     class="code-answer">
+
+<pre>
+number = int(input("Enter number: "))
+
+if number % 2 == 0:
+    print("Even")
+else:
+    print("Odd")
+</pre>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- JAVA -->
+
+            <div class="question-card">
+
+                <div class="question-number">
+                    03
+                </div>
+
+                <span class="language-badge java-badge">
+                    JAVA
+                </span>
+
+                <h3>
+                    Find Largest Number
+                </h3>
+
+                <p>
+                    Write a Java program to find
+                    the largest of two numbers.
+                </p>
+
+                <button class="show-answer"
+                        onclick="toggleAnswer('answer3', this)">
+                    Show Answer
+                </button>
+
+                <div id="answer3"
+                     class="code-answer">
+
+<pre>
+int a = 10;
+int b = 20;
+
+if (a > b)
+{
+    System.out.println(a);
+}
+else
+{
+    System.out.println(b);
+}
+</pre>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- C -->
+
+            <div class="question-card">
+
+                <div class="question-number">
+                    04
+                </div>
+
+                <span class="language-badge c-badge">
+                    C PROGRAMMING
+                </span>
+
+                <h3>
+                    Sum of Two Numbers
+                </h3>
+
+                <p>
+                    Write a C program to find
+                    the sum of two numbers.
+                </p>
+
+                <button class="show-answer"
+                        onclick="toggleAnswer('answer4', this)">
+                    Show Answer
+                </button>
+
+                <div id="answer4"
+                     class="code-answer">
+
+<pre>
+#include &lt;stdio.h&gt;
+
+int main()
+{
+    int a = 10;
+    int b = 20;
+
+    printf("%d", a + b);
+
+    return 0;
+}
+</pre>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PYTHON -->
+
+            <div class="question-card">
+
+                <div class="question-number">
+                    05
+                </div>
+
+                <span class="language-badge python-badge">
+                    PYTHON
+                </span>
+
+                <h3>
+                    Reverse a String
+                </h3>
+
+                <p>
+                    Write a Python program to
+                    reverse a string.
+                </p>
+
+                <button class="show-answer"
+                        onclick="toggleAnswer('answer5', this)">
+                    Show Answer
+                </button>
+
+                <div id="answer5"
+                     class="code-answer">
+
+<pre>
+text = "Python"
+
+reverse = text[::-1]
+
+print(reverse)
+</pre>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         50 RANDOM MCQ QUESTIONS
+    ====================================================== -->
+
+    <section class="interview-section">
+
+        <div class="section-heading">
+
+            <div class="section-icon blue">
+                🧠
+            </div>
+
+            <div>
+
+                <span>
+                    RANDOMIZED KNOWLEDGE TEST
+                </span>
+
+                <h2>
+                    50 Random MCQ Questions
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="random-info">
+
+            <div>
+                🎯
+                <strong>50 Questions</strong>
+            </div>
+
+            <div>
+                🔀
+                Questions are randomized
+            </div>
+
+            <div>
+                👤
+                Different users get different order
+            </div>
+
+        </div>
+
+
+        <!-- QUESTIONS ARE INSERTED HERE -->
+
+        <div id="mcqContainer"
+             class="mcq-grid">
+
+        </div>
+
+
+        <div class="quiz-complete">
+
+            <div class="quiz-score"
+                 id="quizScore">
+
+                Score:
+                <strong>0 / 50</strong>
+
+            </div>
+
+            <button onclick="resetQuiz()"
+                    class="reset-quiz">
+
+                🔄 New Random Questions
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         HR QUESTIONS
+    ====================================================== -->
+
+    <section class="interview-section hr-section">
+
+        <div class="section-heading">
+
+            <div class="section-icon orange">
+                👨‍💼
+            </div>
+
+            <div>
+
+                <span>
+                    PERSONALITY & COMMUNICATION
+                </span>
+
+                <h2>
+                    HR Interview Questions
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="hr-question-list">
+
+
+            <div class="hr-question">
+
+                <span>
+                    01
+                </span>
+
+                <div>
+
+                    <h3>
+                        Tell me about yourself.
+                    </h3>
+
+                    <p>
+                        Give a short introduction about
+                        your education, skills, projects
+                        and career goals.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="hr-question">
+
+                <span>
+                    02
+                </span>
+
+                <div>
+
+                    <h3>
+                        What are your strengths?
+                    </h3>
+
+                    <p>
+                        Explain your strongest technical
+                        or personal qualities with examples.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="hr-question">
+
+                <span>
+                    03
+                </span>
+
+                <div>
+
+                    <h3>
+                        What is your biggest weakness?
+                    </h3>
+
+                    <p>
+                        Mention a genuine weakness and
+                        explain how you are improving it.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="hr-question">
+
+                <span>
+                    04
+                </span>
+
+                <div>
+
+                    <h3>
+                        Why should we hire you?
+                    </h3>
+
+                    <p>
+                        Explain how your skills and
+                        attitude can benefit the organization.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="hr-question">
+
+                <span>
+                    05
+                </span>
+
+                <div>
+
+                    <h3>
+                        Where do you see yourself in 5 years?
+                    </h3>
+
+                    <p>
+                        Explain your professional goals
+                        and career growth plans.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="interview-footer">
+
+        <div>
+
+            <strong>
+                AI CAMPUS PLACEMENT PRO
+            </strong>
+
+            <span>
+                Predict • Prepare • Get Placed
+            </span>
+
+        </div>
+
+        <div>
+            AI Interview Assistant
+        </div>
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+/* =========================================================
+   50 QUESTION DATABASE
+========================================================= */
+
+const questionBank = [
+
+    /* ================= PYTHON ================= */
+
+    {
+        category: "PYTHON",
+        className: "python-text",
+        question: "Which keyword is used to define a function in Python?",
+        options: ["func", "def", "function", "define"],
+        answer: 1
+    },
+
+    {
+        category: "PYTHON",
+        className: "python-text",
+        question: "Which data type is immutable in Python?",
+        options: ["List", "Set", "Dictionary", "Tuple"],
+        answer: 3
+    },
+
+    {
+        category: "PYTHON",
+        className: "python-text",
+        question: "What is the output of print(2 ** 3)?",
+        options: ["5", "6", "8", "9"],
+        answer: 2
+    },
+
+    {
+        category: "PYTHON",
+        className: "python-text",
+        question: "Which method adds an item to the end of a Python list?",
+        options: ["add()", "append()", "insertEnd()", "push()"],
+        answer: 1
+    },
+
+    {
+        category: "PYTHON",
+        className: "python-text",
+        question: "Which symbol starts a single-line comment in Python?",
+        options: ["//", "#", "/*", "--"],
+        answer: 1
+    },
+
+    {
+        category: "PYTHON",
+        className: "python-text",
+        question: "What does len('Campus') return?",
+        options: ["5", "6", "7", "Error"],
+        answer: 1
+    },
+
+    {
+        category: "PYTHON",
+        className: "python-text",
+        question: "Which keyword is used to handle an exception?",
+        options: ["catch", "except", "error", "handle"],
+        answer: 1
+    },
+
+    {
+        category: "PYTHON",
+        className: "python-text",
+        question: "Which collection stores key-value pairs?",
+        options: ["List", "Tuple", "Set", "Dictionary"],
+        answer: 3
+    },
+
+    {
+        category: "PYTHON",
+        className: "python-text",
+        question: "What is the output of bool(0)?",
+        options: ["True", "False", "0", "None"],
+        answer: 1
+    },
+
+    {
+        category: "PYTHON",
+        className: "python-text",
+        question: "Which operator performs floor division?",
+        options: ["/", "//", "%", "**"],
+        answer: 1
+    },
+
+
+    /* ================= C ================= */
+
+    {
+        category: "C PROGRAMMING",
+        className: "c-text",
+        question: "Which function is used to print output in C?",
+        options: ["input()", "print()", "printf()", "display()"],
+        answer: 2
+    },
+
+    {
+        category: "C PROGRAMMING",
+        className: "c-text",
+        question: "Which symbol ends a statement in C?",
+        options: [":", ".", ";", ","],
+        answer: 2
+    },
+
+    {
+        category: "C PROGRAMMING",
+        className: "c-text",
+        question: "Which header file is required for printf()?",
+        options: ["stdlib.h", "string.h", "stdio.h", "math.h"],
+        answer: 2
+    },
+
+    {
+        category: "C PROGRAMMING",
+        className: "c-text",
+        question: "Which operator gives the address of a variable?",
+        options: ["*", "&", "%", "@"],
+        answer: 1
+    },
+
+    {
+        category: "C PROGRAMMING",
+        className: "c-text",
+        question: "Which loop executes at least once?",
+        options: ["for", "while", "do-while", "if"],
+        answer: 2
+    },
+
+    {
+        category: "C PROGRAMMING",
+        className: "c-text",
+        question: "Which data type stores a single character?",
+        options: ["string", "char", "character", "byte"],
+        answer: 1
+    },
+
+    {
+        category: "C PROGRAMMING",
+        className: "c-text",
+        question: "What is the index of the first element of an array in C?",
+        options: ["0", "1", "-1", "Depends"],
+        answer: 0
+    },
+
+    {
+        category: "C PROGRAMMING",
+        className: "c-text",
+        question: "Which keyword declares a constant variable?",
+        options: ["constant", "const", "fixed", "final"],
+        answer: 1
+    },
+
+    {
+        category: "C PROGRAMMING",
+        className: "c-text",
+        question: "Which function is the starting point of a C program?",
+        options: ["start()", "main()", "run()", "begin()"],
+        answer: 1
+    },
+
+    {
+        category: "C PROGRAMMING",
+        className: "c-text",
+        question: "Which operator represents logical AND?",
+        options: ["&", "&&", "||", "!"],
+        answer: 1
+    },
+
+
+    /* ================= JAVA ================= */
+
+    {
+        category: "JAVA",
+        className: "java-text",
+        question: "Which keyword is used to create a class in Java?",
+        options: ["class", "struct", "define", "object"],
+        answer: 0
+    },
+
+    {
+        category: "JAVA",
+        className: "java-text",
+        question: "Which method is the entry point of a Java program?",
+        options: ["start()", "run()", "main()", "execute()"],
+        answer: 2
+    },
+
+    {
+        category: "JAVA",
+        className: "java-text",
+        question: "Which keyword is used to create an object?",
+        options: ["new", "create", "object", "make"],
+        answer: 0
+    },
+
+    {
+        category: "JAVA",
+        className: "java-text",
+        question: "Which type stores true or false values?",
+        options: ["bool", "boolean", "bit", "logical"],
+        answer: 1
+    },
+
+    {
+        category: "JAVA",
+        className: "java-text",
+        question: "Which keyword prevents a class from being inherited?",
+        options: ["static", "final", "private", "protected"],
+        answer: 1
+    },
+
+    {
+        category: "JAVA",
+        className: "java-text",
+        question: "Which concept allows one interface with many implementations?",
+        options: [
+            "Encapsulation",
+            "Inheritance",
+            "Polymorphism",
+            "Abstraction"
+        ],
+        answer: 2
+    },
+
+    {
+        category: "JAVA",
+        className: "java-text",
+        question: "Which collection does not allow duplicate elements?",
+        options: ["List", "Set", "ArrayList", "Vector"],
+        answer: 1
+    },
+
+    {
+        category: "JAVA",
+        className: "java-text",
+        question: "Which structure is commonly used to handle exceptions?",
+        options: [
+            "try-catch",
+            "if-else",
+            "switch-case",
+            "for-loop"
+        ],
+        answer: 0
+    },
+
+    {
+        category: "JAVA",
+        className: "java-text",
+        question: "Which keyword refers to the current object?",
+        options: ["self", "this", "current", "super"],
+        answer: 1
+    },
+
+    {
+        category: "JAVA",
+        className: "java-text",
+        question: "Which package contains the Scanner class?",
+        options: [
+            "java.io",
+            "java.util",
+            "java.lang",
+            "java.net"
+        ],
+        answer: 1
+    },
+
+
+    /* ================= DBMS ================= */
+
+    {
+        category: "DBMS",
+        className: "dbms-text",
+        question: "Which key uniquely identifies each record in a table?",
+        options: [
+            "Foreign Key",
+            "Primary Key",
+            "Candidate Key",
+            "Composite Key"
+        ],
+        answer: 1
+    },
+
+    {
+        category: "DBMS",
+        className: "dbms-text",
+        question: "Which SQL command is used to retrieve data?",
+        options: [
+            "INSERT",
+            "UPDATE",
+            "SELECT",
+            "DELETE"
+        ],
+        answer: 2
+    },
+
+    {
+        category: "DBMS",
+        className: "dbms-text",
+        question: "Which command adds a new row to a table?",
+        options: [
+            "ADD",
+            "INSERT",
+            "CREATE",
+            "UPDATE"
+        ],
+        answer: 1
+    },
+
+    {
+        category: "DBMS",
+        className: "dbms-text",
+        question: "Which clause is used to filter rows?",
+        options: [
+            "ORDER BY",
+            "GROUP BY",
+            "WHERE",
+            "FILTER"
+        ],
+        answer: 2
+    },
+
+    {
+        category: "DBMS",
+        className: "dbms-text",
+        question: "Which clause sorts query results?",
+        options: [
+            "SORT BY",
+            "ORDER BY",
+            "GROUP BY",
+            "ARRANGE"
+        ],
+        answer: 1
+    },
+
+    {
+        category: "DBMS",
+        className: "dbms-text",
+        question: "What does DBMS stand for?",
+        options: [
+            "Data Backup Management System",
+            "Database Management System",
+            "Database Model System",
+            "Data Base Machine System"
+        ],
+        answer: 1
+    },
+
+    {
+        category: "DBMS",
+        className: "dbms-text",
+        question: "Which normal form removes partial dependency?",
+        options: [
+            "1NF",
+            "2NF",
+            "3NF",
+            "BCNF"
+        ],
+        answer: 1
+    },
+
+    {
+        category: "DBMS",
+        className: "dbms-text",
+        question: "Which key references another table's primary key?",
+        options: [
+            "Primary Key",
+            "Foreign Key",
+            "Super Key",
+            "Unique Key"
+        ],
+        answer: 1
+    },
+
+    {
+        category: "DBMS",
+        className: "dbms-text",
+        question: "Which command removes a table completely?",
+        options: [
+            "DELETE",
+            "REMOVE",
+            "DROP",
+            "CLEAR"
+        ],
+        answer: 2
+    },
+
+    {
+        category: "DBMS",
+        className: "dbms-text",
+        question: "Which ACID property means all-or-nothing?",
+        options: [
+            "Consistency",
+            "Isolation",
+            "Atomicity",
+            "Durability"
+        ],
+        answer: 2
+    },
+
+
+    /* ================= SQL ================= */
+
+    {
+        category: "SQL",
+        className: "sql-text",
+        question: "Which command changes existing records?",
+        options: [
+            "MODIFY",
+            "UPDATE",
+            "CHANGE",
+            "ALTER"
+        ],
+        answer: 1
+    },
+
+    {
+        category: "SQL",
+        className: "sql-text",
+        question: "Which command removes selected rows?",
+        options: [
+            "DROP",
+            "DELETE",
+            "REMOVE TABLE",
+            "CLEAR"
+        ],
+        answer: 1
+    },
+
+    {
+        category: "SQL",
+        className: "sql-text",
+        question: "Which function counts rows?",
+        options: [
+            "SUM()",
+            "COUNT()",
+            "TOTAL()",
+            "NUMBER()"
+        ],
+        answer: 1
+    },
+
+    {
+        category: "SQL",
+        className: "sql-text",
+        question: "Which keyword removes duplicate results?",
+        options: [
+            "UNIQUE",
+            "DISTINCT",
+            "ONLY",
+            "DIFFERENT"
+        ],
+        answer: 1
+    },
+
+    {
+        category: "SQL",
+        className: "sql-text",
+        question: "Which operator checks whether a value is within a range?",
+        options: [
+            "IN",
+            "BETWEEN",
+            "RANGE",
+            "WITHIN"
+        ],
+        answer: 1
+    },
+
+    {
+        category: "SQL",
+        className: "sql-text",
+        question: "Which command creates a new table?",
+        options: [
+            "MAKE TABLE",
+            "NEW TABLE",
+            "CREATE TABLE",
+            "BUILD TABLE"
+        ],
+        answer: 2
+    },
+
+    {
+        category: "SQL",
+        className: "sql-text",
+        question: "Which clause groups rows with the same values?",
+        options: [
+            "GROUP BY",
+            "ORDER BY",
+            "WHERE",
+            "JOIN"
+        ],
+        answer: 0
+    },
+
+    {
+        category: "SQL",
+        className: "sql-text",
+        question: "Which join returns matching rows from both tables?",
+        options: [
+            "LEFT JOIN",
+            "RIGHT JOIN",
+            "INNER JOIN",
+            "FULL JOIN"
+        ],
+        answer: 2
+    },
+
+    {
+        category: "SQL",
+        className: "sql-text",
+        question: "Which symbol represents all columns in SELECT?",
+        options: [
+            "#",
+            "*",
+            "%",
+            "@"
+        ],
+        answer: 1
+    },
+
+    {
+        category: "SQL",
+        className: "sql-text",
+        question: "Which clause filters groups after GROUP BY?",
+        options: [
+            "WHERE",
+            "HAVING",
+            "FILTER",
+            "GROUP WHERE"
+        ],
+        answer: 1
+    }
+
+];
+
+
+
+/* =========================================================
+   RANDOM SHUFFLE
+========================================================= */
+
+function shuffleArray(array) {
+
+    const shuffled = [...array];
+
+    for (
+        let i = shuffled.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        [
+            shuffled[i],
+            shuffled[j]
+        ] =
+        [
+            shuffled[j],
+            shuffled[i]
+        ];
+
+    }
+
+    return shuffled;
+}
+
+
+
+/* =========================================================
+   QUIZ VARIABLES
+========================================================= */
+
+let randomizedQuestions =
+    shuffleArray(questionBank);
+
+let currentScore = 0;
+
+
+
+/* =========================================================
+   DISPLAY 50 RANDOM QUESTIONS
+========================================================= */
+
+function renderQuestions() {
+
+    const container =
+        document.getElementById(
+            "mcqContainer"
+        );
+
+    container.innerHTML = "";
+
+    randomizedQuestions
+        .forEach(
+            function(question, index) {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+                card.className =
+                    "mcq-card";
+
+
+
+                const category =
+                    document.createElement(
+                        "span"
+                    );
+
+                category.className =
+                    "mcq-category " +
+                    question.className;
+
+                category.innerText =
+                    question.category;
+
+
+
+                const number =
+                    document.createElement(
+                        "div"
+                    );
+
+                number.className =
+                    "mcq-number";
+
+                number.innerText =
+                    String(index + 1)
+                    .padStart(2, "0");
+
+
+
+                const heading =
+                    document.createElement(
+                        "h3"
+                    );
+
+                heading.innerText =
+                    question.question;
+
+
+
+                const options =
+                    document.createElement(
+                        "div"
+                    );
+
+                options.className =
+                    "options";
+
+
+
+                question.options
+                    .forEach(
+                        function(option, optionIndex) {
+
+                            const button =
+                                document.createElement(
+                                    "button"
+                                );
+
+                            button.type =
+                                "button";
+
+                            button.innerText =
+                                String.fromCharCode(
+                                    65 + optionIndex
+                                ) +
+                                ". " +
+                                option;
+
+
+
+                            button.addEventListener(
+                                "click",
+                                function() {
+
+                                    checkDynamicAnswer(
+                                        button,
+                                        optionIndex,
+                                        question.answer
+                                    );
+
+                                }
+                            );
+
+
+                            options.appendChild(
+                                button
+                            );
+
+                        }
+                    );
+
+
+
+                const result =
+                    document.createElement(
+                        "div"
+                    );
+
+                result.className =
+                    "mcq-result";
+
+
+
+                card.appendChild(
+                    number
+                );
+
+                card.appendChild(
+                    category
+                );
+
+                card.appendChild(
+                    heading
+                );
+
+                card.appendChild(
+                    options
+                );
+
+                card.appendChild(
+                    result
+                );
+
+
+                container.appendChild(
+                    card
+                );
+
+            }
+        );
+
+
+    updateScore();
+
+}
+
+
+
+/* =========================================================
+   CHECK ANSWER
+========================================================= */
+
+function checkDynamicAnswer(
+    button,
+    selectedAnswer,
+    correctAnswer
+) {
+
+    const card =
+        button.closest(
+            ".mcq-card"
+        );
+
+    const buttons =
+        card.querySelectorAll(
+            ".options button"
+        );
+
+    const result =
+        card.querySelector(
+            ".mcq-result"
+        );
+
+
+    buttons.forEach(
+        function(btn) {
+
+            btn.disabled = true;
+
+        }
+    );
+
+
+    if (
+        selectedAnswer ===
+        correctAnswer
+    ) {
+
+        button.classList.add(
+            "correct"
+        );
+
+        result.innerHTML =
+            "✓ Correct Answer!";
+
+        result.className =
+            "mcq-result correct-result";
+
+        currentScore++;
+
+    } else {
+
+        button.classList.add(
+            "wrong"
+        );
+
+
+        buttons[
+            correctAnswer
+        ].classList.add(
+            "correct"
+        );
+
+
+        result.innerHTML =
+            "✕ Incorrect Answer";
+
+        result.className =
+            "mcq-result wrong-result";
+
+    }
+
+
+    updateScore();
+
+}
+
+
+
+/* =========================================================
+   SCORE
+========================================================= */
+
+function updateScore() {
+
+    const score =
+        document.getElementById(
+            "quizScore"
+        );
+
+    if (!score) {
+        return;
+    }
+
+    score.innerHTML =
+        "Score: <strong>" +
+        currentScore +
+        " / 50</strong>";
+
+}
+
+
+
+/* =========================================================
+   RESET / NEW RANDOM QUESTIONS
+========================================================= */
+
+function resetQuiz() {
+
+    currentScore = 0;
+
+    randomizedQuestions =
+        shuffleArray(
+            questionBank
+        );
+
+    renderQuestions();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+
+/* =========================================================
+   SHOW / HIDE CODING ANSWERS
+========================================================= */
+
+function toggleAnswer(
+    id,
+    button
+) {
+
+    const answer =
+        document.getElementById(
+            id
+        );
+
+
+    if (
+        answer.style.display ===
+        "block"
+    ) {
+
+        answer.style.display =
+            "none";
+
+        button.innerText =
+            "Show Answer";
+
+    } else {
+
+        answer.style.display =
+            "block";
+
+        button.innerText =
+            "Hide Answer";
+
+    }
+
+}
+
+
+
+/* =========================================================
+   DARK / LIGHT MODE
+========================================================= */
+
+const themeButton =
+    document.getElementById(
+        "themeToggle"
+    );
+
+
+const savedTheme =
+    localStorage.getItem(
+        "aiCampusTheme"
+    );
+
+
+if (
+    savedTheme ===
+    "light"
+) {
+
+    document.body.classList.add(
+        "light-mode"
+    );
+
+    themeButton.innerHTML =
+        "🌙";
+
+}
+
+
+
+themeButton.addEventListener(
+    "click",
+    function() {
+
+        document.body.classList.toggle(
+            "light-mode"
+        );
+
+
+        const isLight =
+            document.body.classList.contains(
+                "light-mode"
+            );
+
+
+        localStorage.setItem(
+            "aiCampusTheme",
+            isLight
+                ? "light"
+                : "dark"
+        );
+
+
+        themeButton.innerHTML =
+            isLight
+                ? "🌙"
+                : "☀️";
+
+    }
+);
+
+
+
+/* =========================================================
+   START QUIZ
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        renderQuestions();
+
+    }
+);
+
+</script>
+
+
+
+<!-- =========================================================
+     PAGE CSS
+========================================================= -->
+
+<style>
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+body {
+
+    font-family:
+        "Inter",
+        sans-serif;
+
+    background:
+        #050816;
+
+    color:
+        #ffffff;
+
+    transition:
+        0.3s ease;
+
+}
+
+
+.interview-page {
+
+    min-height:
+        100vh;
+
+}
+
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.interview-nav {
+
+    min-height:
+        78px;
+
+    padding:
+        0 6%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    background:
+        rgba(
+            5,
+            8,
+            22,
+            0.90
+        );
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    backdrop-filter:
+        blur(18px);
+
+    position:
+        sticky;
+
+    top:
+        0;
+
+    z-index:
+        1000;
+
+}
+
+
+.interview-logo {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    color:
+        white;
+
+    text-decoration:
+        none;
+
+}
+
+
+.interview-logo-icon {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #713cff,
+            #08bdf5
+        );
+
+    font-size:
+        22px;
+
+}
+
+
+.interview-logo strong {
+
+    display:
+        block;
+
+    font-size:
+        14px;
+
+}
+
+
+.interview-logo small {
+
+    display:
+        block;
+
+    margin-top:
+        2px;
+
+    color:
+        #8172ff;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        2px;
+
+}
+
+
+.interview-nav-links {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        22px;
+
+}
+
+
+.interview-nav-links a {
+
+    color:
+        #7f8aa4;
+
+    text-decoration:
+        none;
+
+    font-size:
+        11px;
+
+    transition:
+        0.3s;
+
+}
+
+
+.interview-nav-links a:hover,
+.interview-nav-links a.active {
+
+    color:
+        white;
+
+}
+
+
+.interview-theme {
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    border-radius:
+        10px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.1
+        );
+
+    background:
+        #10162b;
+
+    color:
+        white;
+
+    cursor:
+        pointer;
+
+}
+
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.interview-hero {
+
+    max-width:
+        1100px;
+
+    margin:
+        auto;
+
+    padding:
+        70px 25px 45px;
+
+}
+
+
+.interview-tag {
+
+    color:
+        #8c7cff;
+
+    font-size:
+        9px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        2.5px;
+
+}
+
+
+.interview-hero h1 {
+
+    font-size:
+        clamp(
+            40px,
+            6vw,
+            65px
+        );
+
+    line-height:
+        1.1;
+
+    margin:
+        15px 0;
+
+}
+
+
+.interview-hero h1 span {
+
+    background:
+        linear-gradient(
+            90deg,
+            #8b5cf6,
+            #22d3ee
+        );
+
+    -webkit-background-clip:
+        text;
+
+    background-clip:
+        text;
+
+    -webkit-text-fill-color:
+        transparent;
+
+}
+
+
+.interview-hero p {
+
+    max-width:
+        650px;
+
+    color:
+        #7d89a6;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.9;
+
+}
+
+
+.student-info {
+
+    margin-top:
+        25px;
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    padding:
+        12px 18px;
+
+    border:
+        1px solid
+        rgba(
+            124,
+            92,
+            255,
+            0.25
+        );
+
+    border-radius:
+        15px;
+
+    background:
+        rgba(
+            124,
+            92,
+            255,
+            0.08
+        );
+
+}
+
+
+.student-avatar {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    border-radius:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #713cff,
+            #08bdf5
+        );
+
+}
+
+
+.student-info small {
+
+    display:
+        block;
+
+    color:
+        #697592;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        1.5px;
+
+}
+
+
+.student-info strong {
+
+    display:
+        block;
+
+    margin-top:
+        3px;
+
+    font-size:
+        13px;
+
+}
+
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.interview-section {
+
+    max-width:
+        1100px;
+
+    margin:
+        auto;
+
+    padding:
+        30px 25px;
+
+}
+
+
+.section-heading {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        14px;
+
+    margin-bottom:
+        25px;
+
+}
+
+
+.section-icon {
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    border-radius:
+        14px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size:
+        21px;
+
+}
+
+
+.section-icon.purple {
+
+    background:
+        rgba(
+            124,
+            92,
+            255,
+            0.15
+        );
+
+}
+
+
+.section-icon.blue {
+
+    background:
+        rgba(
+            34,
+            211,
+            238,
+            0.12
+        );
+
+}
+
+
+.section-icon.orange {
+
+    background:
+        rgba(
+            251,
+            146,
+            60,
+            0.12
+        );
+
+}
+
+
+.section-heading span {
+
+    color:
+        #65718e;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        2px;
+
+}
+
+
+.section-heading h2 {
+
+    font-size:
+        25px;
+
+    margin-top:
+        4px;
+
+}
+
+
+
+/* =========================================================
+   CODING GRID
+========================================================= */
+
+.question-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            1fr
+        );
+
+    gap:
+        18px;
+
+}
+
+
+.question-card {
+
+    padding:
+        24px;
+
+    border-radius:
+        18px;
+
+    background:
+        #0c1227;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    transition:
+        0.3s;
+
+}
+
+
+.question-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        rgba(
+            124,
+            92,
+            255,
+            0.35
+        );
+
+}
+
+
+.question-number {
+
+    color:
+        #4c5772;
+
+    font-size:
+        10px;
+
+    margin-bottom:
+        12px;
+
+}
+
+
+.language-badge,
+.mcq-category {
+
+    display:
+        inline-block;
+
+    padding:
+        5px 9px;
+
+    border-radius:
+        6px;
+
+    font-size:
+        7px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+.c-badge,
+.c-text {
+
+    color:
+        #60a5fa;
+
+    background:
+        rgba(
+            96,
+            165,
+            250,
+            0.10
+        );
+
+}
+
+
+.python-badge,
+.python-text {
+
+    color:
+        #facc15;
+
+    background:
+        rgba(
+            250,
+            204,
+            21,
+            0.09
+        );
+
+}
+
+
+.java-badge,
+.java-text {
+
+    color:
+        #fb923c;
+
+    background:
+        rgba(
+            251,
+            146,
+            60,
+            0.09
+        );
+
+}
+
+
+.dbms-text {
+
+    color:
+        #a78bfa;
+
+    background:
+        rgba(
+            167,
+            139,
+            250,
+            0.09
+        );
+
+}
+
+
+.sql-text {
+
+    color:
+        #22d3ee;
+
+    background:
+        rgba(
+            34,
+            211,
+            238,
+            0.09
+        );
+
+}
+
+
+.question-card h3 {
+
+    font-size:
+        18px;
+
+    margin-top:
+        14px;
+
+}
+
+
+.question-card p {
+
+    color:
+        #7885a3;
+
+    font-size:
+        12px;
+
+    line-height:
+        1.8;
+
+    margin-top:
+        9px;
+
+}
+
+
+.show-answer {
+
+    margin-top:
+        18px;
+
+    padding:
+        9px 14px;
+
+    border:
+        none;
+
+    border-radius:
+        8px;
+
+    background:
+        rgba(
+            124,
+            92,
+            255,
+            0.13
+        );
+
+    color:
+        #9b89ff;
+
+    cursor:
+        pointer;
+
+    font-size:
+        10px;
+
+}
+
+
+.code-answer {
+
+    display:
+        none;
+
+    margin-top:
+        15px;
+
+}
+
+
+.code-answer pre {
+
+    padding:
+        16px;
+
+    overflow-x:
+        auto;
+
+    border-radius:
+        10px;
+
+    background:
+        #050816;
+
+    color:
+        #b9c2ff;
+
+    font-family:
+        monospace;
+
+    font-size:
+        11px;
+
+    line-height:
+        1.7;
+
+}
+
+
+
+/* =========================================================
+   RANDOM INFO
+========================================================= */
+
+.random-info {
+
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        10px;
+
+    margin-bottom:
+        25px;
+
+}
+
+
+.random-info div {
+
+    padding:
+        10px 15px;
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(
+            124,
+            92,
+            255,
+            0.08
+        );
+
+    border:
+        1px solid
+        rgba(
+            124,
+            92,
+            255,
+            0.15
+        );
+
+    color:
+        #8793b0;
+
+    font-size:
+        10px;
+
+}
+
+
+.random-info strong {
+
+    color:
+        #b39aff;
+
+}
+
+
+
+/* =========================================================
+   MCQ GRID
+========================================================= */
+
+.mcq-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            1fr
+        );
+
+    gap:
+        18px;
+
+}
+
+
+.mcq-card {
+
+    padding:
+        23px;
+
+    border-radius:
+        17px;
+
+    background:
+        #0c1227;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    transition:
+        0.25s;
+
+}
+
+
+.mcq-card:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(
+            124,
+            92,
+            255,
+            0.35
+        );
+
+}
+
+
+.mcq-number {
+
+    color:
+        #596581;
+
+    font-size:
+        10px;
+
+    font-weight:
+        700;
+
+    margin-bottom:
+        10px;
+
+}
+
+
+.mcq-card h3 {
+
+    font-size:
+        14px;
+
+    line-height:
+        1.6;
+
+    margin:
+        14px 0;
+
+}
+
+
+.options {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:
+        8px;
+
+}
+
+
+.options button {
+
+    padding:
+        11px;
+
+    border-radius:
+        9px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
+
+    background:
+        #11182f;
+
+    color:
+        #9ba6bf;
+
+    cursor:
+        pointer;
+
+    text-align:
+        left;
+
+    font-size:
+        10px;
+
+    transition:
+        0.2s;
+
+}
+
+
+.options button:hover {
+
+    border-color:
+        #7c5cff;
+
+    color:
+        white;
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+.options button.correct {
+
+    background:
+        rgba(
+            34,
+            197,
+            94,
+            0.15
+        );
+
+    border-color:
+        #22c55e;
+
+    color:
+        #4ade80;
+
+}
+
+
+.options button.wrong {
+
+    background:
+        rgba(
+            239,
+            68,
+            68,
+            0.15
+        );
+
+    border-color:
+        #ef4444;
+
+    color:
+        #f87171;
+
+}
+
+
+.options button:disabled {
+
+    cursor:
+        default;
+
+}
+
+
+.mcq-result {
+
+    margin-top:
+        12px;
+
+    font-size:
+        11px;
+
+}
+
+
+.correct-result {
+
+    color:
+        #4ade80;
+
+}
+
+
+.wrong-result {
+
+    color:
+        #f87171;
+
+}
+
+
+
+/* =========================================================
+   SCORE
+========================================================= */
+
+.quiz-complete {
+
+    margin-top:
+        30px;
+
+    padding:
+        22px;
+
+    border-radius:
+        17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(
+                124,
+                92,
+                255,
+                0.14
+            ),
+            rgba(
+                34,
+                211,
+                238,
+                0.08
+            )
+        );
+
+    border:
+        1px solid
+        rgba(
+            124,
+            92,
+            255,
+            0.2
+        );
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        20px;
+
+}
+
+
+.quiz-score {
+
+    color:
+        #9aa6c2;
+
+    font-size:
+        14px;
+
+}
+
+
+.quiz-score strong {
+
+    color:
+        #a991ff;
+
+    font-size:
+        22px;
+
+}
+
+
+.reset-quiz {
+
+    padding:
+        12px 20px;
+
+    border:
+        none;
+
+    border-radius:
+        10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #713cff,
+            #287cff
+        );
+
+    color:
+        white;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.25s;
+
+}
+
+
+.reset-quiz:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(
+            92,
+            76,
+            255,
+            0.3
+        );
+
+}
+
+
+
+/* =========================================================
+   HR
+========================================================= */
+
+.hr-section {
+
+    margin-top:
+        20px;
+
+}
+
+
+.hr-question-list {
+
+    display:
+        grid;
+
+    gap:
+        12px;
+
+}
+
+
+.hr-question {
+
+    display:
+        flex;
+
+    gap:
+        18px;
+
+    padding:
+        20px;
+
+    border-radius:
+        15px;
+
+    background:
+        #0c1227;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    transition:
+        0.3s;
+
+}
+
+
+.hr-question:hover {
+
+    transform:
+        translateX(5px);
+
+    border-color:
+        rgba(
+            124,
+            92,
+            255,
+            0.3
+        );
+
+}
+
+
+.hr-question > span {
+
+    color:
+        #8b7aff;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+}
+
+
+.hr-question h3 {
+
+    font-size:
+        14px;
+
+}
+
+
+.hr-question p {
+
+    color:
+        #7885a3;
+
+    font-size:
+        11px;
+
+    margin-top:
+        6px;
+
+    line-height:
+        1.7;
+
+}
+
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.interview-footer {
+
+    max-width:
+        1100px;
+
+    margin:
+        35px auto 0;
+
+    padding:
+        25px;
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            0.07
+        );
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    color:
+        #55617c;
+
+    font-size:
+        9px;
+
+}
+
+
+.interview-footer strong {
+
+    color:
+        #8172ff;
+
+    margin-right:
+        8px;
+
+}
+
+
+
+/* =========================================================
+   LIGHT MODE
+========================================================= */
+
+body.light-mode {
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8faff,
+            #eef2ff
+        );
+
+    color:
+        #111827;
+
+}
+
+
+body.light-mode .interview-nav {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.92
+        );
+
+    border-color:
+        #e5e7eb;
+
+}
+
+
+body.light-mode .interview-logo {
+
+    color:
+        #111827;
+
+}
+
+
+body.light-mode .interview-nav-links a {
+
+    color:
+        #64748b;
+
+}
+
+
+body.light-mode .interview-nav-links a.active,
+body.light-mode .interview-nav-links a:hover {
+
+    color:
+        #4f46e5;
+
+}
+
+
+body.light-mode .interview-theme {
+
+    background:
+        white;
+
+    color:
+        #4f46e5;
+
+    border-color:
+        #dbe1ea;
+
+}
+
+
+body.light-mode .interview-hero p {
+
+    color:
+        #64748b;
+
+}
+
+
+body.light-mode .student-info {
+
+    background:
+        rgba(
+            79,
+            70,
+            229,
+            0.06
+        );
+
+    border-color:
+        #ddd6fe;
+
+}
+
+
+body.light-mode .section-heading h2,
+body.light-mode .question-card h3,
+body.light-mode .mcq-card h3,
+body.light-mode .hr-question h3 {
+
+    color:
+        #111827;
+
+}
+
+
+body.light-mode .question-card,
+body.light-mode .mcq-card,
+body.light-mode .hr-question {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.92
+        );
+
+    border-color:
+        #e5e7eb;
+
+    box-shadow:
+        0 10px 30px
+        rgba(
+            15,
+            23,
+            42,
+            0.06
+        );
+
+}
+
+
+body.light-mode .question-card p,
+body.light-mode .hr-question p {
+
+    color:
+        #64748b;
+
+}
+
+
+body.light-mode .code-answer pre {
+
+    background:
+        #f1f5f9;
+
+    color:
+        #334155;
+
+}
+
+
+body.light-mode .options button {
+
+    background:
+        #f8fafc;
+
+    color:
+        #475569;
+
+    border-color:
+        #e2e8f0;
+
+}
+
+
+body.light-mode .random-info div {
+
+    background:
+        #f5f3ff;
+
+    border-color:
+        #ddd6fe;
+
+    color:
+        #64748b;
+
+}
+
+
+body.light-mode .quiz-complete {
+
+    background:
+        #f5f3ff;
+
+    border-color:
+        #ddd6fe;
+
+}
+
+
+body.light-mode .interview-footer {
+
+    border-color:
+        #e5e7eb;
+
+}
+
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .interview-nav {
+
+        padding:
+            15px 20px;
+
+        gap:
+            15px;
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .interview-nav-links {
+
+        flex-wrap:
+            wrap;
+
+        justify-content:
+            center;
+
+    }
+
+
+    .question-grid,
+    .mcq-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .interview-hero {
+
+        padding-top:
+            45px;
+
+    }
+
+
+    .interview-footer {
+
+        flex-direction:
+            column;
+
+        gap:
+            10px;
+
+    }
+
+
+    .quiz-complete {
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .options {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .interview-hero h1 {
+
+        font-size:
+            40px;
+
+    }
+
+
+    .random-info {
+
+        flex-direction:
+            column;
+
+    }
+
+}
+
+</style>
+
+
+</body>
+
+</html>

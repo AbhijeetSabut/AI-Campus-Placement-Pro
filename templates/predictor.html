@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Campus | Placement Predictor</title>
+
+<style>
+
+/* ================================
+   GLOBAL
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #050817;
+    --sidebar: #080b1b;
+    --card: #0d1228;
+    --card2: #111733;
+
+    --text: #ffffff;
+    --muted: #8792ad;
+
+    --border: rgba(139, 92, 246, 0.18);
+
+    --purple: #7c3cff;
+    --purple2: #a855f7;
+
+    --cyan: #13cfff;
+    --blue: #3182ff;
+
+    --green: #21e6a1;
+
+    --input: #10162d;
+
+    --shadow: rgba(0,0,0,.45);
+}
+
+
+/* ================================
+   LIGHT MODE
+================================ */
+
+body.light {
+
+    --bg: #f4f7ff;
+    --sidebar: #ffffff;
+
+    --card: #ffffff;
+    --card2: #f7f9ff;
+
+    --text: #172033;
+    --muted: #66728a;
+
+    --border: rgba(91,76,172,.18);
+
+    --input: #f7f9ff;
+
+    --shadow: rgba(35,45,80,.12);
+}
+
+
+/* ================================
+   BODY
+================================ */
+
+body {
+
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+
+        radial-gradient(
+            circle at 75% 15%,
+            rgba(111,61,255,.12),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 95% 80%,
+            rgba(0,200,255,.08),
+            transparent 25%
+        ),
+
+        var(--bg);
+
+    color: var(--text);
+
+    min-height: 100vh;
+
+    transition:
+        background .3s ease,
+        color .3s ease;
+}
+
+
+/* ================================
+   LAYOUT
+================================ */
+
+.layout {
+
+    min-height: 100vh;
+
+    display: flex;
+}
+
+
+/* ================================
+   SIDEBAR
+================================ */
+
+.sidebar {
+
+    width: 290px;
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(13,17,39,.98),
+            rgba(7,10,25,.98)
+        );
+
+    border-right:
+        1px solid
+        rgba(255,255,255,.06);
+
+    padding: 28px 20px;
+
+    z-index: 10;
+}
+
+body.light .sidebar {
+
+    background: #ffffff;
+
+    border-right:
+        1px solid
+        #e2e7f1;
+}
+
+
+/* ================================
+   LOGO
+================================ */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 4px 10px;
+
+    margin-bottom: 45px;
+}
+
+
+.logo-icon {
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6938ff,
+            #0bc9ff
+        );
+
+    box-shadow:
+        0 10px 35px
+        rgba(92,61,255,.4);
+}
+
+
+.logo-text h2 {
+
+    font-size: 17px;
+
+    letter-spacing: 1.5px;
+}
+
+
+.logo-text p {
+
+    margin-top: 4px;
+
+    color: #8b6cff;
+
+    font-size: 9px;
+
+    letter-spacing: 2.5px;
+
+    font-weight: bold;
+}
+
+
+/* ================================
+   NAVIGATION
+================================ */
+
+.navigation {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.navigation a {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 15px 17px;
+
+    border-radius: 13px;
+
+    text-decoration: none;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    transition: .25s;
+}
+
+
+.navigation a:hover {
+
+    color: var(--text);
+
+    background:
+        rgba(124,60,255,.08);
+
+    transform: translateX(3px);
+}
+
+
+.navigation a.active {
+
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(113,63,255,.32),
+            rgba(113,63,255,.08)
+        );
+
+    box-shadow:
+        inset 3px 0 0 #8051ff;
+}
+
+
+.nav-icon {
+
+    width: 25px;
+
+    text-align: center;
+
+    font-size: 17px;
+}
+
+
+/* ================================
+   AI CARD
+================================ */
+
+.ai-card {
+
+    position: absolute;
+
+    left: 20px;
+    right: 20px;
+
+    bottom: 75px;
+
+    padding: 25px 18px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(81,49,178,.28),
+            rgba(20,25,58,.8)
+        );
+
+    border:
+        1px solid
+        rgba(132,92,255,.25);
+}
+
+
+.ai-icon {
+
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto 12px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(120,77,255,.2);
+
+    font-size: 23px;
+}
+
+
+.ai-card h3 {
+
+    font-size: 14px;
+
+    margin-bottom: 7px;
+}
+
+
+.ai-card p {
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+    margin-bottom: 16px;
+}
+
+
+.ai-button {
+
+    display: block;
+
+    padding: 11px;
+
+    border-radius: 10px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    background:
+        linear-gradient(
+            90deg,
+            #743cff,
+            #7754ff
+        );
+}
+
+
+/* ================================
+   STATUS
+================================ */
+
+.system-status {
+
+    position: absolute;
+
+    bottom: 25px;
+
+    left: 25px;
+
+    color: #72809b;
+
+    font-size: 9px;
+}
+
+
+.status-dot {
+
+    display: inline-block;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #23e69c;
+
+    margin-right: 5px;
+
+    box-shadow:
+        0 0 10px #23e69c;
+}
+
+
+/* ================================
+   MAIN
+================================ */
+
+.main {
+
+    margin-left: 290px;
+
+    width:
+        calc(100% - 290px);
+
+    padding:
+        0 42px 50px;
+}
+
+
+/* ================================
+   TOPBAR
+================================ */
+
+.topbar {
+
+    height: 86px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.07);
+}
+
+
+body.light .topbar {
+
+    border-bottom-color:
+        #e0e5ef;
+}
+
+
+.top-title {
+
+    color: #74809a;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+}
+
+
+.top-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+/* ================================
+   THEME BUTTON
+================================ */
+
+.theme-btn {
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid
+        var(--border);
+
+    background: var(--card);
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition: .25s;
+}
+
+
+.theme-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        #8155ff;
+
+    box-shadow:
+        0 8px 20px
+        rgba(124,60,255,.2);
+}
+
+
+/* ================================
+   PROFILE
+================================ */
+
+.profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding:
+        7px 15px 7px 8px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 15px;
+
+    background: var(--card);
+}
+
+
+.profile-avatar {
+
+    width: 37px;
+    height: 37px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #33216b,
+            #1e4268
+        );
+}
+
+
+.profile-name {
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+.profile-role {
+
+    font-size: 9px;
+
+    color: var(--muted);
+
+    margin-top: 3px;
+}
+
+
+/* ================================
+   PAGE HEADER
+================================ */
+
+.page-header {
+
+    padding-top: 38px;
+
+    margin-bottom: 30px;
+}
+
+
+.page-label {
+
+    color: #a16cff;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+
+.page-header h1 {
+
+    font-size: 40px;
+
+    margin-top: 9px;
+
+    line-height: 1.15;
+}
+
+
+.gradient {
+
+    background:
+        linear-gradient(
+            90deg,
+            #a779ff,
+            #31cfff
+        );
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+.page-header p {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    margin-top: 11px;
+
+    max-width: 700px;
+
+    line-height: 1.7;
+}
+
+
+/* ================================
+   FORM CARD
+================================ */
+
+.form-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18,23,50,.98),
+            rgba(10,15,34,.98)
+        );
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 20px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 25px 60px
+        var(--shadow);
+}
+
+
+body.light .form-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f8faff
+        );
+}
+
+
+.form-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    top: -140px;
+    right: -100px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(119,70,255,.13);
+
+    filter: blur(20px);
+
+    pointer-events: none;
+}
+
+
+/* ================================
+   FORM TITLE
+================================ */
+
+.form-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 28px;
+}
+
+
+.form-title-icon {
+
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        rgba(124,60,255,.16);
+
+    border:
+        1px solid
+        rgba(124,60,255,.2);
+
+    font-size: 19px;
+}
+
+
+.form-title h2 {
+
+    font-size: 16px;
+}
+
+
+.form-title p {
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-top: 5px;
+}
+
+
+/* ================================
+   FORM GRID
+================================ */
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+
+.field {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.field label {
+
+    color: var(--text);
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+
+.field input,
+.field select {
+
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 14px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid
+        rgba(120,137,170,.2);
+
+    outline: none;
+
+    background: var(--input);
+
+    color: var(--text);
+
+    font-size: 12px;
+
+    transition: .25s;
+}
+
+
+.field input::placeholder {
+
+    color: #68748e;
+}
+
+
+.field input:focus,
+.field select:focus {
+
+    border-color:
+        #8050ff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(128,80,255,.1);
+}
+
+
+.field small {
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    margin-top: 6px;
+}
+
+
+/* ================================
+   SELECT OPTIONS
+================================ */
+
+.field select option {
+
+    background: #10162d;
+
+    color: white;
+}
+
+
+body.light .field select option {
+
+    background: white;
+
+    color: #172033;
+}
+
+
+/* ================================
+   ACTION
+================================ */
+
+.action-row {
+
+    margin-top: 28px;
+
+    padding-top: 24px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.06);
+
+    display: flex;
+
+    justify-content: flex-end;
+}
+
+
+.predict-btn {
+
+    border: none;
+
+    color: white;
+
+    padding:
+        14px 25px;
+
+    border-radius: 11px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            90deg,
+            #713cff,
+            #8d53f6,
+            #16c5f4
+        );
+
+    box-shadow:
+        0 12px 30px
+        rgba(104,58,255,.3);
+
+    transition: .25s;
+}
+
+
+.predict-btn:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 18px 35px
+        rgba(104,58,255,.4);
+}
+
+
+.predict-btn:active {
+
+    transform:
+        translateY(0);
+}
+
+
+/* ================================
+   INFORMATION CARDS
+================================ */
+
+.info-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+    margin-top: 20px;
+}
+
+
+.info-card {
+
+    padding: 20px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 16px;
+
+    background: var(--card);
+
+    transition: .25s;
+}
+
+
+.info-card:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(130,80,255,.35);
+}
+
+
+.info-icon {
+
+    width: 37px;
+    height: 37px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(124,60,255,.12);
+
+    margin-bottom: 13px;
+}
+
+
+.info-card h3 {
+
+    font-size: 13px;
+
+    margin-bottom: 7px;
+}
+
+
+.info-card p {
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    line-height: 1.7;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media(max-width: 1000px) {
+
+    .sidebar {
+
+        width: 230px;
+    }
+
+    .main {
+
+        margin-left: 230px;
+
+        width:
+            calc(100% - 230px);
+
+        padding-left: 25px;
+
+        padding-right: 25px;
+    }
+
+    .info-grid {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media(max-width: 750px) {
+
+    .sidebar {
+
+        display: none;
+    }
+
+    .main {
+
+        margin-left: 0;
+
+        width: 100%;
+
+        padding:
+            0 18px 40px;
+    }
+
+    .form-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .page-header h1 {
+
+        font-size: 31px;
+    }
+
+    .profile {
+
+        display: none;
+    }
+
+    .topbar {
+
+        height: 70px;
+    }
+}
+
+
+/* ================================
+   ANIMATION
+================================ */
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(12px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+.page-header,
+.form-card,
+.info-card {
+
+    animation:
+        fadeUp .5s ease both;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="layout">
+
+
+<!-- =================================
+     SIDEBAR
+================================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🤖
+        </div>
+
+        <div class="logo-text">
+
+            <h2>
+                AI CAMPUS
+            </h2>
+
+            <p>
+                PLACEMENT PRO
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <nav class="navigation">
+
+        <a href="{{ url_for('dashboard') }}">
+
+            <span class="nav-icon">
+                ⌂
+            </span>
+
+            Dashboard
+
+        </a>
+
+
+        <a
+            href="{{ url_for('predictor') }}"
+            class="active">
+
+            <span class="nav-icon">
+                ◇
+            </span>
+
+            Placement Predictor
+
+        </a>
+
+
+        <a href="{{ url_for('interview') }}">
+
+            <span class="nav-icon">
+                ♙
+            </span>
+
+            AI Interview
+
+        </a>
+
+
+        <a href="{{ url_for('about') }}">
+
+            <span class="nav-icon">
+                ⓘ
+            </span>
+
+            About
+
+        </a>
+
+
+        <a href="{{ url_for('contact') }}">
+
+            <span class="nav-icon">
+                ✉
+            </span>
+
+            Contact
+
+        </a>
+
+
+        <a href="{{ url_for('logout') }}">
+
+            <span class="nav-icon">
+                ⇥
+            </span>
+
+            Logout
+
+        </a>
+
+    </nav>
+
+
+    <div class="ai-card">
+
+        <div class="ai-icon">
+            ✨
+        </div>
+
+        <h3>
+            AI Assistant
+        </h3>
+
+        <p>
+            Get personalized guidance
+            for your placement journey.
+        </p>
+
+        <a
+            href="{{ url_for('interview') }}"
+            class="ai-button">
+
+            Start Interview →
+
+        </a>
+
+    </div>
+
+
+    <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        AI System Online
+
+    </div>
+
+</aside>
+
+
+
+<!-- =================================
+     MAIN
+================================= -->
+
+<main class="main">
+
+
+<!-- TOPBAR -->
+
+<header class="topbar">
+
+    <div class="top-title">
+
+        PLACEMENT PREDICTOR
+
+    </div>
+
+
+    <div class="top-right">
+
+        <button
+            class="theme-btn"
+            id="themeButton"
+            onclick="toggleTheme()"
+            type="button">
+
+            🌙
+
+        </button>
+
+
+        <div class="profile">
+
+            <div class="profile-avatar">
+                👤
+            </div>
+
+            <div>
+
+                <div class="profile-name">
+
+                    {{ username or session.get('user') or 'Student' }}
+
+                </div>
+
+                <div class="profile-role">
+
+                    Placement Candidate
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- PAGE HEADER -->
+
+<section class="page-header">
+
+    <div class="page-label">
+
+        AI ANALYSIS
+
+    </div>
+
+
+    <h1>
+
+        Placement
+
+        <span class="gradient">
+
+            Predictor
+
+        </span>
+
+    </h1>
+
+
+    <p>
+
+        Enter your academic and professional
+        information to calculate your
+        <strong>
+            placement probability.
+        </strong>
+
+    </p>
+
+</section>
+
+
+
+<!-- =================================
+     PREDICTION FORM
+================================= -->
+
+<form
+    action="{{ url_for('predict') }}"
+    method="POST">
+
+
+<div class="form-card">
+
+
+    <div class="form-title">
+
+        <div class="form-title-icon">
+
+            🎓
+
+        </div>
+
+
+        <div>
+
+            <h2>
+                Student Information
+            </h2>
+
+            <p>
+                Enter your current profile details
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="form-grid">
+
+
+        <!-- CGPA -->
+
+        <div class="field">
+
+            <label>
+                CGPA
+            </label>
+
+            <input
+                type="number"
+                name="CGPA"
+                step="0.01"
+                min="0"
+                max="10"
+                placeholder="Example: 8.23"
+                required>
+
+            <small>
+                Enter your CGPA out of 10
+            </small>
+
+        </div>
+
+
+
+        <!-- INTERNSHIPS -->
+
+        <div class="field">
+
+            <label>
+                Internships
+            </label>
+
+            <input
+                type="number"
+                name="Internships"
+                min="0"
+                max="10"
+                placeholder="Example: 2"
+                required>
+
+            <small>
+                Number of internships completed
+            </small>
+
+        </div>
+
+
+
+        <!-- PROJECTS -->
+
+        <div class="field">
+
+            <label>
+                Projects
+            </label>
+
+            <input
+                type="number"
+                name="Projects"
+                min="0"
+                max="20"
+                placeholder="Example: 3"
+                required>
+
+            <small>
+                Number of academic or personal projects
+            </small>
+
+        </div>
+
+
+
+        <!-- WORKSHOPS -->
+
+        <div class="field">
+
+            <label>
+                Workshops / Certifications
+            </label>
+
+            <input
+                type="number"
+                name="Workshops"
+                min="0"
+                max="20"
+                placeholder="Example: 4"
+                required>
+
+            <small>
+                Workshops or certifications completed
+            </small>
+
+        </div>
+
+
+
+        <!-- APTITUDE -->
+
+        <div class="field">
+
+            <label>
+                Aptitude Test Score
+            </label>
+
+            <input
+                type="number"
+                name="AptitudeTestScore"
+                min="0"
+                max="100"
+                placeholder="Example: 78"
+                required>
+
+            <small>
+                Score out of 100
+            </small>
+
+        </div>
+
+
+
+        <!-- SOFT SKILLS -->
+
+        <div class="field">
+
+            <label>
+                Soft Skills Rating
+            </label>
+
+            <input
+                type="number"
+                name="SoftSkillsRating"
+                step="0.1"
+                min="0"
+                max="10"
+                placeholder="Example: 8"
+                required>
+
+            <small>
+                Communication and soft skills rating out of 10
+            </small>
+
+        </div>
+
+
+
+        <!-- EXTRACURRICULAR -->
+
+        <div class="field">
+
+            <label>
+                Extracurricular Activities
+            </label>
+
+            <select
+                name="ExtracurricularActivities"
+                required>
+
+                <option value="">
+                    Select option
+                </option>
+
+                <!-- IMPORTANT:
+                     MODEL RECEIVES 1 FOR YES -->
+
+                <option value="1">
+                    Yes
+                </option>
+
+                <!-- IMPORTANT:
+                     MODEL RECEIVES 0 FOR NO -->
+
+                <option value="0">
+                    No
+                </option>
+
+            </select>
+
+            <small>
+                Participation in extracurricular activities
+            </small>
+
+        </div>
+
+
+
+        <!-- PLACEMENT TRAINING -->
+
+        <div class="field">
+
+            <label>
+                Placement Training
+            </label>
+
+            <select
+                name="PlacementTraining"
+                required>
+
+                <option value="">
+                    Select option
+                </option>
+
+                <!-- IMPORTANT:
+                     MODEL RECEIVES 1 FOR YES -->
+
+                <option value="1">
+                    Yes
+                </option>
+
+                <!-- IMPORTANT:
+                     MODEL RECEIVES 0 FOR NO -->
+
+                <option value="0">
+                    No
+                </option>
+
+            </select>
+
+            <small>
+                Have you completed placement training?
+            </small>
+
+        </div>
+
+
+
+        <!-- SSC -->
+
+        <div class="field">
+
+            <label>
+                SSC / 10th Marks
+            </label>
+
+            <input
+                type="number"
+                name="SSC_Marks"
+                step="0.1"
+                min="0"
+                max="100"
+                placeholder="Example: 91.2"
+                required>
+
+            <small>
+                Percentage in SSC / 10th
+            </small>
+
+        </div>
+
+
+
+        <!-- HSC -->
+
+        <div class="field">
+
+            <label>
+                HSC / 12th Marks
+            </label>
+
+            <input
+                type="number"
+                name="HSC_Marks"
+                step="0.1"
+                min="0"
+                max="100"
+                placeholder="Example: 82.6"
+                required>
+
+            <small>
+                Percentage in HSC / 12th
+            </small>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- BUTTON -->
+
+    <div class="action-row">
+
+        <button
+            type="submit"
+            class="predict-btn">
+
+            ✨ Predict My Placement
+            →
+
+        </button>
+
+    </div>
+
+
+</div>
+
+</form>
+
+
+
+<!-- =================================
+     INFORMATION CARDS
+================================= -->
+
+<div class="info-grid">
+
+
+    <div class="info-card">
+
+        <div class="info-icon">
+            🧠
+        </div>
+
+        <h3>
+            Machine Learning Analysis
+        </h3>
+
+        <p>
+            Your academic and professional
+            information is analyzed by the
+            trained placement prediction model.
+        </p>
+
+    </div>
+
+
+
+    <div class="info-card">
+
+        <div class="info-icon">
+            🎯
+        </div>
+
+        <h3>
+            Personalized Results
+        </h3>
+
+        <p>
+            Receive a placement probability
+            and personalized recommendations
+            based on your profile.
+        </p>
+
+    </div>
+
+
+
+    <div class="info-card">
+
+        <div class="info-icon">
+            🚀
+        </div>
+
+        <h3>
+            Career Recommendations
+        </h3>
+
+        <p>
+            Identify areas to improve and
+            prepare yourself for campus
+            recruitment.
+        </p>
+
+    </div>
+
+
+</div>
+
+
+</main>
+
+</div>
+
+
+
+<!-- =================================
+     THEME SCRIPT
+================================= -->
+
+<script>
+
+function setTheme(theme) {
+
+    const button =
+        document.getElementById("themeButton");
+
+
+    if (theme === "light") {
+
+        document.body.classList.add("light");
+
+        button.innerHTML = "☀️";
+
+    }
+
+    else {
+
+        document.body.classList.remove("light");
+
+        button.innerHTML = "🌙";
+
+    }
+
+
+    localStorage.setItem(
+        "campusTheme",
+        theme
+    );
+}
+
+
+
+function toggleTheme() {
+
+    const current =
+        localStorage.getItem("campusTheme")
+        || "dark";
+
+
+    if (current === "dark") {
+
+        setTheme("light");
+
+    }
+
+    else {
+
+        setTheme("dark");
+
+    }
+
+}
+
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const saved =
+            localStorage.getItem("campusTheme")
+            || "dark";
+
+        setTheme(saved);
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

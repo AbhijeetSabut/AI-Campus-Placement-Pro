@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | AI Campus Placement Pro</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(112, 55, 255, 0.30),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(0, 200, 255, 0.18),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #070b1d,
+                    #0c1028,
+                    #111a38
+                );
+
+            color: white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px;
+        }
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 1050px;
+
+            min-height: 650px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            border: 1px solid rgba(255,255,255,0.10);
+
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            background: rgba(12,17,39,0.92);
+
+            box-shadow:
+                0 30px 100px rgba(0,0,0,0.45);
+
+            backdrop-filter: blur(20px);
+        }
+
+        /* =========================
+           LEFT SIDE
+        ========================= */
+
+        .brand-section {
+            position: relative;
+
+            padding: 55px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(91,48,255,0.35),
+                    rgba(10,18,45,0.95)
+                );
+        }
+
+        .brand-section::before {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background: rgba(120,70,255,0.20);
+
+            filter: blur(70px);
+
+            top: -100px;
+            left: -100px;
+        }
+
+        .brand-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .robot {
+            width: 85px;
+            height: 85px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 42px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7045ff,
+                    #00cfff
+                );
+
+            box-shadow:
+                0 15px 40px rgba(80,70,255,0.40);
+
+            margin-bottom: 30px;
+        }
+
+        .brand-title {
+            font-size: 43px;
+            font-weight: 800;
+
+            line-height: 1.05;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #bda9ff,
+                    #66dfff
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-subtitle {
+            margin-top: 12px;
+
+            color: #aeb9d6;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+        }
+
+        .team-name {
+            margin-top: 30px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            color: #ff4b69;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .red-dot {
+            width: 12px;
+            height: 12px;
+
+            border-radius: 50%;
+
+            background: #ff405f;
+
+            box-shadow:
+                0 0 15px rgba(255,64,95,0.7);
+        }
+
+        .features {
+            margin-top: 45px;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 18px;
+        }
+
+        .feature {
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            color: #c7d0e7;
+
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 35px;
+            height: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: rgba(124,70,255,0.15);
+
+            font-size: 17px;
+        }
+
+        /* =========================
+           LOGIN SIDE
+        ========================= */
+
+        .login-section {
+            padding: 55px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    160deg,
+                    rgba(18,24,52,0.95),
+                    rgba(7,12,28,0.98)
+                );
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-box h1 {
+            font-size: 34px;
+
+            margin-bottom: 10px;
+        }
+
+        .login-description {
+            color: #8f9bb8;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            margin-bottom: 32px;
+        }
+
+        /* =========================
+           FLASH MESSAGE
+        ========================= */
+
+        .flash {
+            padding: 13px 16px;
+
+            border-radius: 12px;
+
+            margin-bottom: 20px;
+
+            font-size: 13px;
+        }
+
+        .flash.success {
+            background: rgba(50,220,130,0.12);
+
+            border: 1px solid rgba(50,220,130,0.25);
+
+            color: #62f2a0;
+        }
+
+        .flash.error {
+            background: rgba(255,70,90,0.12);
+
+            border: 1px solid rgba(255,70,90,0.25);
+
+            color: #ff7c8d;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 9px;
+
+            color: #dce3f5;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+
+            left: 15px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #7785a8;
+
+            font-size: 16px;
+        }
+
+        .form-group input {
+            width: 100%;
+
+            height: 54px;
+
+            padding: 0 16px 0 45px;
+
+            border-radius: 13px;
+
+            border: 1px solid rgba(255,255,255,0.10);
+
+            outline: none;
+
+            background: rgba(255,255,255,0.045);
+
+            color: white;
+
+            font-size: 14px;
+
+            transition: 0.25s;
+        }
+
+        .form-group input::placeholder {
+            color: #65718f;
+        }
+
+        .form-group input:focus {
+            border-color: #7751ff;
+
+            background: rgba(124,70,255,0.08);
+
+            box-shadow:
+                0 0 0 4px rgba(124,70,255,0.10);
+        }
+
+        /* =========================
+           LOGIN BUTTON
+        ========================= */
+
+        .login-button {
+            width: 100%;
+
+            height: 55px;
+
+            margin-top: 8px;
+
+            border: none;
+
+            border-radius: 14px;
+
+            cursor: pointer;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #6938ff,
+                    #8b3dff,
+                    #147dff
+                );
+
+            box-shadow:
+                0 12px 30px rgba(93,60,255,0.30);
+
+            transition: 0.25s;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 16px 35px rgba(93,60,255,0.45);
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        /* =========================
+           DEFAULT LOGIN
+        ========================= */
+
+        .default-login {
+            margin-top: 25px;
+
+            padding: 15px;
+
+            border-radius: 13px;
+
+            background: rgba(255,255,255,0.035);
+
+            border: 1px solid rgba(255,255,255,0.07);
+
+            color: #8996b5;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+        .default-login strong {
+            color: #cfd8ef;
+        }
+
+        /* =========================
+           REGISTER
+        ========================= */
+
+        .register-link {
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #8996b5;
+
+            font-size: 13px;
+        }
+
+        .register-link a {
+            color: #8d6cff;
+
+            text-decoration: none;
+
+            font-weight: 700;
+        }
+
+        .register-link a:hover {
+            color: #62dfff;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .login-wrapper {
+                grid-template-columns: 1fr;
+
+                max-width: 520px;
+            }
+
+            .brand-section {
+                padding: 40px 30px;
+
+                min-height: 400px;
+            }
+
+            .brand-title {
+                font-size: 34px;
+            }
+
+            .features {
+                margin-top: 25px;
+            }
+
+            .login-section {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .brand-section {
+                padding: 30px 22px;
+            }
+
+            .login-section {
+                padding: 30px 22px;
+            }
+
+            .brand-title {
+                font-size: 30px;
+            }
+
+            .login-box h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-wrapper">
+
+    <!-- =========================================
+         BRAND
+    ========================================== -->
+
+    <section class="brand-section">
+
+        <div class="brand-content">
+
+            <div class="robot">
+                🤖
+            </div>
+
+            <div class="brand-title">
+                AI CAMPUS
+                <br>
+                PLACEMENT PRO
+            </div>
+
+            <p class="brand-subtitle">
+                Smart Placement Preparation Platform
+                powered by Machine Learning and Artificial Intelligence.
+            </p>
+
+            <div class="team-name">
+                <span class="red-dot"></span>
+                SECRET CIRCLE
+            </div>
+
+            <div class="features">
+
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <span>AI Placement Prediction</span>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <span>Student Performance Analysis</span>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🚀</div>
+                    <span>Personalized Placement Guidance</span>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🤖</div>
+                    <span>AI Interview Assistant</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         LOGIN
+    ========================================== -->
+
+    <section class="login-section">
+
+        <div class="login-box">
+
+            <h1>
+                Welcome Back 👋
+            </h1>
+
+            <p class="login-description">
+                Login to continue your placement preparation journey.
+            </p>
+
+
+            <!-- FLASH MESSAGES -->
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+
+                {% if messages %}
+
+                    {% for category, message in messages %}
+
+                        <div class="flash {{ category }}">
+                            {{ message }}
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            {% endwith %}
+
+
+            <!-- LOGIN FORM -->
+
+            <form
+                method="POST"
+                action="/login"
+                autocomplete="off"
+            >
+
+                <div class="form-group">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            👤
+                        </span>
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter your username"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🔒
+                        </span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    🔐 Sign In
+                </button>
+
+            </form>
+
+
+            <!-- DEFAULT ACCOUNT -->
+
+            <div class="default-login">
+
+                <strong>Default Login</strong>
+                <br>
+
+                Username:
+                <strong>abhijeet</strong>
+
+                <br>
+
+                Password:
+                <strong>8763</strong>
+
+            </div>
+
+
+            <div class="register-link">
+
+                Don't have an account?
+
+                <a href="/register">
+                    Create Account
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+</body>
+</html>

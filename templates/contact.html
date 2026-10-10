@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us - AI Campus Placement Pro</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(93, 55, 220, 0.18), transparent 35%),
+                radial-gradient(circle at 85% 75%, rgba(0, 174, 255, 0.12), transparent 35%),
+                #070b18;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 275px;
+            height: 100vh;
+            background: rgba(10, 15, 31, 0.97);
+            border-right: 1px solid rgba(120, 130, 255, 0.15);
+            padding: 30px 18px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 8px 35px;
+        }
+
+        .brand-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #7c4dff, #a855f7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            font-weight: 800;
+            box-shadow: 0 0 25px rgba(124, 77, 255, 0.35);
+        }
+
+        .brand-text h2 {
+            font-size: 17px;
+            line-height: 1.2;
+            color: #f4f4ff;
+        }
+
+        .brand-text span {
+            font-size: 13px;
+            color: #8290ac;
+        }
+
+        .menu-title {
+            color: #66718d;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            margin: 10px 6px 15px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: #aeb8cf;
+            padding: 13px 15px;
+            border-radius: 13px;
+            transition: all 0.25s ease;
+            font-size: 15px;
+        }
+
+        .nav-link:hover {
+            color: #ffffff;
+            background: rgba(101, 82, 220, 0.16);
+            transform: translateX(3px);
+        }
+
+        .nav-link.active {
+            color: white;
+            background: linear-gradient(135deg, #6d3df5, #387eff);
+            box-shadow: 0 8px 25px rgba(76, 91, 255, 0.28);
+        }
+
+        .nav-icon {
+            width: 25px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .logout-link {
+            color: #ff7a89;
+            margin-top: 10px;
+        }
+
+        .logout-link:hover {
+            background: rgba(255, 67, 91, 0.12);
+            color: #ff4f68;
+        }
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        .main-content {
+            margin-left: 275px;
+            min-height: 100vh;
+            padding: 38px;
+        }
+
+        .top-header {
+            max-width: 1100px;
+            margin: 0 auto 28px;
+            padding: 25px 40px;
+            border: 1px solid rgba(108, 94, 230, 0.28);
+            border-radius: 18px;
+            background: rgba(12, 17, 39, 0.72);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(18px);
+        }
+
+        .header-title h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .header-title p {
+            color: #8d9ab5;
+            font-size: 15px;
+        }
+
+        .secret-circle {
+            color: #ff5268;
+            font-weight: 800;
+            font-size: 17px;
+        }
+
+        .secret-circle::after {
+            content: "";
+            width: 12px;
+            height: 12px;
+            display: inline-block;
+            margin-left: 8px;
+            border-radius: 50%;
+            background: #ff5268;
+            box-shadow: 0 0 15px #ff5268;
+        }
+
+        /* =========================
+           TEAM SECTION
+        ========================= */
+
+        .team-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* LEADER */
+
+        .leader-card {
+            width: 375px;
+            max-width: 100%;
+            margin: 0 auto 30px;
+            padding: 30px 20px;
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(48, 53, 112, 0.68),
+                    rgba(22, 29, 65, 0.85)
+                );
+
+            border: 1px solid rgba(105, 89, 255, 0.65);
+            border-top: 3px solid #7b5cff;
+            border-radius: 22px;
+
+            box-shadow:
+                0 15px 50px rgba(0, 0, 0, 0.25),
+                0 0 35px rgba(88, 75, 255, 0.12);
+
+            transition: 0.3s ease;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 20px 55px rgba(0, 0, 0, 0.35),
+                0 0 40px rgba(98, 79, 255, 0.25);
+        }
+
+        .leader-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+
+            border: 4px solid #704dff;
+
+            box-shadow:
+                0 0 0 5px rgba(112, 77, 255, 0.12),
+                0 0 30px rgba(112, 77, 255, 0.5);
+
+            margin-bottom: 18px;
+        }
+
+        .leader-badge {
+            display: inline-block;
+            padding: 7px 17px;
+            border-radius: 30px;
+            background: rgba(255, 188, 0, 0.10);
+            border: 1px solid rgba(255, 188, 0, 0.45);
+            color: #ffd34f;
+            font-weight: 800;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .leader-card h2 {
+            font-size: 22px;
+            margin-bottom: 7px;
+        }
+
+        .leader-card p {
+            color: #9ba7c1;
+            font-size: 14px;
+        }
+
+        /* =========================
+           MEMBERS GRID
+        ========================= */
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .member-card {
+            min-height: 105px;
+            padding: 18px;
+
+            display: flex;
+            align-items: center;
+            gap: 17px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(16, 25, 53, 0.95),
+                    rgba(12, 18, 40, 0.95)
+                );
+
+            border: 1px solid rgba(90, 98, 190, 0.42);
+            border-radius: 18px;
+
+            transition: all 0.3s ease;
+        }
+
+        .member-card:hover {
+            transform: translateY(-4px);
+            border-color: #6654ff;
+            box-shadow: 0 12px 30px rgba(50, 65, 180, 0.16);
+        }
+
+        .member-photo {
+            width: 72px;
+            height: 72px;
+            min-width: 72px;
+
+            border-radius: 50%;
+            object-fit: cover;
+
+            border: 3px solid #704dff;
+
+            box-shadow:
+                0 0 0 4px rgba(112, 77, 255, 0.10),
+                0 0 18px rgba(112, 77, 255, 0.3);
+        }
+
+        .member-info {
+            min-width: 0;
+        }
+
+        .member-info h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .member-role {
+            color: #a1acc5;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            max-width: 1100px;
+            margin: 45px auto 0;
+            padding: 25px;
+            text-align: center;
+            border-top: 1px solid rgba(130, 140, 180, 0.16);
+        }
+
+        .footer-small {
+            color: #6d7894;
+            font-size: 10px;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand {
+            font-size: 17px;
+            font-weight: 900;
+            color: #ff3e66;
+
+            background: linear-gradient(
+                90deg,
+                #ff3e66,
+                #ff637b,
+                #ff3e66
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            background-clip: text;
+        }
+
+        .footer-brand::after {
+            content: "";
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff5268;
+            margin-left: 7px;
+            box-shadow: 0 0 14px #ff5268;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                min-height: auto;
+                padding: 15px;
+            }
+
+            .brand {
+                padding-bottom: 20px;
+            }
+
+            .nav-menu {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .top-header {
+                padding: 20px;
+            }
+
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .top-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .header-title h1 {
+                font-size: 28px;
+            }
+
+            .nav-menu {
+                grid-template-columns: 1fr;
+            }
+
+            .leader-card {
+                width: 100%;
+            }
+
+            .member-card {
+                padding: 15px;
+            }
+
+            .member-photo {
+                width: 60px;
+                height: 60px;
+                min-width: 60px;
+            }
+
+            .member-info h3 {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                AI
+            </div>
+
+            <div class="brand-text">
+                <h2>Campus Placement</h2>
+                <span>Pro Dashboard</span>
+            </div>
+
+        </div>
+
+
+        <div class="menu-title">
+            Main Menu
+        </div>
+
+
+        <nav class="nav-menu">
+
+            <!-- DASHBOARD -->
+            <a href="{{ url_for('dashboard') }}" class="nav-link">
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </a>
+
+
+            <!-- PROFILE -->
+            <a href="{{ url_for('profile') }}" class="nav-link">
+                <span class="nav-icon">👤</span>
+                <span>Student Profile</span>
+            </a>
+
+
+            <!-- ACADEMIC -->
+            <a href="{{ url_for('academic') }}" class="nav-link">
+                <span class="nav-icon">🎓</span>
+                <span>Academic Details</span>
+            </a>
+
+
+            <!-- SKILLS -->
+            <a href="{{ url_for('skills') }}" class="nav-link">
+                <span class="nav-icon">⚡</span>
+                <span>Skills & Activities</span>
+            </a>
+
+
+            <!-- PREDICTOR -->
+            <a href="{{ url_for('predictor') }}" class="nav-link">
+                <span class="nav-icon">🤖</span>
+                <span>Placement Predictor</span>
+            </a>
+
+
+            <!-- RESULTS -->
+            <a href="{{ url_for('results') }}" class="nav-link">
+                <span class="nav-icon">📊</span>
+                <span>Results & Insights</span>
+            </a>
+
+
+            <!-- TIPS -->
+            <a href="{{ url_for('tips') }}" class="nav-link">
+                <span class="nav-icon">💡</span>
+                <span>Placement Tips</span>
+            </a>
+
+
+            <!-- HISTORY -->
+            <a href="{{ url_for('history') }}" class="nav-link">
+                <span class="nav-icon">🕘</span>
+                <span>History</span>
+            </a>
+
+
+            <!-- AI INTERVIEW -->
+            <a href="{{ url_for('interview') }}" class="nav-link">
+                <span class="nav-icon">🎤</span>
+                <span>AI Interview</span>
+            </a>
+
+
+            <!-- ABOUT -->
+            <a href="{{ url_for('about') }}" class="nav-link">
+                <span class="nav-icon">ℹ️</span>
+                <span>About</span>
+            </a>
+
+
+            <!-- CONTACT -->
+            <a href="{{ url_for('contact') }}" class="nav-link active">
+                <span class="nav-icon">📞</span>
+                <span>Contact</span>
+            </a>
+
+
+            <!-- LOGOUT -->
+            <a href="{{ url_for('logout') }}" class="nav-link logout-link">
+                <span class="nav-icon">↪</span>
+                <span>Logout</span>
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <section class="top-header">
+
+            <div class="header-title">
+
+                <h1>Contact Us</h1>
+
+                <p>
+                    Meet the team behind AI Campus Placement Pro.
+                </p>
+
+            </div>
+
+
+            <div class="secret-circle">
+                SECRET CIRCLE
+            </div>
+
+        </section>
+
+
+
+        <!-- TEAM -->
+
+        <section class="team-container">
+
+
+            <!-- =================================================
+                 TEAM LEADER
+            ================================================== -->
+
+            <div class="leader-card">
+
+                <img
+                    src="{{ url_for('static', filename='images/abhijeet.jpg') }}"
+                    alt="ABHIJEET SABUT"
+                    class="leader-photo"
+                >
+
+                <div class="leader-badge">
+                    👑 TEAM LEADER
+                </div>
+
+                <h2>
+                    ABHIJEET SABUT
+                </h2>
+
+                <p>
+                    Project Leadership & Coordination
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TEAM MEMBERS
+            ================================================== -->
+
+            <div class="members-grid">
+
+
+                <!-- ABHISEK -->
+
+                <div class="member-card">
+
+                    <img
+                        src="{{ url_for('static', filename='images/abhisek.jpg') }}"
+                        alt="ABHISEK SABUT"
+                        class="member-photo"
+                    >
+
+                    <div class="member-info">
+
+                        <h3>
+                            ABHISEK SABUT
+                        </h3>
+
+                        <div class="member-role">
+                            💻 &nbsp; Model Coding & Implementation
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DEBASIS -->
+
+                <div class="member-card">
+
+                    <img
+                        src="{{ url_for('static', filename='images/debasis.jpg') }}"
+                        alt="DEBASIS DAS"
+                        class="member-photo"
+                    >
+
+                    <div class="member-info">
+
+                        <h3>
+                            DEBASIS DAS
+                        </h3>
+
+                        <div class="member-role">
+                            🛠️ &nbsp; Testing & Bug Fixing
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BISWAJIT -->
+
+                <div class="member-card">
+
+                    <img
+                        src="{{ url_for('static', filename='images/biswajit.jpg') }}"
+                        alt="BISWAJIT PANIGRAHI"
+                        class="member-photo"
+                    >
+
+                    <div class="member-info">
+
+                        <h3>
+                            BISWAJIT PANIGRAHI
+                        </h3>
+
+                        <div class="member-role">
+                            📄 &nbsp; Documentation & Report
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ADHIKARI -->
+
+                <div class="member-card">
+
+                    <img
+                        src="{{ url_for('static', filename='images/adhikari.jpg') }}"
+                        alt="ADHIKARI SMRUTI RANJAN DAS"
+                        class="member-photo"
+                    >
+
+                    <div class="member-info">
+
+                        <h3>
+                            ADHIKARI SMRUTI RANJAN DAS
+                        </h3>
+
+                        <div class="member-role">
+                            📊 &nbsp; Dataset Collection
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <footer class="footer">
+
+                <div class="footer-small">
+                    DEVELOPED BY
+                </div>
+
+                <div class="footer-brand">
+                    SECRET CIRCLE
+                </div>
+
+            </footer>
+
+
+        </section>
+
+    </main>
+
+
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About | AI Campus Placement Pro</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(99,102,241,.18), transparent 35%),
+                radial-gradient(circle at bottom right, rgba(168,85,247,.15), transparent 35%),
+                #080b16;
+            color: #f8fafc;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+            padding: 24px 16px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(12,16,30,.94);
+            border-right: 1px solid rgba(255,255,255,.08);
+            backdrop-filter: blur(20px);
+        }
+
+        .brand {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 35px;
+            padding: 8px;
+        }
+
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg,#6366f1,#a855f7);
+            font-weight: 800;
+        }
+
+        .brand-text h2 {
+            font-size: 15px;
+        }
+
+        .brand-text span {
+            color: #94a3b8;
+            font-size: 11px;
+        }
+
+        .nav-title {
+            color: #64748b;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0 12px;
+            margin-bottom: 10px;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #94a3b8;
+            padding: 12px 13px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            transition: .25s;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            color: white;
+            background: rgba(99,102,241,.18);
+        }
+
+        .nav-icon {
+            width: 25px;
+            text-align: center;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 25px;
+            left: 16px;
+            right: 16px;
+        }
+
+        .logout a {
+            color: #fca5a5;
+        }
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 35px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .topbar h1 {
+            font-size: 30px;
+        }
+
+        .topbar p {
+            color: #94a3b8;
+            margin-top: 6px;
+        }
+
+        .team {
+            color: #f87171;
+            font-weight: 700;
+        }
+
+        .hero {
+            max-width: 1100px;
+            padding: 45px;
+            border-radius: 28px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(99,102,241,.18),
+                    rgba(168,85,247,.08)
+                );
+            border: 1px solid rgba(255,255,255,.08);
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: #6366f1;
+            filter: blur(100px);
+            opacity: .15;
+            right: -80px;
+            top: -100px;
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            max-width: 700px;
+        }
+
+        .hero h2 span {
+            background: linear-gradient(90deg,#818cf8,#c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            max-width: 750px;
+            margin-top: 15px;
+            line-height: 1.8;
+            color: #cbd5e1;
+        }
+
+        .cards {
+            max-width: 1100px;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+
+        .card {
+            padding: 25px;
+            border-radius: 22px;
+            background: rgba(15,23,42,.72);
+            border: 1px solid rgba(255,255,255,.08);
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99,102,241,.4);
+        }
+
+        .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: rgba(99,102,241,.15);
+            font-size: 22px;
+            margin-bottom: 17px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #94a3b8;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .team-card {
+            max-width: 1100px;
+            margin-top: 20px;
+            padding: 25px;
+            border-radius: 22px;
+            background: rgba(15,23,42,.72);
+            border: 1px solid rgba(255,255,255,.08);
+        }
+
+        .team-card h2 {
+            margin-bottom: 15px;
+        }
+
+        .team-name {
+            color: #f87171;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        @media(max-width:900px) {
+
+            .sidebar {
+                width: 220px;
+            }
+
+            .main {
+                margin-left: 220px;
+                width: calc(100% - 220px);
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:650px) {
+
+            .page {
+                display: block;
+            }
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                min-height: auto;
+            }
+
+            .logout {
+                position: static;
+                margin-top: 15px;
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .hero {
+                padding: 28px;
+            }
+
+            .hero h2 {
+                font-size: 28px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                AI
+            </div>
+
+            <div class="brand-text">
+                <h2>Campus Placement</h2>
+                <span>Pro Dashboard</span>
+            </div>
+
+        </div>
+
+        <div class="nav-title">
+            Main Menu
+        </div>
+
+        <nav class="nav">
+
+            <a href="{{ url_for('dashboard') }}">
+                <span class="nav-icon">⌂</span>
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('profile') }}">
+                <span class="nav-icon">👤</span>
+                Student Profile
+            </a>
+
+            <a href="{{ url_for('academic') }}">
+                <span class="nav-icon">🎓</span>
+                Academic Details
+            </a>
+
+            <a href="{{ url_for('skills') }}">
+                <span class="nav-icon">⚡</span>
+                Skills & Activities
+            </a>
+
+            <a href="{{ url_for('predictor') }}">
+                <span class="nav-icon">🤖</span>
+                Placement Predictor
+            </a>
+
+            <a href="{{ url_for('results') }}">
+                <span class="nav-icon">📊</span>
+                Results & Insights
+            </a>
+
+            <a href="{{ url_for('placement_tips') }}">
+                <span class="nav-icon">💡</span>
+                Placement Tips
+            </a>
+
+            <a href="{{ url_for('history') }}">
+                <span class="nav-icon">🕘</span>
+                History
+            </a>
+
+            <a href="{{ url_for('interview') }}">
+                <span class="nav-icon">🎤</span>
+                AI Interview
+            </a>
+
+            <a href="{{ url_for('about') }}" class="active">
+                <span class="nav-icon">ℹ️</span>
+                About
+            </a>
+
+            <a href="{{ url_for('contact') }}">
+                <span class="nav-icon">✉️</span>
+                Contact
+            </a>
+
+        </nav>
+
+        <div class="logout">
+
+            <a href="{{ url_for('logout') }}">
+                <span class="nav-icon">↪</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div>
+                <h1>About The Project</h1>
+
+                <p>
+                    Understanding the AI Campus Placement Pro platform.
+                </p>
+            </div>
+
+            <div class="team">
+                {{ team_name }}
+            </div>
+
+        </div>
+
+
+        <section class="hero">
+
+            <h2>
+                Smart decisions for a
+                <span>better placement journey.</span>
+            </h2>
+
+            <p>
+                AI Campus Placement Pro is an intelligent EdTech and
+                HR Tech platform designed to help students understand
+                their placement readiness, identify skill gaps and
+                prepare for campus recruitment.
+            </p>
+
+        </section>
+
+
+        <section class="cards">
+
+            <div class="card">
+
+                <div class="icon">
+                    🤖
+                </div>
+
+                <h3>
+                    AI Placement Prediction
+                </h3>
+
+                <p>
+                    The system analyzes academic performance,
+                    aptitude, projects, internships and skills
+                    to estimate placement readiness.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">
+                    📊
+                </div>
+
+                <h3>
+                    Student Analytics
+                </h3>
+
+                <p>
+                    Students can maintain their academic and
+                    professional information in one organized
+                    profile.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">
+                    🎤
+                </div>
+
+                <h3>
+                    AI Interview Assistant
+                </h3>
+
+                <p>
+                    Practice interview questions and receive
+                    personalized feedback to improve interview
+                    confidence.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <div class="team-card">
+
+            <h2>
+                Project Developed By
+            </h2>
+
+            <div class="team-name">
+                SECRET CIRCLE 🔴
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

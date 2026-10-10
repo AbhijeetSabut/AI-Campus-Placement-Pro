@@ -1,0 +1,609 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}AI Campus Placement Pro{% endblock %}</title>
+
+    <style>
+        /* =========================================================
+           GLOBAL RESET
+        ========================================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080b1c;
+            color: #ffffff;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* =========================================================
+           MAIN APPLICATION LAYOUT
+        ========================================================= */
+        .app-layout {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(99, 54, 180, 0.18),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 80% 70%,
+                    rgba(28, 130, 200, 0.12),
+                    transparent 35%
+                ),
+                #080b1c;
+        }
+
+        /* =========================================================
+           SIDEBAR
+        ========================================================= */
+        .app-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 312px;
+            height: 100vh;
+
+            background: #0b0f20;
+
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+
+            display: flex;
+            flex-direction: column;
+
+            z-index: 9999;
+
+            overflow: hidden;
+        }
+
+        /* =========================================================
+           SIDEBAR BRAND
+        ========================================================= */
+        .sidebar-brand {
+            width: 100%;
+            padding: 28px 28px 22px 28px;
+
+            flex-shrink: 0;
+        }
+
+        .brand-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-logo {
+            width: 58px;
+            height: 58px;
+
+            border-radius: 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #5b4cff,
+                    #a33cff
+                );
+
+            box-shadow:
+                0 10px 35px rgba(98, 70, 255, 0.35);
+        }
+
+        .brand-text {
+            min-width: 0;
+        }
+
+        .brand-title {
+            font-size: 20px;
+            line-height: 1.05;
+            font-weight: 800;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #b99cff,
+                #8fd0ff
+            );
+
+            background-clip: text;
+            -webkit-background-clip: text;
+
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-subtitle {
+            margin-top: 7px;
+
+            color: #9ba6c4;
+
+            font-size: 13px;
+        }
+
+        .brand-team {
+            margin-top: 9px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            color: #ff456e;
+        }
+
+        /* =========================================================
+           SIDEBAR MENU WRAPPER
+        ========================================================= */
+        .sidebar-menu-wrapper {
+            flex: 1;
+
+            display: flex;
+            flex-direction: column;
+
+            min-height: 0;
+
+            padding: 4px 20px 22px 20px;
+        }
+
+        .sidebar-menu-title {
+            padding: 12px 14px 18px 14px;
+
+            color: #68738f;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+
+            flex-shrink: 0;
+        }
+
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
+        .sidebar-nav {
+            flex: 1;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 7px;
+
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            padding-right: 4px;
+        }
+
+        .sidebar-nav::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .sidebar-nav::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar-nav::-webkit-scrollbar-thumb {
+            background: #5428a7;
+            border-radius: 20px;
+        }
+
+        /* =========================================================
+           EACH MENU ITEM
+        ========================================================= */
+        .sidebar-item {
+            position: relative;
+
+            width: 100%;
+            min-height: 56px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 16px;
+
+            border-radius: 16px;
+
+            color: #9da8c2;
+
+            font-size: 16px;
+            font-weight: 600;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .sidebar-item:hover {
+            color: #ffffff;
+
+            background: rgba(93, 64, 190, 0.14);
+
+            transform: translateX(2px);
+        }
+
+        .sidebar-item.active {
+            color: #ffffff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(95, 69, 220, 0.42),
+                    rgba(55, 76, 180, 0.35)
+                );
+
+            box-shadow:
+                inset 0 0 0 1px rgba(126, 99, 255, 0.12);
+        }
+
+        .sidebar-icon {
+            width: 34px;
+            min-width: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-right: 10px;
+
+            font-size: 21px;
+        }
+
+        .sidebar-label {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* =========================================================
+           BOTTOM SECTION
+           IMPORTANT:
+           LOGOUT IS NOW A COMPLETELY SEPARATE ELEMENT.
+        ========================================================= */
+        .sidebar-bottom {
+            flex-shrink: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 7px;
+
+            margin-top: 12px;
+            padding-top: 12px;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .sidebar-bottom .sidebar-item {
+            flex-shrink: 0;
+        }
+
+        .sidebar-logout {
+            color: #ff8799 !important;
+        }
+
+        .sidebar-logout:hover {
+            color: #ffb0bd !important;
+
+            background: rgba(255, 69, 105, 0.10) !important;
+        }
+
+        /* =========================================================
+           MAIN CONTENT
+        ========================================================= */
+        .app-main {
+            width: calc(100% - 312px);
+
+            min-height: 100vh;
+
+            margin-left: 312px;
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #17113c 0%,
+                    #0c1027 45%,
+                    #0a2740 100%
+                );
+        }
+
+        .page-content {
+            width: 100%;
+            min-height: 100vh;
+
+            padding: 42px 48px;
+        }
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+        @media (max-width: 1000px) {
+
+            .app-sidebar {
+                width: 250px;
+            }
+
+            .app-main {
+                width: calc(100% - 250px);
+                margin-left: 250px;
+            }
+
+            .page-content {
+                padding: 30px 25px;
+            }
+
+            .brand-title {
+                font-size: 17px;
+            }
+
+            .sidebar-item {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 760px) {
+
+            .app-sidebar {
+                position: relative;
+
+                width: 100%;
+                height: auto;
+
+                min-height: auto;
+            }
+
+            .app-layout {
+                flex-direction: column;
+            }
+
+            .app-main {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .sidebar-nav {
+                overflow: visible;
+            }
+
+            .sidebar-menu-wrapper {
+                padding-bottom: 20px;
+            }
+
+            .page-content {
+                padding: 25px 18px;
+            }
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- =========================================================
+         SIDEBAR
+    ========================================================== -->
+    <aside class="app-sidebar">
+
+        <!-- BRAND -->
+        <div class="sidebar-brand">
+
+            <div class="brand-row">
+
+                <div class="brand-logo">
+                    🤖
+                </div>
+
+                <div class="brand-text">
+
+                    <div class="brand-title">
+                        AI CAMPUS PLACEMENT PRO
+                    </div>
+
+                    <div class="brand-subtitle">
+                        Smart Placement Preparation Platform
+                    </div>
+
+                    <div class="brand-team">
+                        🔴 SECRET CIRCLE
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+        <div class="sidebar-menu-wrapper">
+
+            <div class="sidebar-menu-title">
+                Main Menu
+            </div>
+
+
+            <!-- =================================================
+                 MAIN NAVIGATION
+            ================================================== -->
+            <nav class="sidebar-nav">
+
+                <a
+                    href="/dashboard"
+                    class="sidebar-item {% if request.path == '/dashboard' %}active{% endif %}"
+                >
+                    <span class="sidebar-icon">⌂</span>
+                    <span class="sidebar-label">Dashboard</span>
+                </a>
+
+
+                <a
+                    href="/profile"
+                    class="sidebar-item {% if request.path == '/profile' %}active{% endif %}"
+                >
+                    <span class="sidebar-icon">👤</span>
+                    <span class="sidebar-label">Student Profile</span>
+                </a>
+
+
+                <a
+                    href="/academic-details"
+                    class="sidebar-item {% if request.path == '/academic-details' %}active{% endif %}"
+                >
+                    <span class="sidebar-icon">🎓</span>
+                    <span class="sidebar-label">Academic Details</span>
+                </a>
+
+
+                <a
+                    href="/skills-activities"
+                    class="sidebar-item {% if request.path == '/skills-activities' %}active{% endif %}"
+                >
+                    <span class="sidebar-icon">⚡</span>
+                    <span class="sidebar-label">Skills & Activities</span>
+                </a>
+
+
+                <a
+                    href="/predictor"
+                    class="sidebar-item {% if request.path == '/predictor' %}active{% endif %}"
+                >
+                    <span class="sidebar-icon">🤖</span>
+                    <span class="sidebar-label">Placement Predictor</span>
+                </a>
+
+
+                <a
+                    href="/result"
+                    class="sidebar-item {% if request.path == '/result' %}active{% endif %}"
+                >
+                    <span class="sidebar-icon">📊</span>
+                    <span class="sidebar-label">Results & Insights</span>
+                </a>
+
+
+                <a
+                    href="/placement-tips"
+                    class="sidebar-item {% if request.path == '/placement-tips' %}active{% endif %}"
+                >
+                    <span class="sidebar-icon">💡</span>
+                    <span class="sidebar-label">Placement Tips</span>
+                </a>
+
+
+                <a
+                    href="/history"
+                    class="sidebar-item {% if request.path == '/history' %}active{% endif %}"
+                >
+                    <span class="sidebar-icon">🕘</span>
+                    <span class="sidebar-label">History</span>
+                </a>
+
+
+                <a
+                    href="/interview"
+                    class="sidebar-item {% if request.path == '/interview' %}active{% endif %}"
+                >
+                    <span class="sidebar-icon">🎤</span>
+                    <span class="sidebar-label">AI Interview</span>
+                </a>
+
+            </nav>
+
+
+            <!-- =================================================
+                 BOTTOM MENU
+                 LOGOUT IS SEPARATED FROM ABOUT/CONTACT.
+            ================================================== -->
+            <div class="sidebar-bottom">
+
+                <a
+                    href="/about"
+                    class="sidebar-item {% if request.path == '/about' %}active{% endif %}"
+                >
+                    <span class="sidebar-icon">ℹ️</span>
+                    <span class="sidebar-label">About</span>
+                </a>
+
+
+                <a
+                    href="/contact"
+                    class="sidebar-item {% if request.path == '/contact' %}active{% endif %}"
+                >
+                    <span class="sidebar-icon">✉️</span>
+                    <span class="sidebar-label">Contact</span>
+                </a>
+
+
+                <!-- LOGOUT — SEPARATE ITEM -->
+                <a
+                    href="/logout"
+                    class="sidebar-item sidebar-logout"
+                >
+                    <span class="sidebar-icon">↪</span>
+                    <span class="sidebar-label">Logout</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================== -->
+    <main class="app-main">
+
+        <div class="page-content">
+
+            {% block content %}
+            {% endblock %}
+
+        </div>
+
+    </main>
+
+</div>
+
+{% block extra_js %}
+{% endblock %}
+
+</body>
+</html>
+```

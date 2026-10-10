@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Skills & Activities | AI Campus Placement Pro</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Inter, Arial, sans-serif;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(99,102,241,.18), transparent 35%),
+                radial-gradient(circle at bottom right, rgba(168,85,247,.15), transparent 35%),
+                #080b16;
+            color: #f8fafc;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+            padding: 24px 16px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(12,16,30,.94);
+            border-right: 1px solid rgba(255,255,255,.08);
+            backdrop-filter: blur(20px);
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 35px;
+            padding: 8px;
+        }
+
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg,#6366f1,#a855f7);
+            font-weight: 800;
+        }
+
+        .brand-text h2 {
+            font-size: 15px;
+        }
+
+        .brand-text span {
+            color: #94a3b8;
+            font-size: 11px;
+        }
+
+        .nav-title {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #64748b;
+            padding: 0 12px;
+            margin-bottom: 10px;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #94a3b8;
+            padding: 12px 13px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            transition: .25s;
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            color: white;
+            background: rgba(99,102,241,.18);
+        }
+
+        .nav-icon {
+            width: 25px;
+            text-align: center;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 25px;
+            left: 16px;
+            right: 16px;
+        }
+
+        .logout a {
+            color: #fca5a5;
+        }
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 35px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .topbar h1 {
+            font-size: 30px;
+        }
+
+        .topbar p {
+            color: #94a3b8;
+            margin-top: 6px;
+        }
+
+        .team {
+            color: #f87171;
+            font-weight: 700;
+        }
+
+        .card {
+            max-width: 1100px;
+            background: rgba(15,23,42,.75);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.25);
+            backdrop-filter: blur(18px);
+        }
+
+        .title {
+            margin-bottom: 25px;
+        }
+
+        .title h2 {
+            font-size: 22px;
+        }
+
+        .title p {
+            color: #64748b;
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 20px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .field.full {
+            grid-column: 1/-1;
+        }
+
+        label {
+            font-size: 13px;
+            color: #cbd5e1;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 14px;
+            border-radius: 13px;
+            border: 1px solid #263244;
+            background: #0b1120;
+            color: white;
+            outline: none;
+            font-size: 14px;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99,102,241,.12);
+        }
+
+        .btn {
+            margin-top: 25px;
+            padding: 13px 25px;
+            border: none;
+            border-radius: 13px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            background: linear-gradient(135deg,#6366f1,#8b5cf6);
+        }
+
+        .flash {
+            max-width: 1100px;
+            margin-bottom: 20px;
+            padding: 13px 16px;
+            border-radius: 12px;
+            background: rgba(34,197,94,.12);
+            color: #86efac;
+        }
+
+        @media(max-width:900px) {
+
+            .sidebar {
+                width: 220px;
+            }
+
+            .main {
+                margin-left: 220px;
+                width: calc(100% - 220px);
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+        }
+
+        @media(max-width:650px) {
+
+            .page {
+                display: block;
+            }
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                min-height: auto;
+            }
+
+            .logout {
+                position: static;
+                margin-top: 15px;
+            }
+
+            .main {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                gap: 15px;
+                flex-direction: column;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                AI
+            </div>
+
+            <div class="brand-text">
+                <h2>Campus Placement</h2>
+                <span>Pro Dashboard</span>
+            </div>
+
+        </div>
+
+        <div class="nav-title">
+            Main Menu
+        </div>
+
+        <nav class="nav">
+
+            <a href="{{ url_for('dashboard') }}">
+                <span class="nav-icon">⌂</span>
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('profile') }}">
+                <span class="nav-icon">👤</span>
+                Student Profile
+            </a>
+
+            <a href="{{ url_for('academic') }}">
+                <span class="nav-icon">🎓</span>
+                Academic Details
+            </a>
+
+            <a href="{{ url_for('skills') }}" class="active">
+                <span class="nav-icon">⚡</span>
+                Skills & Activities
+            </a>
+
+            <a href="{{ url_for('predictor') }}">
+                <span class="nav-icon">🤖</span>
+                Placement Predictor
+            </a>
+
+            <a href="{{ url_for('results') }}">
+                <span class="nav-icon">📊</span>
+                Results & Insights
+            </a>
+
+            <a href="{{ url_for('placement_tips') }}">
+                <span class="nav-icon">💡</span>
+                Placement Tips
+            </a>
+
+            <a href="{{ url_for('history') }}">
+                <span class="nav-icon">🕘</span>
+                History
+            </a>
+
+            <a href="{{ url_for('interview') }}">
+                <span class="nav-icon">🎤</span>
+                AI Interview
+            </a>
+
+            <a href="{{ url_for('about') }}">
+                <span class="nav-icon">ℹ️</span>
+                About
+            </a>
+
+            <a href="{{ url_for('contact') }}">
+                <span class="nav-icon">✉️</span>
+                Contact
+            </a>
+
+        </nav>
+
+        <div class="logout">
+
+            <a href="{{ url_for('logout') }}">
+                <span class="nav-icon">↪</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div>
+
+                <h1>
+                    Skills & Activities
+                </h1>
+
+                <p>
+                    Build your professional skill profile.
+                </p>
+
+            </div>
+
+            <div class="team">
+                {{ team_name }}
+            </div>
+
+        </div>
+
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+
+                {% for category, message in messages %}
+
+                    <div class="flash">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <div class="card">
+
+            <div class="title">
+
+                <h2>
+                    Professional Skills
+                </h2>
+
+                <p>
+                    Enter your current abilities, certifications
+                    and activities.
+                </p>
+
+            </div>
+
+
+            <form method="POST">
+
+                <div class="grid">
+
+                    <div class="field">
+
+                        <label>
+                            Coding Skill Rating
+                        </label>
+
+                        <input
+                            type="number"
+                            min="0"
+                            max="10"
+                            step="0.1"
+                            name="coding"
+                            value="{{ skills.get('coding', '') }}"
+                            placeholder="0 - 10"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Communication Rating
+                        </label>
+
+                        <input
+                            type="number"
+                            min="0"
+                            max="10"
+                            step="0.1"
+                            name="communication"
+                            value="{{ skills.get('communication', '') }}"
+                            placeholder="0 - 10"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Soft Skills Rating
+                        </label>
+
+                        <input
+                            type="number"
+                            min="0"
+                            max="10"
+                            step="0.1"
+                            name="soft_skills"
+                            value="{{ skills.get('soft_skills', '') }}"
+                            placeholder="0 - 10"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Technical Skills
+                        </label>
+
+                        <input
+                            type="text"
+                            name="technical_skills"
+                            value="{{ skills.get('technical_skills', '') }}"
+                            placeholder="Python, Java, SQL..."
+                        >
+
+                    </div>
+
+
+                    <div class="field full">
+
+                        <label>
+                            Certifications
+                        </label>
+
+                        <textarea
+                            name="certifications"
+                            placeholder="List your certifications..."
+                        >{{ skills.get('certifications', '') }}</textarea>
+
+                    </div>
+
+
+                    <div class="field full">
+
+                        <label>
+                            Extracurricular Activities
+                        </label>
+
+                        <textarea
+                            name="extracurricular"
+                            placeholder="Clubs, sports, volunteering..."
+                        >{{ skills.get('extracurricular', '') }}</textarea>
+
+                    </div>
+
+
+                    <div class="field full">
+
+                        <label>
+                            Achievements
+                        </label>
+
+                        <textarea
+                            name="achievements"
+                            placeholder="Awards, hackathons, competitions..."
+                        >{{ skills.get('achievements', '') }}</textarea>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    💾 Save Skills & Activities
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

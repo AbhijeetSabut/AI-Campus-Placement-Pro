@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Academic Details | AI Campus Placement Pro</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(103, 58, 183, 0.35), transparent 30%),
+                radial-gradient(circle at 90% 30%, rgba(37, 99, 235, 0.25), transparent 30%),
+                linear-gradient(135deg, #080b20, #101936 55%, #0b2444);
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        /* ================= HEADER ================= */
+
+        .top-header {
+            width: 100%;
+            min-height: 180px;
+            background: rgba(5, 8, 25, 0.96);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 45px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+        }
+
+        .brand-area {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .brand-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 17px;
+            background: linear-gradient(135deg, #7448ff, #a855f7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 10px 30px rgba(124,58,237,0.35);
+        }
+
+        .brand-text h1 {
+            font-size: 27px;
+            line-height: 1.05;
+            font-weight: 900;
+            background: linear-gradient(90deg, #ffffff, #c4b5fd, #93c5fd);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-text p {
+            margin-top: 7px;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .team-name {
+            margin-top: 7px;
+            color: #ff5268;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .navigation {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 9px;
+            max-width: 900px;
+        }
+
+        .navigation a {
+            text-decoration: none;
+            color: #aebbd1;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 13px 15px;
+            border-radius: 15px;
+            transition: 0.25s ease;
+        }
+
+        .navigation a:hover {
+            color: white;
+            background: rgba(124,58,237,0.18);
+        }
+
+        .navigation a.active {
+            color: white;
+            background: linear-gradient(135deg, #6d4aff, #1976d2);
+            box-shadow: 0 10px 25px rgba(80,80,255,0.25);
+        }
+
+        .navigation a.logout {
+            color: #ff7181;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main-container {
+            width: min(1500px, 92%);
+            margin: auto;
+            padding: 60px 0 100px;
+        }
+
+        .page-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(139,92,246,0.55);
+            color: #c4b5fd;
+            padding: 11px 24px;
+            border-radius: 30px;
+            background: rgba(91,33,182,0.12);
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .page-title {
+            margin-top: 30px;
+            font-size: clamp(48px, 5vw, 76px);
+            line-height: 1.02;
+            font-weight: 900;
+            letter-spacing: -3px;
+            background: linear-gradient(90deg, #ffffff, #d8d4ff, #a7c7ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-description {
+            margin-top: 22px;
+            max-width: 850px;
+            color: #a9b8d2;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* ================= STUDENT CARD ================= */
+
+        .student-card {
+            margin-top: 45px;
+            padding: 42px;
+            border-radius: 30px;
+            border: 1px solid rgba(148,163,184,0.18);
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(49, 46, 129, 0.42),
+                    rgba(15, 35, 61, 0.70)
+                );
+            box-shadow:
+                0 25px 80px rgba(0,0,0,0.30),
+                inset 0 1px 0 rgba(255,255,255,0.05);
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 45px;
+        }
+
+        /* ================= PHOTO ================= */
+
+        .student-photo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 10px;
+        }
+
+        .academic-photo-wrapper {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(
+                135deg,
+                #7c3aed,
+                #8b5cf6,
+                #2563eb
+            );
+            box-shadow:
+                0 0 0 8px rgba(124,58,237,0.08),
+                0 20px 50px rgba(79,70,229,0.35);
+            overflow: hidden;
+        }
+
+        .academic-profile-photo {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #111827;
+        }
+
+        .academic-photo-placeholder {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #5b21b6, #9333ea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 65px;
+        }
+
+        .candidate-label {
+            margin-top: 22px;
+            font-size: 17px;
+            font-weight: 800;
+            color: #f8fafc;
+        }
+
+        /* ================= STUDENT INFORMATION ================= */
+
+        .student-information h2 {
+            font-size: 30px;
+            margin-bottom: 7px;
+        }
+
+        .candidate-id {
+            color: #94a3b8;
+            font-size: 16px;
+        }
+
+        .connected {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 22px;
+            padding: 8px 16px;
+            border-radius: 25px;
+            color: #4ade80;
+            border: 1px solid rgba(74,222,128,0.3);
+            background: rgba(34,197,94,0.08);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .connected-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+        }
+
+        .info-grid {
+            margin-top: 28px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .info-box {
+            padding: 22px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(148,163,184,0.14);
+        }
+
+        .info-label {
+            color: #8291aa;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .info-value {
+            margin-top: 8px;
+            font-size: 18px;
+            font-weight: 800;
+            color: #f8fafc;
+        }
+
+        /* ================= FORM ================= */
+
+        .form-card {
+            margin-top: 30px;
+            padding: 40px;
+            border-radius: 30px;
+            background: rgba(10,17,35,0.82);
+            border: 1px solid rgba(148,163,184,0.15);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+        }
+
+        .form-heading {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .form-description {
+            color: #8291aa;
+            margin-bottom: 32px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0,1fr));
+            gap: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            color: #d5dbea;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 17px;
+            border-radius: 14px;
+            border: 1px solid #26324c;
+            outline: none;
+            background: #0b1225;
+            color: white;
+            font-size: 15px;
+            transition: 0.25s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #7c5cff;
+            box-shadow: 0 0 0 4px rgba(124,92,255,0.10);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #59677f;
+        }
+
+        .save-button {
+            margin-top: 30px;
+            border: none;
+            border-radius: 14px;
+            padding: 15px 30px;
+            color: white;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #7048ff, #2563eb);
+            box-shadow: 0 15px 35px rgba(79,70,229,0.28);
+            transition: 0.25s ease;
+        }
+
+        .save-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(79,70,229,0.38);
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1100px) {
+
+            .top-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 25px;
+            }
+
+            .navigation {
+                justify-content: flex-start;
+            }
+
+            .student-card {
+                grid-template-columns: 1fr;
+            }
+
+            .student-photo-section {
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 750px) {
+
+            .top-header {
+                padding: 20px;
+            }
+
+            .navigation {
+                gap: 4px;
+            }
+
+            .navigation a {
+                padding: 9px;
+                font-size: 12px;
+            }
+
+            .main-container {
+                width: 94%;
+                padding-top: 35px;
+            }
+
+            .page-title {
+                font-size: 45px;
+                letter-spacing: -2px;
+            }
+
+            .student-card,
+            .form-card {
+                padding: 25px;
+            }
+
+            .info-grid,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="top-header">
+
+    <div class="brand-area">
+
+        <div class="brand-icon">
+            🤖
+        </div>
+
+        <div class="brand-text">
+            <h1>AI CAMPUS PLACEMENT<br>PRO</h1>
+            <p>Smart Placement Preparation Platform</p>
+            <div class="team-name">🔴 SECRET CIRCLE</div>
+        </div>
+
+    </div>
+
+    <nav class="navigation">
+
+        <a href="{{ url_for('dashboard') }}">
+            🏠 Dashboard
+        </a>
+
+        <a href="{{ url_for('profile') }}">
+            👤 Student Profile
+        </a>
+
+        <a href="{{ url_for('academic_details') }}" class="active">
+            🎓 Academic Details
+        </a>
+
+        <a href="{{ url_for('skills_activities') }}">
+            💡 Skills & Activities
+        </a>
+
+        <a href="{{ url_for('history') }}">
+            📊 Prediction History
+        </a>
+
+        <a href="{{ url_for('predictor') }}">
+            🚀 Placement Predictor
+        </a>
+
+        <a href="{{ url_for('interview') }}">
+            🤖 AI Interview
+        </a>
+
+        <a href="{{ url_for('about') }}">
+            ℹ️ About
+        </a>
+
+        <a href="{{ url_for('contact') }}">
+            ✉️ Contact
+        </a>
+
+        <a href="{{ url_for('logout') }}" class="logout">
+            🚪 Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="main-container">
+
+    <div class="page-label">
+        🎓 ACADEMIC DETAILS
+    </div>
+
+    <h1 class="page-title">
+        Your Academic Performance
+    </h1>
+
+    <p class="page-description">
+        Add your academic performance and placement-related information
+        to improve the accuracy of your placement prediction.
+    </p>
+
+
+    <!-- ================= STUDENT CARD ================= -->
+
+    <section class="student-card">
+
+        <!-- PHOTO -->
+
+        <div class="student-photo-section">
+
+            <div class="academic-photo-wrapper">
+
+                {% if profile and profile.get('profile_photo') %}
+
+                    <img
+                        src="{{ url_for('uploaded_file', filename=profile.get('profile_photo')) }}?v={{ photo_version|default(0) }}"
+                        alt="Student Profile Photo"
+                        class="academic-profile-photo"
+                    >
+
+                {% else %}
+
+                    <div class="academic-photo-placeholder">
+                        👤
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+            <div class="candidate-label">
+                Candidate Student
+            </div>
+
+        </div>
+
+
+        <!-- STUDENT INFORMATION -->
+
+        <div class="student-information">
+
+            <h2>
+                {{ profile.get('full_name', session.get('user_name', 'Student')) if profile else session.get('user_name', 'Student') }}
+            </h2>
+
+            <div class="candidate-id">
+
+                Candidate ID:
+
+                {{ profile.get('candidate_id', session.get('user_id', 'SC1001')) if profile else session.get('user_id', 'SC1001') }}
+
+            </div>
+
+            <div class="connected">
+                <span class="connected-dot"></span>
+                Profile Connected
+            </div>
+
+
+            <div class="info-grid">
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        College / University
+                    </div>
+
+                    <div class="info-value">
+                        {{ profile.get('college', 'AIET') if profile else 'AIET' }}
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        Branch / Department
+                    </div>
+
+                    <div class="info-value">
+                        {{ profile.get('branch', 'CSE') if profile else 'CSE' }}
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        Graduation Year
+                    </div>
+
+                    <div class="info-value">
+                        {{ profile.get('graduation_year', '2028') if profile else '2028' }}
+                    </div>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <div class="info-label">
+                        Email
+                    </div>
+
+                    <div class="info-value">
+
+                        {{ profile.get('email', 'Not added') if profile else 'Not added' }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ACADEMIC FORM ================= -->
+
+    <section class="form-card">
+
+        <h2 class="form-heading">
+            Academic Information
+        </h2>
+
+        <p class="form-description">
+            Enter your academic information to improve your placement prediction.
+        </p>
+
+
+        <form method="POST"
+              action="{{ url_for('academic_details') }}">
+
+            <div class="form-grid">
+
+
+                <!-- CGPA -->
+
+                <div class="form-group">
+
+                    <label for="cgpa">
+                        CGPA
+                    </label>
+
+                    <input
+                        type="number"
+                        id="cgpa"
+                        name="cgpa"
+                        step="0.01"
+                        min="0"
+                        max="10"
+                        value="{{ academic.get('cgpa', '') if academic else '' }}"
+                        placeholder="Example: 8.5"
+                    >
+
+                </div>
+
+
+                <!-- SSC -->
+
+                <div class="form-group">
+
+                    <label for="ssc_marks">
+                        SSC / 10th Marks (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="ssc_marks"
+                        name="ssc_marks"
+                        step="0.01"
+                        min="0"
+                        max="100"
+                        value="{{ academic.get('ssc_marks', '') if academic else '' }}"
+                        placeholder="Example: 85"
+                    >
+
+                </div>
+
+
+                <!-- HSC -->
+
+                <div class="form-group">
+
+                    <label for="hsc_marks">
+                        HSC / 12th Marks (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="hsc_marks"
+                        name="hsc_marks"
+                        step="0.01"
+                        min="0"
+                        max="100"
+                        value="{{ academic.get('hsc_marks', '') if academic else '' }}"
+                        placeholder="Example: 82"
+                    >
+
+                </div>
+
+
+                <!-- BACKLOGS -->
+
+                <div class="form-group">
+
+                    <label for="backlogs">
+                        Backlogs
+                    </label>
+
+                    <input
+                        type="number"
+                        id="backlogs"
+                        name="backlogs"
+                        min="0"
+                        value="{{ academic.get('backlogs', 0) if academic else 0 }}"
+                    >
+
+                </div>
+
+
+                <!-- INTERNSHIPS -->
+
+                <div class="form-group">
+
+                    <label for="internships">
+                        Number of Internships
+                    </label>
+
+                    <input
+                        type="number"
+                        id="internships"
+                        name="internships"
+                        min="0"
+                        value="{{ academic.get('internships', 0) if academic else 0 }}"
+                    >
+
+                </div>
+
+
+                <!-- PROJECTS -->
+
+                <div class="form-group">
+
+                    <label for="projects">
+                        Number of Projects
+                    </label>
+
+                    <input
+                        type="number"
+                        id="projects"
+                        name="projects"
+                        min="0"
+                        value="{{ academic.get('projects', 0) if academic else 0 }}"
+                    >
+
+                </div>
+
+
+                <!-- CERTIFICATIONS -->
+
+                <div class="form-group">
+
+                    <label for="certifications">
+                        Workshops / Certifications
+                    </label>
+
+                    <input
+                        type="number"
+                        id="certifications"
+                        name="certifications"
+                        min="0"
+                        value="{{ academic.get('certifications', 0) if academic else 0 }}"
+                    >
+
+                </div>
+
+
+                <!-- PLACEMENT TRAINING -->
+
+                <div class="form-group">
+
+                    <label for="placement_training">
+                        Placement Training
+                    </label>
+
+                    <select
+                        id="placement_training"
+                        name="placement_training"
+                    >
+
+                        <option value="Yes"
+                            {% if academic and academic.get('placement_training') == 'Yes' %}
+                                selected
+                            {% endif %}
+                        >
+                            Yes
+                        </option>
+
+                        <option value="No"
+                            {% if academic and academic.get('placement_training') == 'No' %}
+                                selected
+                            {% endif %}
+                        >
+                            No
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- ACHIEVEMENTS -->
+
+                <div class="form-group full">
+
+                    <label for="achievements">
+                        Academic Achievements
+                    </label>
+
+                    <textarea
+                        id="achievements"
+                        name="achievements"
+                        placeholder="Scholarships, awards, rank, achievements..."
+                    >{{ academic.get('achievements', '') if academic else '' }}</textarea>
+
+                </div>
+
+
+                <!-- EXTRA -->
+
+                <div class="form-group full">
+
+                    <label for="academic_notes">
+                        Additional Information
+                    </label>
+
+                    <textarea
+                        id="academic_notes"
+                        name="academic_notes"
+                        placeholder="Add any additional academic information..."
+                    >{{ academic.get('academic_notes', '') if academic else '' }}</textarea>
+
+                </div>
+
+            </div>
+
+
+            <button type="submit" class="save-button">
+                💾 Save Academic Details
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+
+</body>
+</html>

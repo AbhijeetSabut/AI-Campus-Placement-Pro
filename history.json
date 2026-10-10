@@ -1,0 +1,18 @@
+{
+    "ABHISEK": [
+        {
+            "status": "PLACED",
+            "probability": 61.0,
+            "cgpa": 8.23,
+            "internships": 5,
+            "projects": 3,
+            "workshops": 4,
+            "aptitude": 78.0,
+            "soft_skills": 8.0,
+            "ssc_marks": 95.0,
+            "hsc_marks": 89.0,
+            "recommendation": "Excellent work! Keep improving your technical skills, communication and interview confidence.",
+            "motivation": "Your preparation is creating opportunities. Keep learning and keep practicing."
+        }
+    ]
+}

@@ -1,0 +1,698 @@
+/* =========================================================
+   AI CAMPUS PLACEMENT PRO
+   PROFILE PAGE
+   TEAM: SECRET CIRCLE 🔴
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    min-height: 100vh;
+    color: #f8fafc;
+
+    background:
+        radial-gradient(circle at 10% 10%, rgba(124, 58, 237, 0.22), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(37, 99, 235, 0.18), transparent 30%),
+        linear-gradient(135deg, #050816, #0b1025 55%, #071a2c);
+
+    overflow-x: hidden;
+}
+
+/* Background animation */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: rgba(99, 102, 241, 0.08);
+    filter: blur(80px);
+    top: 5%;
+    left: -100px;
+    animation: floatBlob 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: rgba(14, 165, 233, 0.08);
+    filter: blur(80px);
+    right: -100px;
+    bottom: 5%;
+    animation: floatBlob2 10s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes floatBlob {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(50px);
+    }
+}
+
+@keyframes floatBlob2 {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-50px);
+    }
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.profile-navbar {
+    width: 100%;
+    padding: 18px 35px;
+
+    background: rgba(7, 12, 30, 0.82);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+
+    box-shadow: 0 8px 25px rgba(99,102,241,0.35);
+
+    font-size: 21px;
+}
+
+.brand-text h2 {
+    font-size: 18px;
+    letter-spacing: 0.5px;
+}
+
+.brand-text span {
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+.team-name {
+    color: #ef4444;
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #cbd5e1;
+
+    padding: 9px 13px;
+    border-radius: 10px;
+
+    font-size: 13px;
+
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: white;
+    background: rgba(99,102,241,0.16);
+    transform: translateY(-2px);
+}
+
+/* Logout */
+
+.logout-btn {
+    text-decoration: none;
+    color: #fecaca !important;
+
+    border: 1px solid rgba(239,68,68,0.25);
+
+    background: rgba(239,68,68,0.08);
+
+    padding: 9px 15px !important;
+}
+
+.logout-btn:hover {
+    background: rgba(239,68,68,0.18) !important;
+    border-color: rgba(239,68,68,0.5);
+}
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.profile-container {
+    width: min(1180px, 92%);
+    margin: 45px auto 80px;
+
+    position: relative;
+    z-index: 2;
+}
+
+.page-label {
+    color: #818cf8;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    margin-bottom: 8px;
+}
+
+.page-title {
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.1;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #c4b5fd,
+        #67e8f9
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    margin-bottom: 12px;
+}
+
+.page-description {
+    color: #94a3b8;
+    font-size: 16px;
+    max-width: 720px;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   PROFILE HEADER
+   ========================================================= */
+
+.profile-card {
+    margin-top: 35px;
+
+    padding: 30px;
+
+    border-radius: 24px;
+
+    background: rgba(15,23,42,0.68);
+
+    border: 1px solid rgba(255,255,255,0.09);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.30);
+
+    animation: slideUp 0.7s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-top {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 30px;
+
+    align-items: center;
+}
+
+/* =========================================================
+   PHOTO
+   ========================================================= */
+
+.photo-area {
+    text-align: center;
+}
+
+.profile-photo {
+    width: 145px;
+    height: 145px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 4px solid rgba(129,140,248,0.8);
+
+    background:
+        linear-gradient(135deg, #6366f1, #06b6d4);
+
+    padding: 4px;
+
+    box-shadow:
+        0 0 0 8px rgba(99,102,241,0.08),
+        0 20px 50px rgba(79,70,229,0.35);
+
+    transition: 0.4s ease;
+}
+
+.profile-photo:hover {
+    transform: scale(1.05) rotate(2deg);
+}
+
+.photo-placeholder {
+    width: 145px;
+    height: 145px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 50px;
+
+    background: linear-gradient(
+        135deg,
+        #4f46e5,
+        #06b6d4
+    );
+
+    box-shadow:
+        0 0 0 8px rgba(99,102,241,0.08),
+        0 20px 50px rgba(79,70,229,0.35);
+}
+
+.photo-text {
+    color: #94a3b8;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+/* =========================================================
+   PROFILE SUMMARY
+   ========================================================= */
+
+.profile-summary h2 {
+    font-size: 30px;
+    margin-bottom: 6px;
+}
+
+.profile-id {
+    color: #94a3b8;
+    margin-bottom: 15px;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 7px 12px;
+
+    border-radius: 30px;
+
+    color: #86efac;
+
+    background: rgba(34,197,94,0.1);
+
+    border: 1px solid rgba(34,197,94,0.2);
+
+    font-size: 13px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+
+    box-shadow: 0 0 10px #22c55e;
+}
+
+/* =========================================================
+   COMPLETION
+   ========================================================= */
+
+.completion {
+    margin-top: 20px;
+}
+
+.completion-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    color: #cbd5e1;
+    font-size: 13px;
+}
+
+.progress {
+    height: 9px;
+
+    background: rgba(255,255,255,0.08);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+
+    width: 100%;
+
+    border-radius: 20px;
+
+    background: linear-gradient(
+        90deg,
+        #6366f1,
+        #8b5cf6,
+        #06b6d4
+    );
+
+    box-shadow: 0 0 15px rgba(99,102,241,0.5);
+
+    animation: progressGlow 2s infinite alternate;
+}
+
+@keyframes progressGlow {
+    from {
+        opacity: 0.75;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.form-card {
+    margin-top: 25px;
+
+    padding: 32px;
+
+    border-radius: 24px;
+
+    background: rgba(15,23,42,0.65);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+
+    animation: slideUp 0.8s ease;
+}
+
+.section-title {
+    font-size: 21px;
+    margin-bottom: 5px;
+}
+
+.section-subtitle {
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0,1fr));
+
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 13px;
+    color: #cbd5e1;
+
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(148,163,184,0.18);
+
+    outline: none;
+
+    background: rgba(2,6,23,0.65);
+
+    color: #f8fafc;
+
+    font-size: 14px;
+
+    transition: 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #818cf8;
+
+    box-shadow:
+        0 0 0 3px rgba(99,102,241,0.12),
+        0 0 20px rgba(99,102,241,0.08);
+
+    transform: translateY(-1px);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #64748b;
+}
+
+/* =========================================================
+   PHOTO UPLOAD
+   ========================================================= */
+
+.photo-upload {
+    border: 1px dashed rgba(129,140,248,0.45);
+
+    border-radius: 16px;
+
+    padding: 22px;
+
+    text-align: center;
+
+    background: rgba(99,102,241,0.04);
+
+    transition: 0.3s ease;
+}
+
+.photo-upload:hover {
+    background: rgba(99,102,241,0.08);
+    border-color: #818cf8;
+}
+
+.photo-upload-icon {
+    font-size: 28px;
+    margin-bottom: 7px;
+}
+
+.photo-upload p {
+    color: #94a3b8;
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.photo-upload input[type="file"] {
+    border: none;
+    background: transparent;
+    padding: 5px;
+}
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+.save-btn {
+    margin-top: 28px;
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    background: linear-gradient(
+        135deg,
+        #6366f1,
+        #8b5cf6,
+        #06b6d4
+    );
+
+    box-shadow:
+        0 12px 30px rgba(79,70,229,0.3);
+
+    transition: 0.3s ease;
+}
+
+.save-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 18px 40px rgba(79,70,229,0.4);
+}
+
+.save-btn:active {
+    transform: scale(0.98);
+}
+
+/* =========================================================
+   TEAM FOOTER
+   ========================================================= */
+
+.team-footer {
+    text-align: center;
+
+    margin-top: 35px;
+
+    padding: 22px;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+.team-footer strong {
+    color: #ef4444;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .profile-navbar {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        width: 100%;
+    }
+
+    .profile-top {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .photo-area {
+        margin: auto;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .profile-navbar {
+        padding: 15px;
+    }
+
+    .profile-container {
+        width: 94%;
+        margin-top: 25px;
+    }
+
+    .profile-card,
+    .form-card {
+        padding: 20px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+        padding: 7px 9px;
+    }
+
+    .page-title {
+        font-size: 34px;
+    }
+}
